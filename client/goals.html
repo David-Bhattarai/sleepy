@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Goals & Habits - AI Mental Health Therapist</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="dashboard.html" class="text-2xl font-bold text-gray-800">AI Therapist</a>
+            <a href="dashboard.html" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">&larr; Back to Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- Daily Goals -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Today's Goals</h2>
+                <div class="flex mb-4">
+                    <input type="text" id="goal-input" class="w-full border rounded-l-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Meditate for 10 minutes">
+                    <button id="add-goal-btn" class="bg-blue-600 text-white px-6 py-3 rounded-r-lg hover:bg-blue-700">Add</button>
+                </div>
+                <ul id="goal-list" class="space-y-3">
+                    <!-- Goals will be populated here -->
+                </ul>
+            </div>
+
+            <!-- Habit Tracker -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">My Habits</h2>
+                <div class="flex mb-4">
+                    <input type="text" id="habit-input" class="w-full border rounded-l-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500" placeholder="e.g., Drink 8 glasses of water">
+                    <button id="add-habit-btn" class="bg-green-600 text-white px-6 py-3 rounded-r-lg hover:bg-green-700">Add</button>
+                </div>
+                <ul id="habit-list" class="space-y-3">
+                    <!-- Habits will be populated here -->
+                </ul>
+            </div>
+        </div>
+
+        <!-- AI Suggestions -->
+        <div class="mt-8 bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">AI-Powered Goal Suggestions</h2>
+            <div id="suggestion-box" class="p-4 bg-indigo-100 rounded-lg">
+                <p class="text-indigo-800">Suggestions based on your recent conversations will appear here.</p>
+                <!-- Suggestions will be populated here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="goals.js"></script>
+</body>
+</html>

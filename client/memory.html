@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Match - AURA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .game-board { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .card { perspective: 1000px; height: 120px; cursor: pointer; }
+        .card-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+        .card.flipped .card-inner { transform: rotateY(180deg); }
+        .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 0.75rem; display: flex; align-items: center; justify-content: center; }
+        .card-front { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .card-back { background-color: #4f46e5; transform: rotateY(180deg); font-size: 2.5rem; color: white; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="orb-container"><div class="orb"></div><div class="orb"></div></div>
+    <div class="w-full max-w-2xl glass-card p-8 z-10 text-center">
+        <h1 class="text-3xl font-extrabold text-white mb-2">Memory Match</h1>
+        <p class="text-gray-300 mb-6">Flip cards to find matching pairs. Clear the board to win!</p>
+        <div id="game-info" class="flex justify-around mb-6 text-lg">
+            <span class="text-white">Moves: <span id="moves">0</span></span>
+            <span class="text-white">Time: <span id="timer">0s</span></span>
+        </div>
+        <div id="game-board" class="game-board"></div>
+        <button id="reset-btn" class="btn-primary mt-6 py-2 px-6">Reset Game</button>
+        <a href="/games.html" class="block text-indigo-400 hover:underline mt-4">Back to Games</a>
+    </div>
+    <script src="memory.js"></script>
+</body>
+</html>

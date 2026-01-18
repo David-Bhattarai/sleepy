@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Premium - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .payment-method.selected { border-color: #4f46e5; background-color: rgba(79, 70, 229, 0.1); }
+        .payment-logo { height: 40px; }
+    </style>
+</head>
+<body>
+    <div class="orb-container"><div class="orb"></div><div class="orb"></div></div>
+
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                <a href="/dashboard.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-2xl mx-auto">
+            <div class="glass-card p-8 text-center">
+                <h1 class="text-3xl font-extrabold text-white mb-2">Unlock Your Full Potential</h1>
+                <p class="text-gray-300 mb-8">Go Premium to get unlimited access to all features, including advanced EI analysis, personalized insights, and special content.</p>
+
+                <div class="bg-black bg-opacity-25 p-6 rounded-xl border border-white/10 mb-8">
+                    <p class="text-lg text-white">One-Time Payment</p>
+                    <p class="text-5xl font-bold text-indigo-300 my-2">NPR 500</p>
+                    <p class="text-gray-400">for Lifetime Access</p>
+                </div>
+
+                <h2 class="text-xl font-bold text-white mb-4">Choose Your Payment Method</h2>
+                <div class="grid grid-cols-2 gap-4" id="payment-methods">
+                    <!-- eSewa -->
+                    <div data-method="esewa" class="payment-method cursor-pointer p-4 bg-black bg-opacity-20 rounded-xl border-2 border-transparent transition-all flex items-center justify-center">
+                        <img src="https://logowik.com/content/uploads/images/esewa-payment-gateway5481.jpg" alt="eSewa" class="payment-logo">
+                    </div>
+                    <!-- Khalti -->
+                    <div data-method="khalti" class="payment-method cursor-pointer p-4 bg-black bg-opacity-20 rounded-xl border-2 border-transparent transition-all flex items-center justify-center">
+                         <img src="https://logowik.com/content/uploads/images/khalti-digital-wallet5518.logowik.com.webp" alt="Khalti" class="payment-logo">
+                    </div>
+                    <!-- PayPal -->
+                    <div data-method="paypal" class="payment-method cursor-pointer p-4 bg-black bg-opacity-20 rounded-xl border-2 border-transparent transition-all flex items-center justify-center">
+                        <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Marks_for_LogoCenter_266x142.png" alt="PayPal" class="payment-logo">
+                    </div>
+                    <!-- Payoneer -->
+                    <div data-method="payoneer" class="payment-method cursor-pointer p-4 bg-black bg-opacity-20 rounded-xl border-2 border-transparent transition-all flex items-center justify-center">
+                         <img src="https://logowik.com/content/uploads/images/payoneer-new-20212711.jpg" alt="Payoneer" class="payment-logo" style="height: 30px;">
+                    </div>
+                </div>
+
+                <button id="proceed-btn" class="w-full btn-primary mt-8 py-3 text-lg" disabled>Proceed to Pay</button>
+                <p id="error-message" class="text-red-400 text-center mt-4"></p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Payment Simulation Modal -->
+    <div id="payment-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50">
+        <div class="glass-card p-8 rounded-2xl text-center w-full max-w-sm">
+            <h2 class="text-2xl font-bold text-white mb-4">Confirming Payment...</h2>
+            <div id="modal-content"></div>
+            <p id="modal-message" class="text-gray-300 mt-4"></p>
+        </div>
+    </div>
+
+    <script src="premium.js"></script>
+</body>
+</html>

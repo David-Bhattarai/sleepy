@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="orb-container">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Glassmorphism Navigation Bar -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                </div>
+                <div class="hidden md:block">
+                    <div id="nav-links" class="ml-10 flex items-baseline space-x-4">
+                        <!-- Links injected by app.js -->
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="menu-btn" type="button" class="bg-gray-800 bg-opacity-50 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden"></div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-card p-8">
+                <h1 class="text-3xl font-extrabold text-white text-center mb-6">Your Mood Journey</h1>
+                
+                <!-- Mood Input Section -->
+                <div class="mb-8 p-6 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                    <h2 class="text-xl font-bold text-white mb-4">How are you feeling right now?</h2>
+                    <form id="mood-form" class="flex flex-col sm:flex-row items-center gap-4">
+                        <div class="w-full sm:flex-1">
+                            <label for="mood" class="sr-only">Mood</label>
+                            <select id="mood" name="mood" class="form-input w-full py-3 px-4" required>
+                                <option value="5">😊 Excellent</option>
+                                <option value="4">🙂 Good</option>
+                                <option value="3" selected>😐 Neutral</option>
+                                <option value="2">😟 Bad</option>
+                                <option value="1">😭 Awful</option>
+                            </select>
+                        </div>
+                        <div class="w-full sm:flex-1">
+                             <label for="notes" class="sr-only">Notes</label>
+                             <input type="text" id="notes" name="notes" placeholder="What's on your mind? (optional)" class="form-input w-full py-3 px-4">
+                        </div>
+                        <button type="submit" class="btn-primary w-full sm:w-auto py-3 px-6 text-base">Log Mood</button>
+                    </form>
+                     <p id="mood-feedback" class="text-green-400 text-center mt-4"></p>
+                </div>
+
+                <!-- Mood History Chart -->
+                <div>
+                    <h2 class="text-xl font-bold text-white mb-4 text-center">Your Mood Over Time</h2>
+                    <div class="p-6 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                        <canvas id="mood-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="mood-tracker.js"></script>
+</body>
+</html>

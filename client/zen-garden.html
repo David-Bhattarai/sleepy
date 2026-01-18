@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zen Garden - AURA</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #zen-canvas { cursor: crosshair; border-radius: 0.75rem; border: 1px solid rgba(255, 255, 255, 0.2); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="orb-container"><div class="orb"></div><div class="orb"></div></div>
+    <div class="w-full max-w-4xl glass-card p-8 z-10 text-center">
+        <h1 class="text-3xl font-extrabold text-white mb-2">Zen Garden</h1>
+        <p class="text-gray-300 mb-6">Create your own peaceful patterns in the sand. Let go of your thoughts and just draw.</p>
+        
+        <canvas id="zen-canvas" width="800" height="500"></canvas>
+
+        <div id="controls" class="flex justify-center items-center gap-6 mt-6">
+            <button id="clear-btn" class="btn-primary py-2 px-6">Clear Sand</button>
+            <div class="flex items-center gap-2">
+                <label for="color-picker" class="text-white">Sand Color:</label>
+                <input type="color" id="color-picker" value="#e2e8f0" class="w-10 h-10 rounded-full cursor-pointer bg-transparent">
+            </div>
+        </div>
+
+        <a href="/games.html" class="block text-indigo-400 hover:underline mt-8">Back to Games</a>
+    </div>
+    <script src="zen-garden.js"></script>
+</body>
+</html>

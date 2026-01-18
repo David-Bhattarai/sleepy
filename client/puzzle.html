@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle Game - AI Mental Health Therapist</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        #puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            border: 5px solid #4a5568;
+        }
+        .puzzle-tile {
+            width: 100px;
+            height: 100px;
+            background-color: #a0aec0;
+            border: 1px solid #718096;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            user-select: none;
+            transition: background-color 0.3s;
+        }
+        .puzzle-tile:hover {
+            background-color: #cbd5e0;
+        }
+        .empty-tile {
+            background-color: #f7fafc;
+            cursor: default;
+        }
+        .empty-tile:hover {
+            background-color: #f7fafc;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-center min-h-screen font-sans">
+    <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-gray-800">Sliding Puzzle Game</h1>
+        <p class="text-lg text-gray-600">Arrange the numbers back in order!</p>
+        <p class="mt-2">Moves: <span id="move-counter" class="font-semibold">0</span></p>
+    </div>
+
+    <div id="puzzle-container" class="bg-gray-200 p-2 rounded-lg shadow-xl"></div>
+
+    <div class="mt-8">
+        <button id="shuffle-button" class="px-6 py-3 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-lg">Shuffle</button>
+        <a href="dashboard.html" class="ml-4 px-6 py-3 bg-gray-600 text-white rounded-md hover:bg-gray-700 focus:outline-none">Back to Dashboard</a>
+    </div>
+
+    <script src="puzzle.js"></script>
+</body>
+</html>

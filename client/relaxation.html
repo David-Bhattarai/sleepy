@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relaxation Hub - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="orb-container">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Glassmorphism Navigation Bar -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                </div>
+                <div class="hidden md:block">
+                    <div id="nav-links" class="ml-10 flex items-baseline space-x-4">
+                        <!-- Links injected by app.js -->
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="menu-btn" type="button" class="bg-gray-800 bg-opacity-50 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden"></div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="glass-card p-8 text-center">
+                <h1 class="text-3xl font-extrabold text-white mb-4">Relaxation Hub</h1>
+                <p class="text-gray-300 mb-8 max-w-2xl mx-auto">Find peace and calm with our curated collection of music designed to soothe your mind and soul.</p>
+            </div>
+
+            <!-- Stress Relief Music -->
+            <section class="mt-10">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">Stress & Anxiety Relief</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 music-grid">
+                    <!-- Music Card 1 -->
+                    <div class="music-card p-4 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                        <h3 class="text-lg font-bold text-indigo-300 mb-2">Forest Ambiance</h3>
+                        <p class="text-sm text-gray-400 mb-4">Calming sounds of a forest to reduce stress.</p>
+                        <audio controls class="w-full rounded-lg" src="https://cdn.pixabay.com/audio/2022/10/18/audio_b2d2422026.mp3"></audio>
+                    </div>
+                    <!-- Music Card 2 -->
+                    <div class="music-card p-4 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                        <h3 class="text-lg font-bold text-indigo-300 mb-2">Gentle Ocean Waves</h3>
+                        <p class="text-sm text-gray-400 mb-4">Soothing waves to bring you peace.</p>
+                         <audio controls class="w-full rounded-lg" src="https://cdn.pixabay.com/audio/2024/02/09/audio_2c5a8a32a0.mp3"></audio>
+                    </div>
+                     <!-- Music Card 3 -->
+                    <div class="music-card p-4 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                        <h3 class="text-lg font-bold text-indigo-300 mb-2">Peaceful Piano</h3>
+                        <p class="text-sm text-gray-400 mb-4">A soft piano melody for deep relaxation.</p>
+                        <audio controls class="w-full rounded-lg" src="https://cdn.pixabay.com/audio/2022/11/17/audio_8b214c8d57.mp3"></audio>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sleep Music -->
+            <section class="mt-16">
+                <h2 class="text-2xl font-bold text-white mb-6 text-center">Deep Sleep Music</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 music-grid">
+                    <!-- Music Card 4 -->
+                    <div class="music-card p-4 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                        <h3 class="text-lg font-bold text-purple-300 mb-2">Celestial White Noise</h3>
+                        <p class="text-sm text-gray-400 mb-4">Continuous sound to block distractions.</p>
+                        <audio controls class="w-full rounded-lg" src="https://cdn.pixabay.com/audio/2023/10/10/audio_247a464d1a.mp3"></audio>
+                    </div>
+                    <!-- Music Card 5 -->
+                    <div class="music-card p-4 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                        <h3 class="text-lg font-bold text-purple-300 mb-2">Delta Waves</h3>
+                        <p class="text-sm text-gray-400 mb-4">Binaural beats to encourage deep sleep.</p>
+                         <audio controls class="w-full rounded-lg" src="https://cdn.pixabay.com/audio/2023/09/25/audio_2897306231.mp3"></audio>
+                    </div>
+                     <!-- Music Card 6 -->
+                    <div class="music-card p-4 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                        <h3 class="text-lg font-bold text-purple-300 mb-2">Rain on a Tent</h3>
+                        <p class="text-sm text-gray-400 mb-4">Cozy and calming rain sounds for sleep.</p>
+                        <audio controls class="w-full rounded-lg" src="https://cdn.pixabay.com/audio/2022/05/11/audio_19551e18c6.mp3"></audio>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <style>
+        /* Custom styling for audio player */
+        audio::-webkit-media-controls-panel {
+            background-color: rgba(26, 28, 58, 0.7);
+        }
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-volume-slider {
+            background-color: #4f46e5;
+            border-radius: 50%;
+        }
+    </style>
+</body>
+</html>
