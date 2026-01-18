@@ -33,19 +33,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Authentication and Camera Activation --- //
     try {
-        const response = await fetch('/api/user_status');
-        if (!response.ok) {
-            window.location.href = 'signin.html';
-            return;
-        }
-
-        const status = await response.json();
-        if (!status.is_premium) {
-            alert('This is a premium feature. Please subscribe to get access.');
-            window.location.href = 'premium.html';
-            return;
-        }
-
         authCheck.classList.add('hidden');
         videoChatUI.classList.remove('hidden');
 
@@ -58,8 +45,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
     } catch (error) {
-        console.error('Auth check failed:', error);
-        window.location.href = 'signin.html';
+        console.error('Camera access failed:', error);
+        addMessageToUI("Camera access denied. Please enable camera permissions.", 'system');
     }
 
     // --- Emotion Detection --- //

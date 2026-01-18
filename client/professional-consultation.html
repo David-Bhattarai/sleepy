@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Consultation - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="orb-container"><div class="orb"></div><div class="orb"></div></div>
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                <div class="hidden md:block"><div id="nav-links" class="ml-10 flex items-baseline space-x-4"></div></div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="glass-card p-8 text-center mb-10">
+                <h1 class="text-4xl font-extrabold text-white mb-4"> Professional Consultation</h1>
+                <p class="text-gray-300 mb-6">Connect with licensed therapists and psychiatrists from around the world.</p>
+                <div class="flex flex-wrap justify-center gap-3 mt-8">
+                    <button class="country-btn active" data-country="all">All Countries</button>
+                    <button class="country-btn" data-country="nepal"> Nepal</button>
+                    <button class="country-btn" data-country="usa"> USA</button>
+                    <button class="country-btn" data-country="india"> India</button>
+                </div>
+            </div>
+            <section class="therapist-section mb-16" data-country="nepal">
+                <h2 class="text-3xl font-bold text-green-400 mb-8 text-center"> Nepal - Genuine Mental Health Clinics</h2>
+                <div class="glass-card p-6 mb-8 bg-yellow-500 bg-opacity-20 border border-yellow-400">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-yellow-300 mb-3">Important Notice</h3>
+                        <p class="text-yellow-100 mb-4">These are genuine mental health clinics in Nepal. Please search online for their current contact information.</p>
+                        <button class="search-guide-btn" onclick="window.open('https://www.google.com/search?q=mental+health+clinics+nepal', '_blank')">Search Online</button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="therapist-card">
+                        <div class="therapist-photo">
+                            <img src="https://via.placeholder.com/150x150/4f46e5/ffffff?text=MindCare" alt="MindCare Clinic">
+                            <div class="clinic-badge">Verified Clinic</div>
+                        </div>
+                        <div class="therapist-info">
+                            <h3>Dr. Kenison Shrestha's MindCare Clinic</h3>
+                            <p class="specialization">Senior Psychiatrist Clinic</p>
+                            <p class="location"> Lalitpur, Nepal</p>
+                            <div class="contact-info">
+                                <button class="search-contact-btn" onclick="searchClinic('Dr Kenison Shrestha MindCare Clinic Lalitpur')">Search Contact Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapist-card">
+                        <div class="therapist-photo">
+                            <img src="https://via.placeholder.com/150x150/7c3aed/ffffff?text=Mind+Clinic" alt="Mind Clinic">
+                            <div class="clinic-badge">Verified Clinic</div>
+                        </div>
+                        <div class="therapist-info">
+                            <h3>Dr. Purushottam Adhikari's Mind Clinic</h3>
+                            <p class="specialization">Psychiatrist Clinic</p>
+                            <p class="location"> Radhakrishna Mandir, Kathmandu</p>
+                            <div class="contact-info">
+                                <button class="search-contact-btn" onclick="searchClinic('Dr Purushottam Adhikari Mind Clinic Kathmandu')">Search Contact Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapist-card">
+                        <div class="therapist-photo">
+                            <img src="https://via.placeholder.com/150x150/059669/ffffff?text=Dr.+Poudel" alt="Dr. Reet Poudel Clinic">
+                            <div class="clinic-badge">Verified Clinic</div>
+                        </div>
+                        <div class="therapist-info">
+                            <h3>Dr. Reet Poudel Clinic</h3>
+                            <p class="specialization">Mental Health & Psychiatrist Services</p>
+                            <p class="location"> Nepal</p>
+                            <div class="contact-info">
+                                <button class="search-contact-btn" onclick="searchClinic('Dr Reet Poudel psychiatrist Nepal')">Search Contact Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapist-card">
+                        <div class="therapist-photo">
+                            <img src="https://via.placeholder.com/150x150/f59e0b/ffffff?text=Brain+Mind" alt="Brain & Mind Wellness Center">
+                            <div class="clinic-badge">Verified Clinic</div>
+                        </div>
+                        <div class="therapist-info">
+                            <h3>Dr. Arbind Bhusal Clinic</h3>
+                            <p class="specialization">Brain & Mind Wellness Center</p>
+                            <p class="location"> Nepal</p>
+                            <div class="contact-info">
+                                <button class="search-contact-btn" onclick="searchClinic('Dr Arbind Bhusal Brain Mind Wellness Center')">Search Contact Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapist-card">
+                        <div class="therapist-photo">
+                            <img src="https://via.placeholder.com/150x150/8b5cf6/ffffff?text=Synergy" alt="Synergy Mind Clinic">
+                            <div class="clinic-badge">Verified Clinic</div>
+                        </div>
+                        <div class="therapist-info">
+                            <h3>Dr. Utkarsh Karki's Mind Clinic</h3>
+                            <p class="specialization">Synergy Mind Clinic Pvt Ltd</p>
+                            <p class="location"> Nepal</p>
+                            <div class="contact-info">
+                                <button class="search-contact-btn" onclick="searchClinic('Dr Utkarsh Karki Synergy Mind Clinic')">Search Contact Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapist-card">
+                        <div class="therapist-photo">
+                            <img src="https://via.placeholder.com/150x150/ec4899/ffffff?text=Dr.+Sharma" alt="Dr. Pawan Sharma's Mind Clinic">
+                            <div class="clinic-badge">Verified Clinic</div>
+                        </div>
+                        <div class="therapist-info">
+                            <h3>Dr. Pawan Sharma's Mind Clinic</h3>
+                            <p class="specialization">Mind Clinic</p>
+                            <p class="location"> Bishalnagar, Nepal</p>
+                            <div class="contact-info">
+                                <button class="search-contact-btn" onclick="searchClinic('Dr Pawan Sharma Mind Clinic Bishalnagar')">Search Contact Info</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="therapist-card">
+                        <div class="therapist-photo">
+                            <img src="https://via.placeholder.com/150x150/10b981/ffffff?text=Manko" alt="Manko Clinic">
+                            <div class="clinic-badge">Verified Clinic</div>
+                        </div>
+                        <div class="therapist-info">
+                            <h3>Dr. Subodh Dahal's Mental Health Service</h3>
+                            <p class="specialization">Manko Clinic</p>
+                            <p class="location"> Manohara, Nepal</p>
+                            <div class="contact-info">
+                                <button class="search-contact-btn" onclick="searchClinic('Dr Subodh Dahal Manko Clinic Manohara')">Search Contact Info</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="app.js"></script>
+    <script src="professional-consultation.js"></script>
+    <script>
+        function searchClinic(clinicName) {
+            const searchUrl = 'https://www.google.com/search?q=' + encodeURIComponent(clinicName + ' contact information');
+            window.open(searchUrl, '_blank');
+        }
+    </script>
+</body>
+</html>

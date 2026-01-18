@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileMenu = document.getElementById('mobile-menu');
     const token = localStorage.getItem('token');
     const isAdmin = localStorage.getItem('isAdmin') === 'true';
-    const isPremium = localStorage.getItem('isPremium') === 'true'; // Check for premium status
+
 
     // --- Navigation Handling ---
     const updateNav = () => {
@@ -16,20 +16,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentPage = window.location.pathname;
 
         if (token) {
-            let premiumLink = '';
-            if (isPremium) {
-                premiumLink = `<span class=\"text-yellow-300 font-bold px-3 py-2 text-sm\"><i class=\"fas fa-star\"></i> Premium</span>`;
-            } else {
-                premiumLink = `<a href=\"/premium.html\" class=\"text-yellow-300 hover:text-yellow-400 font-bold px-3 py-2 rounded-md text-sm\"><i class=\"fas fa-star\"></i> Go Premium</a>`;
-            }
-
             links = `
                 <a href=\"/dashboard.html\" class=\"${currentPage.includes('dashboard') ? activeLinkClass : linkClass}\">Dashboard</a>
                 <a href=\"/mood-tracker.html\" class=\"${currentPage.includes('mood-tracker') ? activeLinkClass : linkClass}\">Mood Tracker</a>
                 <a href=\"/relaxation.html\" class=\"${currentPage.includes('relaxation') ? activeLinkClass : linkClass}\">Relaxation</a>
                 <a href=\"/emotional-intelligence.html\" class=\"${currentPage.includes('emotional-intelligence') ? activeLinkClass : linkClass}\">EI Profile</a>
                 <a href=\"/games.html\" class=\"${currentPage.includes('games') ? activeLinkClass : linkClass}\">Games</a>
-                ${premiumLink}
+                <a href=\"/video-chat.html\" class=\"${currentPage.includes('video-chat') ? activeLinkClass : linkClass}\">Video Chat</a>
+                <a href=\"/professional-consultation.html\" class=\"${currentPage.includes('professional-consultation') ? activeLinkClass : linkClass}\">👨‍⚕️ Find Therapist</a>
                 ${isAdmin ? '<a href=\"/admin.html\" class=\"text-red-400 font-bold hover:text-red-500 px-3 py-2 rounded-md text-sm font-medium\">Admin</a>' : ''}
                 <a href=\"#\" id=\"logout-btn\" class=\"${linkClass}\">Logout</a>
             `;
@@ -52,12 +46,25 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         localStorage.removeItem('token');
         localStorage.removeItem('isAdmin');
-        localStorage.removeItem('isPremium'); // Clear premium status on logout
+
         window.location.href = '/signin.html';
     };
 
     if (menuBtn) {
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    }
+
+    // Handle video chat button click
+    const videoChatBtn = document.getElementById('video-chat-btn');
+    if (videoChatBtn) {
+        videoChatBtn.addEventListener('click', () => {
+            const token = localStorage.getItem('token');
+            if (token) {
+                window.location.href = '/video-chat.html';
+            } else {
+                window.location.href = '/signin.html';
+            }
+        });
     }
 
     // --- Page-Specific Logic (existing code remains the same) ---

@@ -34,11 +34,7 @@ def get_user_count():
     conn.close()
     return count
 
-def get_subscription(user_id):
-    conn = get_db_connection()
-    sub = conn.execute("SELECT expiry_date FROM subscriptions WHERE user_id = ?", (user_id,)).fetchone()
-    conn.close()
-    return sub
+
 
 def create_chat_history(user_id, user_message, ai_response, sentiment):
     conn = get_db_connection()

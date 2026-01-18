@@ -5,16 +5,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     const sendBtn = document.getElementById('send-btn');
     const emotionStatus = document.getElementById('emotion-status');
     const video = document.getElementById('video');
-    const adBanner = document.querySelector('.ad-banner');
     const token = localStorage.getItem('token');
-    const isPremium = localStorage.getItem('isPremium') === 'true';
 
-    // 1. Ad Banner Management
-    if (isPremium) {
-        adBanner.style.display = 'none';
-    }
-
-    // 2. Chat Functionality
+    // Chat Functionality
     chatForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const message = chatInput.value.trim();
@@ -78,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (indicator) indicator.remove();
     }
 
-    // 3. Emotion Detection
+    // Emotion Detection
     async function startEmotionDetection() {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });

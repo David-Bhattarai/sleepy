@@ -148,6 +148,14 @@ def get_ei_history(user_id):
 app = Flask(__name__, static_folder='../client', static_url_path='/')
 app.config['SECRET_KEY'] = 'your_secret_key'
 CORS(app)
+
+# Add cache control headers
+@app.after_request
+def after_request(response):
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
 bcrypt = Bcrypt(app)
 sentiment_analyzer = SentimentIntensityAnalyzer()
 user_emotions = {}

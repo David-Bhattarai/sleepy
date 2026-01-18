@@ -58,6 +58,6 @@ This method is only for use within the Project IDX environment.
 -   **Emotional Intelligence Score**: A calculated score based on chat interactions.
 -   **Goal Setting**: A feature to help users set and track wellness goals.
 -   **Relaxation & Gaming Zone**: A collection of simple games and exercises.
--   **Premium Video Chat**: A feature to connect with human professionals.
+-   **Video Chat**: AI Doctor consultation with real-time emotion detection.
 -   **Secure Authentication**: User sign-up and sign-in system.
 -   **Admin Panel**: A dashboard for application management.
