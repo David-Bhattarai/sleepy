@@ -6,3 +6,5 @@ deepface
 vadersentiment
 gunicorn
 numpy
+scikit-learn
+pandas

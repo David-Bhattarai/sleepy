@@ -30,6 +30,29 @@
                     <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-indigo-500/50 shadow-lg"><video id="video" class="w-full h-full object-cover" autoplay muted playsinline></video></div>
                     <div id="emotion-status" class="mt-4 text-lg font-semibold text-indigo-300">Connecting...</div>
                 </div>
+
+                <!-- ML Model Status -->
+                <div class="glass-card p-6">
+                    <h2 class="text-xl font-bold text-white mb-4">AURA AI Status</h2>
+                    <div id="ml-status" class="space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Model:</span>
+                            <span class="text-green-400" id="model-type">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Accuracy:</span>
+                            <span class="text-green-400" id="model-accuracy">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Intents:</span>
+                            <span class="text-blue-400" id="intents-count">Loading...</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-300">Status:</span>
+                            <span class="text-green-400" id="model-status">Loading...</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="lg:col-span-2">

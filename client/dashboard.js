@@ -7,6 +7,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     const video = document.getElementById('video');
     const token = localStorage.getItem('token');
 
+    // Load ML Model Status
+    async function loadMLStatus() {
+        try {
+            const response = await fetch('/api/model_stats', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById('model-type').textContent = data.model_type || 'Unknown';
+                document.getElementById('model-accuracy').textContent = data.accuracy || 'Unknown';
+                document.getElementById('intents-count').textContent = data.intents_count || '0';
+                document.getElementById('model-status').textContent = data.status || 'Unknown';
+                
+                // Update status color based on model status
+                const statusElement = document.getElementById('model-status');
+                if (data.status === 'active') {
+                    statusElement.className = 'text-green-400';
+                } else {
+                    statusElement.className = 'text-red-400';
+                }
+            }
+        } catch (error) {
+            console.error('Failed to load ML status:', error);
+            document.getElementById('model-type').textContent = 'Error';
+            document.getElementById('model-accuracy').textContent = 'Error';
+            document.getElementById('intents-count').textContent = 'Error';
+            document.getElementById('model-status').textContent = 'Error';
+        }
+    }
+
     // Chat Functionality
     chatForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -108,6 +139,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (token) {
         startEmotionDetection();
+        loadMLStatus();
     } else {
         window.location.href = '/signin.html';
     }
