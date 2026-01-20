@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mental Health Therapist</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="container">
+            <a href="/" class="logo">AI Therapist</a>
+            <div id="nav-links">
+                <!-- Links will be dynamically added here -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="grid">
+
+            <!-- Left Column: Emotion Analysis -->
+            <div class="card">
+                <h2>Emotion Analysis</h2>
+                
+                <div class="camera-feed">
+                    <video id="video" autoplay muted></video>
+                    <canvas id="canvas"></canvas>
+                </div>
+                <button id="analyze-emotion-btn" class="btn-primary">Analyze Emotion</button>
+
+                <div class="emotion-results">
+                    <div>
+                        <h3>Detected via Camera:</h3>
+                        <p id="camera-emotion">--</p>
+                    </div>
+                    <div>
+                        <h3>Detected from Your Text:</h3>
+                        <p id="text-sentiment">--</p>
+                    </div>
+                </div>
+
+                <div id="recommendation-box">
+                    <h4>Recommendation</h4>
+                    <p id="recommendation-text"></p>
+                </div>
+            </div>
+
+            <!-- Right Column: AI Chat -->
+            <div class="card">
+                <h2>Talk to Your AI Therapist</h2>
+                
+                <div id="chat-window" class="chat-window">
+                    <!-- Chat messages will appear here -->
+                </div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="Type your message...">
+                    <button id="submit-btn" class="btn-primary">Submit</button>
+                </div>
+
+                 <div id="video-chat-section">
+                    <h3>AI Doctor Video Chat</h3>
+                    <p>Experience advanced AI consultation with real-time emotion detection.</p>
+                    <button id="video-chat-btn" class="btn-primary">Start Video Chat</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js?v=2.0"></script>
+</body>
+</html>

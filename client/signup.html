@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Animated Background Elements -->
+    <div class="orb-container">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Main Signup Card -->
+    <div class="w-full max-w-md glass-card p-8 md:p-12 z-10">
+        <h2 class="text-4xl font-extrabold text-center text-white mb-2">Join Aura</h2>
+        <p class="text-center text-gray-300 mb-8">Start your path to emotional wellness today.</p>
+
+        <div id="signup-error" class="hidden bg-red-900 bg-opacity-50 border border-red-500 text-red-300 px-4 py-3 rounded-lg relative mb-4 text-center" role="alert"></div>
+
+        <form id="signup-form" class="space-y-6">
+            <div>
+                <label for="name" class="block text-gray-400 text-sm font-bold mb-2">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" class="form-input w-full py-3 px-4" required>
+            </div>
+            <div>
+                <label for="email" class="block text-gray-400 text-sm font-bold mb-2">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" class="form-input w-full py-3 px-4" required>
+            </div>
+            <div>
+                <label for="password" class="block text-gray-400 text-sm font-bold mb-2">Password</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" class="form-input w-full py-3 px-4" required>
+            </div>
+            <div class="pt-2">
+                <button type="submit" class="btn-primary w-full py-3 text-lg">
+                    Create Account
+                </button>
+            </div>
+        </form>
+
+        <p class="text-center text-gray-400 text-sm mt-8">
+            Already have an account? 
+            <a href="/signin.html" class="font-bold text-indigo-400 hover:underline">Sign In</a>
+        </p>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

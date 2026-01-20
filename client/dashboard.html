@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen">
+    <div class="orb-container"><div class="orb"></div><div class="orb"></div></div>
+
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                 <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                <div class="hidden md:block"><div id="nav-links" class="ml-10 flex items-baseline space-x-4"></div></div>
+                <div class="-mr-2 flex md:hidden"><button id="menu-btn" type="button" class="bg-gray-800 bg-opacity-50 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white focus:outline-none"><svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button></div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden"></div>
+    </nav>
+
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-1 space-y-8">
+                <!-- Video Feed -->
+                <div class="glass-card p-6 text-center">
+                    <h2 class="text-xl font-bold text-white mb-4">Your Reflection</h2>
+                    <div class="relative w-full aspect-video rounded-lg overflow-hidden border border-indigo-500/50 shadow-lg"><video id="video" class="w-full h-full object-cover" autoplay muted playsinline></video></div>
+                    <div id="emotion-status" class="mt-4 text-lg font-semibold text-indigo-300">Connecting...</div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2">
+                <div class="glass-card h-full flex flex-col" style="height: 75vh;">
+                    <div class="p-4 border-b border-white/10"><h2 class="text-xl font-bold text-white text-center">Conversation with AURA</h2></div>
+                    <div id="chat-messages" class="flex-1 p-6 space-y-4 overflow-y-auto">
+                        <div class="flex justify-start"><div class="chat-message-ai max-w-lg p-4"><p>Hello! I am Aura. How are you feeling today?</p></div></div>
+                    </div>
+                    <div class="p-4 border-t border-white/10">
+                        <form id="chat-form" class="flex items-center space-x-4">
+                            <input type="text" id="chat-input" placeholder="Message AURA..." class="form-input w-full py-3 px-4" autocomplete="off">
+                            <button type="submit" id="send-btn" class="btn-primary py-3 px-5 rounded-lg">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js?v=2.0"></script>
+    <script src="dashboard.js?v=2.0"></script> 
+</body>
+</html>

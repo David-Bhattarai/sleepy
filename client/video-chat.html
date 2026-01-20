@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Video Chat - AI Mental Health Therapist</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body class="video-chat-body">
+
+    <div id="auth-check" class="auth-check-container">
+        <p>Loading video chat...</p>
+    </div>
+
+    <div id="video-chat-ui" class="video-chat-ui-container">
+        <header class="header video-chat-header">
+            <h1>Live Consultation with AI Doctor</h1>
+            <a href="dashboard.html" class="btn-danger">End Call</a>
+        </header>
+
+        <main class="video-chat-main">
+            <div class="ai-video-container">
+                
+                <video class="ai-video" src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-human-head-with-a-surrounding-vortex-41945-large.mp4" autoplay loop muted playsinline></video>
+
+                <div id="user-video-container" class="user-video-container">
+                    <video id="user-video" autoplay playsinline muted></video>
+                    <div id="emotion-display" class="emotion-display">Emotion: Connecting...</div>
+                </div>
+            </div>
+
+            <div class="chat-sidebar">
+                <h2>Live Chat</h2>
+                <div id="chat-window" class="chat-window">
+                    <div class="chat-message-ai">Welcome! I am here to listen and support you.</div>
+                </div>
+                <div id="typing-indicator-container"></div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" class="chat-input" placeholder="Type your message...">
+                    <button id="send-button" class="btn-primary">Send</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="video-chat.js"></script>
+</body>
+</html>

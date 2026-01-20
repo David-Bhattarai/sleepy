@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="orb-container">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Glassmorphism Navigation Bar -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                </div>
+                <div class="hidden md:block">
+                    <div id="nav-links" class="ml-10 flex items-baseline space-x-4">
+                        <!-- Links injected by app.js -->
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="menu-btn" type="button" class="bg-gray-800 bg-opacity-50 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden"></div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="glass-card p-8 text-center">
+                <h1 class="text-3xl font-extrabold text-white mb-4">Mindful Games</h1>
+                <p class="text-gray-300 mb-10 max-w-2xl mx-auto">Engage in these short, science-backed games to relax your mind, improve focus, and boost your emotional well-being.</p>
+
+                <!-- Games Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Mindful Breathing -->
+                    <a href="/breathing.html" class="game-card block p-6 bg-black bg-opacity-20 rounded-xl border border-white/10 hover:border-indigo-500 hover:bg-opacity-30 transition-all duration-300 transform hover:-translate-y-1">
+                        <h2 class="text-2xl font-bold text-indigo-300 mb-2">Mindful Breathing</h2>
+                        <p class="text-gray-400">A guided breathing exercise to calm your nervous system and reduce stress.</p>
+                    </a>
+
+                    <!-- Pattern Puzzle -->
+                    <a href="/puzzle.html" class="game-card block p-6 bg-black bg-opacity-20 rounded-xl border border-white/10 hover:border-purple-500 hover:bg-opacity-30 transition-all duration-300 transform hover:-translate-y-1">
+                        <h2 class="text-2xl font-bold text-purple-300 mb-2">Pattern Puzzle</h2>
+                        <p class="text-gray-400">A simple puzzle to help you enter a state of flow and distract from anxious thoughts.</p>
+                    </a>
+
+                    <!-- Memory Card Game -->
+                    <a href="/memory.html" class="game-card block p-6 bg-black bg-opacity-20 rounded-xl border border-white/10 hover:border-green-500 hover:bg-opacity-30 transition-all duration-300 transform hover:-translate-y-1">
+                        <h2 class="text-2xl font-bold text-green-300 mb-2">Memory Match</h2>
+                        <p class="text-gray-400">Sharpen your focus and memory by matching pairs of cards.</p>
+                    </a>
+
+                    <!-- Color Match Challenge -->
+                    <a href="/color-match.html" class="game-card block p-6 bg-black bg-opacity-20 rounded-xl border border-white/10 hover:border-yellow-500 hover:bg-opacity-30 transition-all duration-300 transform hover:-translate-y-1">
+                        <h2 class="text-2xl font-bold text-yellow-300 mb-2">Color Reflex</h2>
+                        <p class="text-gray-400">Test your reaction time and cognitive flexibility with this fast-paced color game.</p>
+                    </a>
+
+                     <!-- Zen Garden -->
+                    <a href="/zen-garden.html" class="game-card block p-6 bg-black bg-opacity-20 rounded-xl border border-white/10 hover:border-red-500 hover:bg-opacity-30 transition-all duration-300 transform hover:-translate-y-1">
+                        <h2 class="text-2xl font-bold text-red-300 mb-2">Zen Garden</h2>
+                        <p class="text-gray-400">A calming sandbox to draw, create, and relax your mind in a peaceful environment.</p>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

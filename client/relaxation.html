@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Music Therapy - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=3.0&t=<?php echo time(); ?>">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="orb-container">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                <div class="hidden md:block">
+                    <div id="nav-links" class="ml-10 flex items-baseline space-x-4"></div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="menu-btn" type="button" class="bg-gray-800 bg-opacity-50 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden"></div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="glass-card p-8 text-center mb-10">
+                <h1 class="text-4xl font-extrabold text-white mb-4">🎵 Music Therapy Hub</h1>
+                <p class="text-gray-300 mb-6 max-w-3xl mx-auto">Discover the perfect music for every emotion and mood. Let music heal your soul and transform your feelings.</p>
+                
+                <!-- Mood Selector -->
+                <div class="flex flex-wrap justify-center gap-4 mt-8">
+                    <button class="mood-btn active" data-category="all">
+                        <i class="fas fa-music"></i> All Music
+                    </button>
+                    <button class="mood-btn" data-category="happy">
+                        <i class="fas fa-smile"></i> Happy
+                    </button>
+                    <button class="mood-btn" data-category="sad">
+                        <i class="fas fa-sad-tear"></i> Sad
+                    </button>
+                    <button class="mood-btn" data-category="sleep">
+                        <i class="fas fa-moon"></i> Sleep
+                    </button>
+                    <button class="mood-btn" data-category="breakup">
+                        <i class="fas fa-heart-broken"></i> Breakup
+                    </button>
+                    <button class="mood-btn" data-category="motivation">
+                        <i class="fas fa-fire"></i> Motivation
+                    </button>
+                </div>
+            </div>
+            <!-- Happy Songs Section -->
+            <section class="music-section mb-16" data-category="happy">
+                <h2 class="text-3xl font-bold text-yellow-400 mb-8 text-center">
+                    <i class="fas fa-smile mr-3"></i>Happy & Uplifting Songs
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/ZbZSe6N_BXs/maxresdefault.jpg" alt="Happy Song">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Happy - Pharrell Williams</h3>
+                            <p>The ultimate feel-good anthem</p>
+                            <a href="https://www.youtube.com/watch?v=ZbZSe6N_BXs" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/ru0K8uYEZWw/maxresdefault.jpg" alt="Can't Stop the Feeling">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Can't Stop the Feeling - Justin Timberlake</h3>
+                            <p>Infectious positivity and joy</p>
+                            <a href="https://www.youtube.com/watch?v=ru0K8uYEZWw" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/fLexgOxsZu0/maxresdefault.jpg" alt="Uptown Funk">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Uptown Funk - Bruno Mars</h3>
+                            <p>Funky beats to lift your spirits</p>
+                            <a href="https://www.youtube.com/watch?v=fLexgOxsZu0" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/kJQP7kiw5Fk/maxresdefault.jpg" alt="Despacito">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Despacito - Luis Fonsi</h3>
+                            <p>Latin vibes for instant happiness</p>
+                            <a href="https://www.youtube.com/watch?v=kJQP7kiw5Fk" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/fN-xq7t6pKw/maxresdefault.jpg" alt="Good as Hell">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Good as Hell - Lizzo</h3>
+                            <p>Self-love and confidence booster</p>
+                            <a href="https://www.youtube.com/watch?v=fN-xq7t6pKw" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/hT_nvWreIhg/maxresdefault.jpg" alt="Count on Me">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Count on Me - Bruno Mars</h3>
+                            <p>Friendship and warmth</p>
+                            <a href="https://www.youtube.com/watch?v=hT_nvWreIhg" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Sad Songs Section -->
+            <section class="music-section mb-16" data-category="sad">
+                <h2 class="text-3xl font-bold text-blue-400 mb-8 text-center">
+                    <i class="fas fa-sad-tear mr-3"></i>Sad & Emotional Songs
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/1G4isv_Fylg/maxresdefault.jpg" alt="Someone Like You">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Someone Like You - Adele</h3>
+                            <p>Heartbreak and letting go</p>
+                            <a href="https://www.youtube.com/watch?v=1G4isv_Fylg" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/4fndeDfaWCg/maxresdefault.jpg" alt="Hurt">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Hurt - Johnny Cash</h3>
+                            <p>Deep emotional reflection</p>
+                            <a href="https://www.youtube.com/watch?v=4fndeDfaWCg" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/hLQl3WQQoQ0/maxresdefault.jpg" alt="Someone You Loved">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Someone You Loved - Lewis Capaldi</h3>
+                            <p>Loss and longing</p>
+                            <a href="https://www.youtube.com/watch?v=hLQl3WQQoQ0" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/SlPhMPnQ58k/maxresdefault.jpg" alt="Everybody Hurts">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Everybody Hurts - R.E.M.</h3>
+                            <p>Comfort in shared pain</p>
+                            <a href="https://www.youtube.com/watch?v=SlPhMPnQ58k" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/QkF3oxziUI4/maxresdefault.jpg" alt="Mad World">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Mad World - Gary Jules</h3>
+                            <p>Melancholic and introspective</p>
+                            <a href="https://www.youtube.com/watch?v=QkF3oxziUI4" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/NdYWuo9OFAw/maxresdefault.jpg" alt="Hello">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Hello - Adele</h3>
+                            <p>Regret and reconciliation</p>
+                            <a href="https://www.youtube.com/watch?v=NdYWuo9OFAw" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Sleep Songs Section -->
+            <section class="music-section mb-16" data-category="sleep">
+                <h2 class="text-3xl font-bold text-purple-400 mb-8 text-center">
+                    <i class="fas fa-moon mr-3"></i>Sleep & Relaxation Music
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/UfcAVejslrU/maxresdefault.jpg" alt="Weightless">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Weightless - Marconi Union</h3>
+                            <p>Scientifically designed to reduce anxiety</p>
+                            <a href="https://www.youtube.com/watch?v=UfcAVejslrU" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/1ZYbU82GVz4/maxresdefault.jpg" alt="Rain Sounds">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Rain Sounds for Sleeping</h3>
+                            <p>10 hours of gentle rainfall</p>
+                            <a href="https://www.youtube.com/watch?v=1ZYbU82GVz4" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/M5QY2_8704o/maxresdefault.jpg" alt="Ocean Waves">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Ocean Waves - Deep Sleep</h3>
+                            <p>Calming ocean sounds for 8 hours</p>
+                            <a href="https://www.youtube.com/watch?v=M5QY2_8704o" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/2Dn1TKDFc_0/maxresdefault.jpg" alt="Piano Sleep Music">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Peaceful Piano Sleep Music</h3>
+                            <p>Soft piano melodies for deep rest</p>
+                            <a href="https://www.youtube.com/watch?v=2Dn1TKDFc_0" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/aE-7CpMparE/maxresdefault.jpg" alt="Forest Sounds">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Forest Sounds - Birds & Nature</h3>
+                            <p>Peaceful forest ambiance</p>
+                            <a href="https://www.youtube.com/watch?v=aE-7CpMparE" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/DWcJFNfaw9c/maxresdefault.jpg" alt="Meditation Music">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Tibetan Singing Bowls</h3>
+                            <p>Healing meditation music</p>
+                            <a href="https://www.youtube.com/watch?v=DWcJFNfaw9c" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Breakup Songs Section -->
+            <section class="music-section mb-16" data-category="breakup">
+                <h2 class="text-3xl font-bold text-red-400 mb-8 text-center">
+                    <i class="fas fa-heart-broken mr-3"></i>Breakup & Healing Songs
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/PAy6G0QfQUg/maxresdefault.jpg" alt="Since U Been Gone">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Since U Been Gone - Kelly Clarkson</h3>
+                            <p>Empowering breakup anthem</p>
+                            <a href="https://www.youtube.com/watch?v=PAy6G0QfQUg" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/WA4iX5D9Z64/maxresdefault.jpg" alt="We Are Never Getting Back Together">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>We Are Never Getting Back Together - Taylor Swift</h3>
+                            <p>Moving on with confidence</p>
+                            <a href="https://www.youtube.com/watch?v=WA4iX5D9Z64" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/7qirrV8w5SQ/maxresdefault.jpg" alt="Stronger">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Stronger - Kelly Clarkson</h3>
+                            <p>What doesn't kill you makes you stronger</p>
+                            <a href="https://www.youtube.com/watch?v=7qirrV8w5SQ" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/CevxZvSJLk8/maxresdefault.jpg" alt="Roar">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Roar - Katy Perry</h3>
+                            <p>Finding your voice after heartbreak</p>
+                            <a href="https://www.youtube.com/watch?v=CevxZvSJLk8" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/k2qgadSvNyU/maxresdefault.jpg" alt="New Rules">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>New Rules - Dua Lipa</h3>
+                            <p>Setting boundaries after breakup</p>
+                            <a href="https://www.youtube.com/watch?v=k2qgadSvNyU" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/nfWlot6h_JM/maxresdefault.jpg" alt="Shake It Off">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Shake It Off - Taylor Swift</h3>
+                            <p>Shaking off the negativity</p>
+                            <a href="https://www.youtube.com/watch?v=nfWlot6h_JM" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Motivation Songs Section -->
+            <section class="music-section mb-16" data-category="motivation">
+                <h2 class="text-3xl font-bold text-orange-400 mb-8 text-center">
+                    <i class="fas fa-fire mr-3"></i>Motivation & Workout Songs
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/VuNIsY6JdUw/maxresdefault.jpg" alt="Eye of the Tiger">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Eye of the Tiger - Survivor</h3>
+                            <p>Classic motivation anthem</p>
+                            <a href="https://www.youtube.com/watch?v=VuNIsY6JdUw" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/ZSS5dEeMX64/maxresdefault.jpg" alt="Lose Yourself">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Lose Yourself - Eminem</h3>
+                            <p>Seize the moment and opportunity</p>
+                            <a href="https://www.youtube.com/watch?v=ZSS5dEeMX64" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/fJ9rUzIMcZQ/maxresdefault.jpg" alt="Don't Stop Believin'">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Don't Stop Believin' - Journey</h3>
+                            <p>Keep faith in your dreams</p>
+                            <a href="https://www.youtube.com/watch?v=fJ9rUzIMcZQ" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/btPJPFnesV4/maxresdefault.jpg" alt="Stronger">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Stronger - Kanye West</h3>
+                            <p>That which doesn't kill you</p>
+                            <a href="https://www.youtube.com/watch?v=btPJPFnesV4" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/A_MjCqQoLLA/maxresdefault.jpg" alt="Hall of Fame">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Hall of Fame - The Script</h3>
+                            <p>Be the best you can be</p>
+                            <a href="https://www.youtube.com/watch?v=A_MjCqQoLLA" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-thumbnail">
+                            <img src="https://img.youtube.com/vi/hFDcoX7s6rE/maxresdefault.jpg" alt="Can't Hold Us">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="music-info">
+                            <h3>Can't Hold Us - Macklemore</h3>
+                            <p>Unstoppable energy and drive</p>
+                            <a href="https://www.youtube.com/watch?v=hFDcoX7s6rE" target="_blank" class="music-link">
+                                <i class="fab fa-youtube"></i> Watch on YouTube
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="app.js?v=3.0&t=1642598400"></script>
+    <script src="relaxation.js?v=3.0&t=1642598400"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Clearing Cache - AURA</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .btn {
+            background: #4f46e5;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #3730a3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Cache Cleared!</h1>
+        <p>Your browser cache has been cleared. The new music therapy page should now load properly.</p>
+        
+        <h3>📋 Instructions:</h3>
+        <ol style="text-align: left; max-width: 400px; margin: 0 auto;">
+            <li>Press <strong>Ctrl + F5</strong> (Windows) or <strong>Cmd + Shift + R</strong> (Mac)</li>
+            <li>Or press <strong>F12</strong> → Right-click refresh button → "Empty Cache and Hard Reload"</li>
+            <li>Then click the button below to go to the music page</li>
+        </ol>
+        
+        <br><br>
+        <a href="/relaxation.html?v=3.0&t=1642598400" class="btn">🎵 Go to Music Therapy Page</a>
+        <a href="/dashboard.html?v=3.0&t=1642598400" class="btn">🏠 Go to Dashboard</a>
+        
+        <br><br>
+        <p><small>If you still see the old version, try opening in an incognito/private window.</small></p>
+    </div>
+
+    <script>
+        // Force reload all cached resources
+        if ('caches' in window) {
+            caches.keys().then(function(names) {
+                names.forEach(function(name) {
+                    caches.delete(name);
+                });
+            });
+        }
+        
+        // Clear localStorage
+        localStorage.clear();
+        sessionStorage.clear();
+        
+        console.log("Cache cleared successfully!");
+    </script>
+</body>
+</html>

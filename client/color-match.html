@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Reflex - AURA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="orb-container"><div class="orb"></div><div class="orb"></div></div>
+    <div class="w-full max-w-lg glass-card p-8 z-10 text-center">
+        <h1 class="text-3xl font-extrabold text-white mb-2">Color Reflex</h1>
+        <p class="text-gray-300 mb-6">Does the color of the text match the word? Answer as fast as you can!</p>
+        
+        <div id="game-area" class="my-8">
+             <p id="word" class="text-6xl font-bold uppercase"></p>
+        </div>
+
+        <div id="game-info" class="flex justify-around items-center mb-8 text-lg">
+            <span class="text-white">Score: <span id="score">0</span></span>
+            <span class="text-white">Time Left: <span id="timer">30s</span></span>
+        </div>
+
+        <div id="controls" class="flex justify-center gap-6">
+            <button id="yes-btn" class="btn-primary bg-green-600 hover:bg-green-700 py-3 px-8 text-xl">Yes</button>
+            <button id="no-btn" class="btn-primary bg-red-600 hover:bg-red-700 py-3 px-8 text-xl">No</button>
+        </div>
+
+        <div id="start-screen" class="absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center">
+             <button id="start-btn" class="btn-primary py-3 px-8 text-2xl">Start Game</button>
+        </div>
+        
+        <div id="end-screen" class="hidden absolute inset-0 bg-black bg-opacity-70 flex flex-col justify-center items-center">
+            <h2 class="text-4xl font-bold text-white mb-4">Game Over!</h2>
+            <p class="text-white text-xl mb-6">Your final score is <span id="final-score">0</span>.</p>
+            <button id="restart-btn" class="btn-primary py-3 px-8 text-2xl">Play Again</button>
+        </div>
+
+        <a href="/games.html" class="block text-indigo-400 hover:underline mt-8">Back to Games</a>
+    </div>
+    <script src="color-match.js"></script>
+</body>
+</html>
