@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
             links = `
                 <a href=\"/dashboard.html\" class=\"${currentPage.includes('dashboard') ? activeLinkClass : linkClass}\">Dashboard</a>
                 <a href=\"/mood-tracker.html\" class=\"${currentPage.includes('mood-tracker') ? activeLinkClass : linkClass}\">Mood Tracker</a>
+                <a href=\"/emotion-detection.html\" class=\"${currentPage.includes('emotion-detection') ? activeLinkClass : linkClass}\">🎭 Emotion Detection</a>
                 <a href=\"/relaxation.html\" class=\"${currentPage.includes('relaxation') ? activeLinkClass : linkClass}\">Relaxation</a>
-                <a href=\"/emotional-intelligence.html\" class=\"${currentPage.includes('emotional-intelligence') ? activeLinkClass : linkClass}\">EI Profile</a>
                 <a href=\"/games.html\" class=\"${currentPage.includes('games') ? activeLinkClass : linkClass}\">Games</a>
                 <a href=\"/video-chat.html\" class=\"${currentPage.includes('video-chat') ? activeLinkClass : linkClass}\">Video Chat</a>
                 <a href=\"/professional-consultation.html\" class=\"${currentPage.includes('professional-consultation') ? activeLinkClass : linkClass}\">👨‍⚕️ Find Therapist</a>

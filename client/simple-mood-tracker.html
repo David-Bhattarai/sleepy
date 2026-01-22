@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Mood Tracker - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="orb-container">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Glassmorphism Navigation Bar -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                </div>
+                <div class="hidden md:block">
+                    <div id="nav-links" class="ml-10 flex items-baseline space-x-4">
+                        <!-- Links injected by app.js -->
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="menu-btn" type="button" class="bg-gray-800 bg-opacity-50 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden"></div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-card p-8">
+                <h1 class="text-3xl font-extrabold text-white text-center mb-6">Simple Mood Tracker</h1>
+                
+                <!-- Mood Input Section -->
+                <div class="mb-8 p-6 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                    <h2 class="text-xl font-bold text-white mb-4">How are you feeling today?</h2>
+                    <form id="simple-mood-form" class="space-y-4">
+                        <div>
+                            <label class="block text-white text-sm font-medium mb-2">Your Mood (1-5)</label>
+                            <div class="flex justify-center space-x-4">
+                                <button type="button" class="mood-btn" data-mood="1">
+                                    <span class="text-3xl">😭</span>
+                                    <span class="block text-xs mt-1">Very Bad</span>
+                                </button>
+                                <button type="button" class="mood-btn" data-mood="2">
+                                    <span class="text-3xl">😟</span>
+                                    <span class="block text-xs mt-1">Bad</span>
+                                </button>
+                                <button type="button" class="mood-btn selected" data-mood="3">
+                                    <span class="text-3xl">😐</span>
+                                    <span class="block text-xs mt-1">Okay</span>
+                                </button>
+                                <button type="button" class="mood-btn" data-mood="4">
+                                    <span class="text-3xl">🙂</span>
+                                    <span class="block text-xs mt-1">Good</span>
+                                </button>
+                                <button type="button" class="mood-btn" data-mood="5">
+                                    <span class="text-3xl">😊</span>
+                                    <span class="block text-xs mt-1">Great</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="mood-notes" class="block text-white text-sm font-medium mb-2">Notes (optional)</label>
+                            <textarea id="mood-notes" name="mood-notes" rows="3" placeholder="What's on your mind?" class="form-input w-full"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary w-full py-3 text-base">Save Mood</button>
+                    </form>
+                    <p id="mood-feedback" class="text-center mt-4"></p>
+                </div>
+
+                <!-- Mood Statistics -->
+                <div class="mb-8 p-6 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                    <h2 class="text-xl font-bold text-white mb-4">Your Mood Stats</h2>
+                    <div id="mood-stats" class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="stat-item">
+                            <div class="text-2xl font-bold text-blue-400" id="total-entries">0</div>
+                            <div class="text-xs text-gray-300">Total Entries</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="text-2xl font-bold text-green-400" id="average-mood">0</div>
+                            <div class="text-xs text-gray-300">Average Mood</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="text-2xl font-bold text-purple-400" id="highest-mood">0</div>
+                            <div class="text-xs text-gray-300">Best Mood</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="text-2xl font-bold text-yellow-400" id="lowest-mood">0</div>
+                            <div class="text-xs text-gray-300">Lowest Mood</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mood Chart -->
+                <div class="mb-8 p-6 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                    <h2 class="text-xl font-bold text-white mb-4 text-center">Your Mood Over Time</h2>
+                    <canvas id="simple-mood-chart" height="100"></canvas>
+                </div>
+
+                <!-- Recent Mood Entries -->
+                <div class="p-6 bg-black bg-opacity-20 rounded-xl border border-white/10">
+                    <h2 class="text-xl font-bold text-white mb-4">Recent Entries</h2>
+                    <div id="recent-moods" class="space-y-3">
+                        <!-- Recent mood entries will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="simple-mood-tracker.js"></script>
+</body>
+</html>
+
+<style>
+.mood-btn {
+    @apply p-4 rounded-lg bg-white bg-opacity-10 border border-white/20 text-white text-center transition-all duration-200 hover:bg-opacity-20;
+}
+
+.mood-btn.selected {
+    @apply bg-blue-500 bg-opacity-30 border-blue-400;
+}
+
+.stat-item {
+    @apply p-3 bg-white bg-opacity-5 rounded-lg;
+}
+</style>

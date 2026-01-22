@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Emotion Detection - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .emotion-card {
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .emotion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        .camera-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .detection-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(147, 51, 234, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .detection-overlay.active {
+            opacity: 1;
+        }
+        .recommendation-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.35s;
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated Background -->
+    <div class="orb-container">
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                </div>
+                <div class="hidden md:block">
+                    <div id="nav-links" class="ml-10 flex items-baseline space-x-4">
+                        <!-- Links injected by app.js -->
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="menu-btn" type="button" class="bg-gray-800 bg-opacity-50 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden"></div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Header Section -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">
+                    Advanced Emotion Detection
+                </h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Using cutting-edge AI and computer vision to analyze your facial expressions and provide personalized mental health recommendations
+                </p>
+            </div>
+
+            <!-- Camera Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+                
+                <!-- Camera Feed -->
+                <div class="glass-card p-6">
+                    <h2 class="text-2xl font-bold text-white mb-6 text-center">Live Camera Feed</h2>
+                    
+                    <div class="camera-container relative mb-6">
+                        <video id="video" class="w-full h-80 object-cover bg-gray-900" autoplay muted playsinline></video>
+                        <canvas id="canvas" class="hidden"></canvas>
+                        
+                        <!-- Detection Overlay -->
+                        <div id="detection-overlay" class="detection-overlay">
+                            <div class="text-center">
+                                <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-white mx-auto mb-4"></div>
+                                <p class="text-white font-semibold">Analyzing Emotion...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Camera Controls -->
+                    <div class="flex justify-center space-x-4">
+                        <button id="start-camera" class="btn-primary px-6 py-3">
+                            Start Camera
+                        </button>
+                        <button id="capture-emotion" class="btn-secondary px-6 py-3" disabled>
+                            Detect Emotion
+                        </button>
+                        <button id="stop-camera" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg transition-colors" disabled>
+                            Stop Camera
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Current Detection Results -->
+                <div class="glass-card p-6">
+                    <h2 class="text-2xl font-bold text-white mb-6 text-center">Detection Results</h2>
+                    
+                    <!-- Current Emotion Display -->
+                    <div id="current-emotion" class="text-center mb-8">
+                        <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span id="emotion-icon" class="text-6xl">😐</span>
+                        </div>
+                        <h3 id="emotion-name" class="text-3xl font-bold text-white mb-2">Neutral</h3>
+                        <div class="flex items-center justify-center space-x-2">
+                            <span class="text-gray-300">Confidence:</span>
+                            <div class="relative w-24 h-24">
+                                <svg class="progress-ring w-24 h-24" viewBox="0 0 120 120">
+                                    <circle class="progress-ring-circle stroke-gray-600" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                                    <circle id="confidence-circle" class="progress-ring-circle stroke-blue-400" stroke-width="8" fill="transparent" r="52" cx="60" cy="60" stroke-dasharray="326.73" stroke-dashoffset="326.73"/>
+                                </svg>
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span id="confidence-text" class="text-white font-bold text-lg">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emotion Breakdown -->
+                    <div id="emotion-breakdown" class="space-y-3">
+                        <h4 class="text-lg font-semibold text-white mb-4">Emotion Analysis</h4>
+                        <!-- Emotion bars will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personalized Recommendations -->
+            <div id="recommendations-section" class="glass-card p-8 mb-8 hidden">
+                <h2 class="text-3xl font-bold text-white mb-6 text-center">Personalized Recommendations</h2>
+                
+                <div id="recommendations-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Recommendations will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Emotion History -->
+            <div class="glass-card p-8 mb-8">
+                <h2 class="text-3xl font-bold text-white mb-6 text-center">Emotion History</h2>
+                
+                <!-- History Chart -->
+                <div class="mb-8">
+                    <canvas id="emotion-chart" class="w-full h-64"></canvas>
+                </div>
+
+                <!-- Recent Detections -->
+                <div id="recent-detections" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- Recent detections will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Advanced Analytics -->
+            <div class="glass-card p-8">
+                <h2 class="text-3xl font-bold text-white mb-6 text-center">Advanced Analytics</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Dominant Emotion -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span id="dominant-emotion-icon" class="text-3xl">😊</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Dominant Emotion</h3>
+                        <p id="dominant-emotion-name" class="text-gray-300">Happy</p>
+                        <p id="dominant-emotion-percentage" class="text-blue-400 font-semibold">45%</p>
+                    </div>
+
+                    <!-- Emotional Stability -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-3xl text-white font-bold" id="stability-score">8.5</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Emotional Stability</h3>
+                        <p class="text-gray-300">Stability Score</p>
+                        <p id="stability-description" class="text-purple-400 font-semibold">Very Stable</p>
+                    </div>
+
+                    <!-- Total Sessions -->
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-gradient-to-br from-yellow-500 to-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-3xl text-white font-bold" id="total-sessions">12</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Total Sessions</h3>
+                        <p class="text-gray-300">Detection Sessions</p>
+                        <p id="sessions-this-week" class="text-yellow-400 font-semibold">3 this week</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Chart.js for emotion history -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+    <script src="emotion-detection.js"></script>
+</body>
+</html>

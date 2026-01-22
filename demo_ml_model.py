@@ -109,7 +109,7 @@ def main():
     
     while True:
         try:
-            user_input = input("\n💬 You: ").strip()
+            user_input = input("\ You: ").strip()
             
             if user_input.lower() in ['quit', 'exit', 'bye']:
                 print(" AURA: Thank you for trying the demo! Take care! 👋")

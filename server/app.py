@@ -11,139 +11,44 @@ import sqlite3
 from functools import wraps
 import numpy as np
 
-from deepface import DeepFace
+# Optional DeepFace import - graceful fallback if not available
+try:
+    from deepface import DeepFace
+    DEEPFACE_AVAILABLE = True
+    print("✅ DeepFace loaded successfully")
+except ImportError as e:
+    print(f"⚠️  DeepFace not available: {e}")
+    print("🔄 Emotion detection will use fallback method")
+    DEEPFACE_AVAILABLE = False
+    DeepFace = None
+except Exception as e:
+    print(f"⚠️  DeepFace error: {e}")
+    print("🔄 Emotion detection will use fallback method")
+    DEEPFACE_AVAILABLE = False
+    DeepFace = None
+
 from flask import Flask, jsonify, request, send_from_directory
 from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from ml_model_realistic import get_realistic_ml_model
+from advanced_emotion_detection import get_emotion_detector, get_recommendation_engine, get_analytics_engine
+from db_helper_simple import *
+
+# Initialize database on startup
+try:
+    initialize_database()
+    print("✅ Database initialization completed")
+except Exception as e:
+    print(f"⚠️ Database initialization error: {e}")
 
 # --- Database Initialization ---
-DB_FILE = "database.db"
-
-def init_db():
-    with sqlite3.connect(DB_FILE) as conn:
-        c = conn.cursor()
-        c.execute('''
-            CREATE TABLE IF NOT EXISTS users (
-                id TEXT PRIMARY KEY,
-                name TEXT NOT NULL,
-                email TEXT UNIQUE NOT NULL,
-                password TEXT NOT NULL,
-                is_admin INTEGER DEFAULT 0
-            )
-        ''')
-        c.execute('''
-            CREATE TABLE IF NOT EXISTS chat_history (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id TEXT,
-                user_message TEXT,
-                ai_response TEXT,
-                sentiment TEXT,
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES users (id)
-            )
-        ''')
-        c.execute('''
-            CREATE TABLE IF NOT EXISTS mood_entries (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id TEXT NOT NULL,
-                rating INTEGER NOT NULL,
-                notes TEXT,
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES users (id)
-            )
-        ''')
-        c.execute('''
-            CREATE TABLE IF NOT EXISTS emotional_intelligence_scores (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id TEXT NOT NULL,
-                awareness_score REAL,
-                regulation_score REAL,
-                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (user_id) REFERENCES users (id)
-            )
-        ''')
-        conn.commit()
+# Database initialization is now handled by db_helper.py
 
 # --- DB Helper Functions ---
-def get_user_by_id(user_id):
-    with sqlite3.connect(DB_FILE) as conn:
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute("SELECT * FROM users WHERE id = ?", (user_id,))
-        return c.fetchone()
+# All database functions are now in db_helper.py
 
-def get_user_by_email(email):
-    with sqlite3.connect(DB_FILE) as conn:
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute("SELECT * FROM users WHERE email = ?", (email,))
-        return c.fetchone()
 
-def get_all_users():
-    with sqlite3.connect(DB_FILE) as conn:
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute("SELECT id, name, email, is_admin FROM users")
-        return [dict(row) for row in c.fetchall()]
-
-def create_user(user_id, name, email, password, is_admin):
-    with sqlite3.connect(DB_FILE) as conn:
-        c = conn.cursor()
-        is_admin_flag = is_admin or (get_user_count() == 0)
-        c.execute("INSERT INTO users (id, name, email, password, is_admin) VALUES (?, ?, ?, ?, ?)",
-                  (user_id, name, email, password, 1 if is_admin_flag else 0))
-        conn.commit()
-
-def get_user_count():
-    with sqlite3.connect(DB_FILE) as conn:
-        c = conn.cursor()
-        c.execute("SELECT COUNT(*) FROM users")
-        count = c.fetchone()[0]
-    return count if count is not None else 0
-
-def get_full_chat_history(user_id):
-    with sqlite3.connect(DB_FILE) as conn:
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute("SELECT user_message, ai_response, sentiment, timestamp FROM chat_history WHERE user_id = ? ORDER BY timestamp ASC", (user_id,))
-        return [dict(row) for row in c.fetchall()]
-
-def create_chat_history(user_id, user_message, ai_response, sentiment):
-    with sqlite3.connect(DB_FILE) as conn:
-        c = conn.cursor()
-        c.execute("INSERT INTO chat_history (user_id, user_message, ai_response, sentiment) VALUES (?, ?, ?, ?)",
-                  (user_id, user_message, ai_response, sentiment))
-        conn.commit()
-
-def create_mood_entry(user_id, rating, notes):
-    with sqlite3.connect(DB_FILE) as conn:
-        c = conn.cursor()
-        c.execute("INSERT INTO mood_entries (user_id, rating, notes) VALUES (?, ?, ?)",
-                  (user_id, rating, notes))
-        conn.commit()
-
-def get_mood_entries(user_id):
-    with sqlite3.connect(DB_FILE) as conn:
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute("SELECT rating, notes, timestamp FROM mood_entries WHERE user_id = ? ORDER BY timestamp ASC", (user_id,))
-        return [dict(row) for row in c.fetchall()]
-
-def save_ei_scores(user_id, awareness, regulation):
-    with sqlite3.connect(DB_FILE) as conn:
-        c = conn.cursor()
-        c.execute("INSERT INTO emotional_intelligence_scores (user_id, awareness_score, regulation_score) VALUES (?, ?, ?)",
-                  (user_id, awareness, regulation))
-        conn.commit()
-
-def get_ei_history(user_id):
-    with sqlite3.connect(DB_FILE) as conn:
-        conn.row_factory = sqlite3.Row
-        c = conn.cursor()
-        c.execute("SELECT awareness_score, regulation_score, timestamp FROM emotional_intelligence_scores WHERE user_id = ? ORDER BY timestamp ASC", (user_id,))
-        return [dict(row) for row in c.fetchall()]
 
 # --- App and Authentication ---
 app = Flask(__name__, static_folder='../client', static_url_path='/')
@@ -208,22 +113,28 @@ def calculate_emotional_intelligence(chat_history):
     return round(awareness_score, 2), round(regulation_score, 2)
 
 def generate_intent_based_response(user_message):
-    # First try realistic ML model (80%+ accuracy)
+    # Use comprehensive ML model trained on ALL intents.json data
     try:
         ml_model = get_realistic_ml_model()
-        if ml_model:
+        if ml_model and ml_model.trained:
             ml_response, confidence, predicted_tag = ml_model.generate_ml_response(user_message)
-            if confidence > 0.25:  # Use ML response if confidence is reasonable
+            if confidence > 0.15:  # Lower threshold for comprehensive coverage
+                print(f"✅ ML Response: {predicted_tag} (confidence: {confidence:.3f})")
                 return ml_response
+            else:
+                print(f"⚠️  Low ML confidence: {confidence:.3f}")
     except Exception as e:
-        print(f"ML model error: {e}")
+        print(f"❌ ML model error: {e}")
     
-    # Fallback to original rule-based system
+    # Fallback to rule-based system only if ML completely fails
+    print("🔄 Using rule-based fallback...")
     if not INTENTS:
-        return None
+        return "I'm here to help. Please tell me more about how you're feeling."
+    
     message = user_message.lower()
     best_tag = None
     best_score = 0
+    
     for intent in INTENTS:
         patterns = intent.get('patterns', [])
         for pattern in patterns:
@@ -243,21 +154,26 @@ def generate_intent_based_response(user_message):
             if score > best_score:
                 best_score = score
                 best_tag = intent.get('tag')
+    
     if not best_tag:
         fallback_tags = {'no-response', 'default'}
         candidates = [i for i in INTENTS if i.get('tag') in fallback_tags]
         for intent in candidates:
             responses = intent.get('responses') or []
             if responses:
+                print("📝 Rule-based fallback response")
                 return random.choice(responses)
-        return None
+        return "I'm not sure I understand. Could you tell me more?"
+    
     for intent in INTENTS:
         if intent.get('tag') == best_tag:
             responses = intent.get('responses') or []
             if not responses:
-                return None
+                return "I'm here to help. Please tell me more."
+            print(f"📝 Rule-based match: {best_tag}")
             return random.choice(responses)
-    return None
+    
+    return "I'm here to listen. How can I help you today?"
 
 # --- User Authentication API Endpoints ---
 @app.route('/api/signup', methods=['POST'])
@@ -342,49 +258,148 @@ def get_ei_scores():
         'history': ei_history
     })
 
-@app.route('/api/detect_emotion', methods=['POST'])
-def detect_emotion():
+@app.route('/api/emotion_detection_advanced', methods=['POST'])
+def advanced_emotion_detection():
+    """Advanced emotion detection with ML and personalized recommendations"""
     auth_header = request.headers.get('Authorization')
     if not auth_header or len(auth_header.split()) < 2:
         return jsonify({'error': 'Authentication required'}), 401
+    
     token = auth_header.split()[1]
     user = get_user_by_id(token)
     if not user:
-        return jsonify({'error': 'Invalid user'}), 401
-
-    data = request.get_json()
-    image_data = data.get('image') if data else None
-    if not image_data:
-        return jsonify({'error': 'No image data provided'}), 400
-
+        return jsonify({'error': 'Invalid user token'}), 401
+    
     try:
-        if ',' in image_data:
-            _, encoded = image_data.split(',', 1)
-        else:
-            encoded = image_data
-        img_bytes = base64.b64decode(encoded)
-        temp_path = f"temp_emotion_{uuid.uuid4().hex}.jpg"
-        with open(temp_path, 'wb') as f:
-            f.write(img_bytes)
+        data = request.get_json()
+        image_data = data.get('image')
+        timestamp = data.get('timestamp', datetime.now().isoformat())
+        
+        if not image_data:
+            return jsonify({'error': 'No image data provided'}), 400
+        
+        # Get emotion detector
+        detector = get_emotion_detector()
+        
+        # Detect emotion
+        result = detector.detect_emotion_from_image(image_data)
+        
+        if result['success']:
+            # Save to database
+            emotion_id = create_face_emotion_record(
+                user_id=user['id'],
+                detected_emotion=result['dominant_emotion'],
+                confidence_score=result['confidence'],
+                image_path=None  # We don't save the actual image for privacy
+            )
+            
+            if emotion_id:
+                result['emotion_id'] = emotion_id
+                result['saved'] = True
+            else:
+                result['saved'] = False
+        
+        return jsonify(result), 200
+        
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e),
+            'dominant_emotion': 'neutral',
+            'confidence': 0,
+            'emotions': {}
+        }), 500
 
-        emotion = 'Unknown'
-        try:
-            analysis = DeepFace.analyze(img_path=temp_path, actions=['emotion'])
-            if isinstance(analysis, list) and analysis:
-                analysis = analysis[0]
-            detected = analysis.get('dominant_emotion') if isinstance(analysis, dict) else None
-            if isinstance(detected, str) and detected:
-                emotion = detected.capitalize()
-        finally:
-            try:
-                os.remove(temp_path)
-            except OSError:
-                pass
-    except Exception:
-        emotion = 'Unknown'
+@app.route('/api/emotion_recommendations/<emotion>', methods=['GET'])
+def get_emotion_recommendations(emotion):
+    """Get personalized recommendations based on detected emotion"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        # Get recommendation engine
+        rec_engine = get_recommendation_engine()
+        
+        # Get user's emotion history for personalization
+        user_history = get_face_emotion_history(user['id'], 20)
+        
+        # Generate recommendations
+        recommendations = rec_engine.generate_recommendations(emotion, user_history)
+        
+        return jsonify(recommendations), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'recommendations': []
+        }), 500
 
-    user_emotions[user['id']] = emotion
-    return jsonify({'emotion': emotion})
+@app.route('/api/emotion_history', methods=['GET'])
+def get_emotion_history_api():
+    """Get user's emotion detection history"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        limit = request.args.get('limit', 50, type=int)
+        history = get_face_emotion_history(user['id'], limit)
+        
+        # Format history for frontend
+        formatted_history = []
+        for entry in history:
+            formatted_history.append({
+                'dominant_emotion': entry['detected_emotion'],
+                'confidence': entry['confidence_score'],
+                'timestamp': entry['timestamp'],
+                'emotions': {}  # We don't store full emotion breakdown in current schema
+            })
+        
+        return jsonify(formatted_history), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'history': []
+        }), 500
+
+@app.route('/api/emotion_analytics', methods=['GET'])
+def get_emotion_analytics_api():
+    """Get advanced emotion analytics for user"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        # Get analytics engine
+        analytics = get_analytics_engine()
+        
+        # Get user analytics
+        user_analytics = analytics.get_user_analytics(user['id'])
+        
+        return jsonify(user_analytics), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'analytics': {}
+        }), 500
 
 @app.route('/api/doctor_chat', methods=['POST'])
 def handle_chat():
@@ -433,6 +448,533 @@ def generate_professional_ai_response(last_emotion, text_sentiment, conversation
     if text_sentiment < -0.2: return "I'm hearing you. What thoughts are swirling around that feeling?"
     return "I see. Let's go a bit deeper. What does that mean to you personally?"
 
+# --- Advanced Mood Intelligence API Endpoints ---
+@app.route('/api/mood_advanced', methods=['POST'])
+def log_advanced_mood():
+    """Log advanced mood entry with comprehensive tracking"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        from mood_intelligence import get_mood_intelligence
+        mood_intel = get_mood_intelligence()
+        
+        mood_data = request.get_json()
+        result = mood_intel.log_advanced_mood(user['id'], mood_data)
+        
+        if result['success']:
+            return jsonify(result), 200
+        else:
+            return jsonify(result), 400
+            
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to log advanced mood entry'
+        }), 500
+
+@app.route('/api/mood_analytics', methods=['GET'])
+def get_mood_analytics():
+    """Get comprehensive mood analytics"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        from mood_intelligence import get_mood_intelligence
+        mood_intel = get_mood_intelligence()
+        
+        days = request.args.get('days', 30, type=int)
+        analytics = mood_intel.get_comprehensive_analytics(user['id'], days)
+        
+        return jsonify(analytics), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to generate mood analytics'
+        }), 500
+
+@app.route('/api/mood_insights', methods=['GET'])
+def get_mood_insights():
+    """Get personalized mood insights and recommendations"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        from mood_intelligence import get_mood_intelligence
+        mood_intel = get_mood_intelligence()
+        
+        # Get recent mood data for insights
+        recent_entries = mood_intel.get_recent_mood_history(user['id'], days=7)
+        
+        if not recent_entries:
+            return jsonify({
+                'message': 'No recent mood data available for insights',
+                'recommendations': [
+                    {
+                        'type': 'getting_started',
+                        'title': 'Start Tracking',
+                        'description': 'Begin logging your daily mood to receive personalized insights.',
+                        'priority': 'high'
+                    }
+                ]
+            }), 200
+        
+        # Generate insights based on recent data
+        latest_entry = recent_entries[-1]
+        mock_mood_data = {
+            'mood_rating': latest_entry['mood_rating'],
+            'energy_level': latest_entry.get('energy_level', 3),
+            'stress_level': latest_entry.get('stress_level', 3),
+            'sleep_quality': latest_entry.get('sleep_quality', 3)
+        }
+        
+        insights = mood_intel.generate_immediate_insights(user['id'], mock_mood_data)
+        
+        return jsonify(insights), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to generate mood insights'
+        }), 500
+
+# --- Video Consultation API Endpoints ---
+@app.route('/api/doctors', methods=['GET'])
+def get_doctors():
+    """Get all available doctors"""
+    try:
+        doctors = get_all_doctors()
+        return jsonify({
+            'success': True,
+            'doctors': doctors
+        }), 200
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'error': str(e)
+        }), 500
+
+@app.route('/api/appointments', methods=['POST'])
+def create_appointment_api():
+    """Create new appointment"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        data = request.get_json()
+        doctor_id = data.get('doctor_id')
+        appointment_date = data.get('appointment_date')
+        appointment_time = data.get('appointment_time')
+        notes = data.get('notes', '')
+        
+        if not all([doctor_id, appointment_date, appointment_time]):
+            return jsonify({'error': 'Missing required fields'}), 400
+        
+        # Check if doctor exists
+        doctor = get_doctor_by_id(doctor_id)
+        if not doctor:
+            return jsonify({'error': 'Doctor not found'}), 404
+        
+        # Create appointment
+        appointment_id = create_appointment(
+            user_id=user['id'],
+            doctor_id=doctor_id,
+            appointment_date=appointment_date,
+            appointment_time=appointment_time,
+            notes=notes
+        )
+        
+        if appointment_id:
+            return jsonify({
+                'success': True,
+                'appointment_id': appointment_id,
+                'message': 'Appointment created successfully'
+            }), 201
+        else:
+            return jsonify({'error': 'Failed to create appointment'}), 500
+            
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to create appointment'
+        }), 500
+
+@app.route('/api/appointments', methods=['GET'])
+def get_user_appointments_api():
+    """Get user's appointments"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        status = request.args.get('status')
+        appointments = get_user_appointments(user['id'], status)
+        
+        return jsonify({
+            'success': True,
+            'appointments': appointments
+        }), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to get appointments'
+        }), 500
+
+@app.route('/api/payments', methods=['POST'])
+def process_payment_api():
+    """Process payment for appointment"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        data = request.get_json()
+        appointment_id = data.get('appointment_id')
+        payment_method = data.get('payment_method')
+        amount = data.get('amount')
+        
+        if not all([appointment_id, payment_method, amount]):
+            return jsonify({'error': 'Missing required fields'}), 400
+        
+        # Create payment record
+        payment_data = {
+            'currency': data.get('currency', 'USD'),
+            'transaction_id': data.get('transaction_id'),
+            'esewa_ref_id': data.get('esewa_ref_id'),
+            'card_last_four': data.get('card_last_four')
+        }
+        
+        payment_id = create_payment(
+            user_id=user['id'],
+            appointment_id=appointment_id,
+            amount=amount,
+            payment_method=payment_method,
+            **payment_data
+        )
+        
+        if payment_id:
+            # Update payment status to completed (in real app, this would be done after payment gateway confirmation)
+            update_payment_status(payment_id, 'completed', data.get('transaction_id'))
+            
+            # Update appointment payment status
+            with get_db_connection() as conn:
+                conn.execute('''
+                    UPDATE appointments 
+                    SET payment_status = 'completed', payment_method = ?, payment_amount = ?
+                    WHERE id = ?
+                ''', (payment_method, amount, appointment_id))
+                conn.commit()
+            
+            return jsonify({
+                'success': True,
+                'payment_id': payment_id,
+                'message': 'Payment processed successfully'
+            }), 200
+        else:
+            return jsonify({'error': 'Failed to process payment'}), 500
+            
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to process payment'
+        }), 500
+
+@app.route('/api/appointments/<appointment_id>/start', methods=['POST'])
+def start_appointment_session(appointment_id):
+    """Start appointment session"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        # Update appointment status to 'in_progress'
+        success = update_appointment_status(appointment_id, 'in_progress')
+        
+        if success:
+            return jsonify({
+                'success': True,
+                'message': 'Session started successfully',
+                'session_duration': 50  # 50 minutes
+            }), 200
+        else:
+            return jsonify({'error': 'Failed to start session'}), 500
+            
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to start session'
+        }), 500
+
+@app.route('/api/appointments/<appointment_id>/end', methods=['POST'])
+def end_appointment_session(appointment_id):
+    """End appointment session"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        # Update appointment status to 'completed'
+        success = update_appointment_status(appointment_id, 'completed')
+        
+        if success:
+            return jsonify({
+                'success': True,
+                'message': 'Session ended successfully'
+            }), 200
+        else:
+            return jsonify({'error': 'Failed to end session'}), 500
+            
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to end session'
+        }), 500
+
+# --- Admin API Endpoints ---
+@app.route('/api/admin/analytics', methods=['GET'])
+def get_admin_analytics():
+    """Get platform analytics (admin only)"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user or not user['is_admin']:
+        return jsonify({'error': 'Admin access required'}), 403
+    
+    try:
+        analytics = get_platform_analytics()
+        return jsonify({
+            'success': True,
+            'analytics': analytics
+        }), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to get analytics'
+        }), 500
+
+@app.route('/api/admin/users', methods=['GET'])
+def get_all_users_api():
+    """Get all users (admin only)"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user or not user['is_admin']:
+        return jsonify({'error': 'Admin access required'}), 403
+    
+    try:
+        users = get_all_users()
+        return jsonify({
+            'success': True,
+            'users': users
+        }), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to get users'
+        }), 500
+@app.route('/api/mood_simple', methods=['POST'])
+def log_simple_mood():
+    """Log simple mood entry - just rating and notes"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        from simple_mood_tracker import get_simple_mood_tracker
+        tracker = get_simple_mood_tracker()
+        
+        data = request.get_json()
+        mood_rating = data.get('mood_rating')
+        mood_notes = data.get('mood_notes', '')
+        
+        if not mood_rating or mood_rating < 1 or mood_rating > 5:
+            return jsonify({'error': 'Invalid mood rating (1-5 required)'}), 400
+        
+        result = tracker.add_mood_entry(user['id'], mood_rating, mood_notes)
+        
+        if result['success']:
+            return jsonify(result), 200
+        else:
+            return jsonify(result), 400
+            
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to log simple mood entry'
+        }), 500
+
+@app.route('/api/mood_simple', methods=['GET'])
+def get_simple_moods():
+    """Get user's simple mood entries"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        from simple_mood_tracker import get_simple_mood_tracker
+        tracker = get_simple_mood_tracker()
+        
+        days = request.args.get('days', 30, type=int)
+        moods = tracker.get_user_moods(user['id'], days)
+        
+        return jsonify({
+            'moods': moods,
+            'total': len(moods)
+        }), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to get mood entries'
+        }), 500
+
+@app.route('/api/mood_simple/stats', methods=['GET'])
+def get_simple_mood_stats():
+    """Get simple mood statistics"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        from simple_mood_tracker import get_simple_mood_tracker
+        tracker = get_simple_mood_tracker()
+        
+        days = request.args.get('days', 30, type=int)
+        stats = tracker.get_mood_stats(user['id'], days)
+        
+        return jsonify(stats), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to get mood statistics'
+        }), 500
+
+@app.route('/api/mood_simple/chart', methods=['GET'])
+def get_simple_mood_chart():
+    """Get simple mood chart data"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        from simple_mood_tracker import get_simple_mood_tracker
+        tracker = get_simple_mood_tracker()
+        
+        days = request.args.get('days', 30, type=int)
+        chart_data = tracker.get_mood_chart_data(user['id'], days)
+        
+        return jsonify(chart_data), 200
+        
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to get chart data'
+        }), 500
+
+@app.route('/api/mood_simple/<int:entry_id>', methods=['DELETE'])
+def delete_simple_mood(entry_id):
+    """Delete a simple mood entry"""
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or len(auth_header.split()) < 2:
+        return jsonify({'error': 'Authentication required'}), 401
+    
+    token = auth_header.split()[1]
+    user = get_user_by_id(token)
+    if not user:
+        return jsonify({'error': 'Invalid user token'}), 401
+    
+    try:
+        from simple_mood_tracker import get_simple_mood_tracker
+        tracker = get_simple_mood_tracker()
+        
+        result = tracker.delete_mood_entry(user['id'], entry_id)
+        
+        if result['success']:
+            return jsonify(result), 200
+        else:
+            return jsonify(result), 400
+            
+    except Exception as e:
+        return jsonify({
+            'error': str(e),
+            'message': 'Failed to delete mood entry'
+        }), 500
+
 # --- Static File Serving ---
 @app.route('/')
 def serve_index():
@@ -447,5 +989,4 @@ def serve_static(path):
 
 
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True, host='0.0.0.0', port=5000)

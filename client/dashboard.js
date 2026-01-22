@@ -7,6 +7,296 @@ document.addEventListener('DOMContentLoaded', async () => {
     const video = document.getElementById('video');
     const token = localStorage.getItem('token');
 
+    // Mood Tracking Variables
+    let selectedMood = 3; // Default mood
+    const moodButtons = document.querySelectorAll('.mood-btn-dash');
+    const quickMoodNotes = document.getElementById('quick-mood-notes');
+    const saveMoodBtn = document.getElementById('save-mood-btn');
+    const dashMoodFeedback = document.getElementById('dash-mood-feedback');
+    const simpleMoodChart = document.getElementById('simple-mood-chart');
+    const viewMoreMoodsBtn = document.getElementById('view-more-moods');
+
+    // Initialize Mood Tracking
+    function initializeMoodTracking() {
+        // Set up mood button selection
+        moodButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                selectDashboardMood(parseInt(button.dataset.mood));
+            });
+        });
+
+        // Set up save mood button
+        if (saveMoodBtn) {
+            saveMoodBtn.addEventListener('click', saveDashboardMood);
+        }
+
+        // Set up view more moods button
+        if (viewMoreMoodsBtn) {
+            viewMoreMoodsBtn.addEventListener('click', () => {
+                window.open('/simple-mood-tracker.html', '_blank');
+            });
+        }
+
+        // Load mood stats and chart
+        loadDashboardMoodStats();
+        loadSimpleMoodChart();
+    }
+
+    function selectDashboardMood(moodValue) {
+        selectedMood = moodValue;
+        
+        // Update button selection
+        moodButtons.forEach(btn => {
+            btn.classList.remove('selected');
+        });
+        
+        const selectedButton = document.querySelector(`[data-mood="${moodValue}"]`);
+        if (selectedButton) {
+            selectedButton.classList.add('selected');
+        }
+    }
+
+    async function saveDashboardMood() {
+        if (!token) return;
+
+        const moodData = {
+            mood_rating: selectedMood,
+            mood_notes: quickMoodNotes ? quickMoodNotes.value.trim() : ''
+        };
+
+        try {
+            saveMoodBtn.disabled = true;
+            saveMoodBtn.textContent = 'Saving...';
+
+            const response = await fetch('/api/mood_simple', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(moodData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to save mood');
+            }
+
+            const result = await response.json();
+
+            if (result.success) {
+                // Show success feedback
+                const moodInfo = result.mood_info;
+                showDashboardMoodFeedback(`${moodInfo.emoji} Saved!`, 'success');
+                
+                // Clear notes
+                if (quickMoodNotes) quickMoodNotes.value = '';
+                
+                // Reset to default mood
+                selectDashboardMood(3);
+                
+                // Reload stats and chart with animation
+                showDashboardMoodFeedback('📊 Updating chart...', 'info');
+                await loadDashboardMoodStats();
+                await loadSimpleMoodChart();
+                
+                // Show completion
+                setTimeout(() => {
+                    showDashboardMoodFeedback('✅ Chart updated!', 'success');
+                }, 500);
+                
+            } else {
+                throw new Error(result.message || 'Failed to save mood');
+            }
+
+        } catch (error) {
+            console.error('Error saving mood:', error);
+            showDashboardMoodFeedback('Error saving mood', 'error');
+        } finally {
+            saveMoodBtn.disabled = false;
+            saveMoodBtn.textContent = 'Save Mood';
+        }
+    }
+
+    async function loadDashboardMoodStats() {
+        if (!token) return;
+
+        try {
+            const response = await fetch('/api/mood_simple/stats?days=30', {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) return;
+
+            const stats = await response.json();
+
+            // Update dashboard stats
+            const totalElement = document.getElementById('dash-total-entries');
+            const avgElement = document.getElementById('dash-avg-mood');
+
+            if (totalElement) totalElement.textContent = stats.total_entries || 0;
+            if (avgElement) avgElement.textContent = stats.average_mood || '0';
+
+        } catch (error) {
+            console.error('Error loading mood stats:', error);
+        }
+    }
+
+    async function loadSimpleMoodChart() {
+        if (!token || !simpleMoodChart) return;
+
+        try {
+            const response = await fetch('/api/mood_simple/chart?days=7', {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) return;
+
+            const chartData = await response.json();
+
+            // Update simple chart
+            updateSimpleMoodChart(chartData);
+
+        } catch (error) {
+            console.error('Error loading mood chart:', error);
+        }
+    }
+
+    function updateSimpleMoodChart(chartData) {
+        if (!simpleMoodChart) return;
+
+        const labels = chartData.labels || [];
+        const data = chartData.data || [];
+
+        if (data.length === 0) {
+            simpleMoodChart.innerHTML = '<div class="text-center text-gray-400 py-8">Save some moods to see your chart!</div>';
+            return;
+        }
+
+        // Create simple visual chart
+        let chartHTML = '<div class="simple-chart">';
+        
+        for (let i = 0; i < Math.min(labels.length, 7); i++) {
+            const mood = data[i];
+            const label = labels[i];
+            const height = (mood / 5) * 80; // Scale to max 80px height
+            const isNewest = i === data.length - 1; // Check if this is the newest entry
+            
+            // Get emoji for mood
+            const emojis = ['', '😭', '😟', '😐', '🙂', '😊'];
+            const emoji = emojis[mood] || '😐';
+            
+            // Add special styling for newest entry
+            const newClass = isNewest ? ' style="box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); border: 2px solid #3b82f6;"' : '';
+            
+            chartHTML += `
+                <div class="chart-bar">
+                    <div class="chart-emoji">${emoji}</div>
+                    <div class="chart-bar-fill mood-${mood}"${newClass} style="height: ${height}px;"></div>
+                    <div class="chart-date">${label}</div>
+                </div>
+            `;
+        }
+        
+        chartHTML += '</div>';
+        
+        // Add simple legend
+        chartHTML += `
+            <div class="flex justify-center mt-3 space-x-4 text-xs text-gray-400">
+                <span>😭 Very Bad</span>
+                <span>😟 Bad</span>
+                <span>😐 Okay</span>
+                <span>🙂 Good</span>
+                <span>😊 Great</span>
+            </div>
+        `;
+        
+        // Add update indicator
+        if (data.length > 0) {
+            chartHTML += `
+                <div class="text-center mt-2 text-xs text-blue-400">
+                    📊 Last updated: ${new Date().toLocaleTimeString()}
+                </div>
+            `;
+        }
+        
+        simpleMoodChart.innerHTML = chartHTML;
+
+        // Generate recommendations based on chart data
+        generateSimpleMoodRecommendations(data);
+    }
+
+    function generateSimpleMoodRecommendations(moodData) {
+        const recommendationElement = document.getElementById('recommendation-text');
+        if (!recommendationElement || moodData.length === 0) {
+            return;
+        }
+
+        // Calculate simple statistics
+        const avgMood = moodData.reduce((sum, mood) => sum + mood, 0) / moodData.length;
+        const lastMood = moodData[moodData.length - 1];
+        
+        let recommendation = '';
+        let emoji = '';
+
+        // Simple recommendations based on average mood
+        if (avgMood >= 4.5) {
+            emoji = '🌟';
+            recommendation = 'Wow! You\'re doing amazing! Keep spreading that positive energy!';
+        } else if (avgMood >= 4.0) {
+            emoji = '😊';
+            recommendation = 'You\'re in a great mood! Keep doing what makes you happy!';
+        } else if (avgMood >= 3.5) {
+            emoji = '🙂';
+            recommendation = 'You\'re doing well! Maybe try something fun today to boost your mood even more.';
+        } else if (avgMood >= 2.5) {
+            emoji = '😐';
+            recommendation = 'Your mood is okay. Try listening to music, going for a walk, or calling a friend.';
+        } else if (avgMood >= 2.0) {
+            emoji = '😟';
+            recommendation = 'You seem to be having some tough days. Take care of yourself and reach out if you need support.';
+        } else {
+            emoji = '💙';
+            recommendation = 'It looks like you\'re going through a difficult time. Please talk to someone you trust.';
+        }
+
+        // Add trend info
+        if (moodData.length >= 2) {
+            const firstMood = moodData[0];
+            if (lastMood > firstMood) {
+                recommendation += ' Good news - your mood is getting better! 📈';
+            } else if (lastMood < firstMood) {
+                recommendation += ' Take extra care of yourself today. 💚';
+            }
+        }
+
+        recommendationElement.innerHTML = `${emoji} ${recommendation}`;
+    }
+
+    function showDashboardMoodFeedback(message, type = 'success') {
+        if (!dashMoodFeedback) return;
+
+        const typeClasses = {
+            success: 'text-green-400',
+            error: 'text-red-400',
+            warning: 'text-yellow-400'
+        };
+
+        dashMoodFeedback.className = `text-center text-sm mt-2 ${typeClasses[type] || typeClasses.success}`;
+        dashMoodFeedback.textContent = message;
+
+        // Auto-hide after 3 seconds
+        setTimeout(() => {
+            dashMoodFeedback.textContent = '';
+        }, 3000);
+    }
+
     // Load ML Model Status
     async function loadMLStatus() {
         try {
@@ -140,6 +430,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (token) {
         startEmotionDetection();
         loadMLStatus();
+        initializeMoodTracking(); // Initialize mood tracking
     } else {
         window.location.href = '/signin.html';
     }

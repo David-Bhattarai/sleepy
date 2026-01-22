@@ -1,12 +1,11 @@
-🧠 AURA ML MODEL - ALGORITHMS DETAILED EXPLANATION
-==================================================
+AURA ML MODEL - ALGORITHMS DETAILED EXPLANATIO
 
-📊 ACHIEVEMENT: 82.3% Test Accuracy | 90% Practical Accuracy
-🎯 TARGET: 80%+ Accuracy - SUCCESSFULLY ACHIEVED!
+ ACHIEVEMENT: 82.3% Test Accuracy | 90% Practical Accuracy
+ TARGET: 80%+ Accuracy - SUCCESSFULLY ACHIEVED!
 
-🔬 MAIN ALGORITHMS USED:
+ MAIN ALGORITHMS USED:
 
-1️⃣ TF-IDF (Term Frequency-Inverse Document Frequency)
+1️ TF-IDF (Term Frequency-Inverse Document Frequency)
 =====================================================
 
 PURPOSE: Convert text to numerical features for ML processing
@@ -35,7 +34,7 @@ HYPERPARAMETERS USED:
 
 IMPACT ON ACCURACY: +30-40% improvement over basic word counting
 
-2️⃣ MULTINOMIAL NAIVE BAYES CLASSIFIER
+2️ MULTINOMIAL NAIVE BAYES CLASSIFIER
 =====================================
 
 PURPOSE: Probabilistic classification based on Bayes' theorem
@@ -65,7 +64,7 @@ Input: "I feel depressed"
 
 IMPACT ON ACCURACY: Excellent for text classification, handles multiple classes well
 
-3️⃣ DATA AUGMENTATION ALGORITHM
+3️ DATA AUGMENTATION ALGORITHM
 ==============================
 
 PURPOSE: Artificially increase dataset size to improve model performance
@@ -114,7 +113,7 @@ for each pattern in original_dataset:
             add new_pattern to augmented_dataset
 ```
 
-4️⃣ ADVANCED TEXT PREPROCESSING
+4️ADVANCED TEXT PREPROCESSING
 ==============================
 
 PURPOSE: Clean and normalize text for consistent ML input
@@ -156,7 +155,7 @@ def preprocess(text):
 
 IMPACT ON ACCURACY: +15-20% improvement
 
-5️⃣ PIPELINE ARCHITECTURE
+5️ PIPELINE ARCHITECTURE
 ========================
 
 PURPOSE: Combine preprocessing and classification in single workflow
@@ -181,7 +180,7 @@ WORKFLOW:
 3. Naive Bayes classification: P(sadness)=0.85, P(greeting)=0.05, ...
 4. Final prediction: "sadness" with 85% confidence
 
-🎯 CONFIDENCE THRESHOLDING ALGORITHM
+ CONFIDENCE THRESHOLDING ALGORITHM
 ===================================
 
 PURPOSE: Filter low-confidence predictions to maintain quality
@@ -202,7 +201,7 @@ THRESHOLD SELECTION:
 
 IMPACT: Maintains high response quality while maximizing ML usage
 
-📈 PERFORMANCE OPTIMIZATION TECHNIQUES
+ PERFORMANCE OPTIMIZATION TECHNIQUES
 =====================================
 
 1. HYPERPARAMETER TUNING:
@@ -221,7 +220,6 @@ IMPACT: Maintains high response quality while maximizing ML usage
 4. CROSS-VALIDATION:
    - 5-fold cross-validation for robust evaluation
    - Prevents overfitting to specific train/test split
-
 🏆 FINAL ALGORITHM COMBINATION RESULTS
 =====================================
 
@@ -240,7 +238,7 @@ FINAL PERFORMANCE:
  \Model Size: ~2MB (efficient)
  Prediction Speed: <10ms per query
 
-🔬 ALGORITHM COMPLEXITY ANALYSIS
+ ALGORITHM COMPLEXITY ANALYSIS
 ===============================
 
 TIME COMPLEXITY:

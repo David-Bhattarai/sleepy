@@ -6,6 +6,74 @@
     <title>Dashboard - AURA</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .mood-btn-dash {
+            @apply p-2 rounded-lg bg-white bg-opacity-10 border border-white/20 text-white text-center transition-all duration-200 hover:bg-opacity-20 cursor-pointer;
+        }
+        .mood-btn-dash.selected {
+            @apply bg-blue-500 bg-opacity-30 border-blue-400;
+        }
+        
+        /* Simple Chart Styles */
+        .simple-chart {
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            gap: 8px;
+            height: 120px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        
+        .chart-bar {
+            width: 24px;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.5s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .chart-bar-fill {
+            width: 100%;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.5s ease;
+        }
+        
+        .chart-date {
+            font-size: 10px;
+            color: #9ca3af;
+            margin-top: 4px;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        
+        .chart-emoji {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        
+        .mood-1 { background-color: #ef4444; }
+        .mood-2 { background-color: #f97316; }
+        .mood-3 { background-color: #eab308; }
+        .mood-4 { background-color: #22c55e; }
+        .mood-5 { background-color: #10b981; }
+    </style>
 </head>
 <body class="min-h-screen">
     <div class="orb-container"><div class="orb"></div><div class="orb"></div></div>
@@ -24,6 +92,82 @@
     <main class="pt-24 pb-10 px-4 md:px-6">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div class="lg:col-span-1 space-y-8">
+                <!-- Mood Tracker Card -->
+                <div class="glass-card p-6">
+                    <h2 class="text-xl font-bold text-white mb-4">🌟 Mood Tracker</h2>
+                    
+                    <!-- Quick Mood Selection -->
+                    <div class="mb-4">
+                        <p class="text-gray-300 text-sm mb-3">How are you feeling right now?</p>
+                        <div class="flex justify-center space-x-2">
+                            <button type="button" class="mood-btn-dash" data-mood="1">
+                                <span class="text-2xl">😭</span>
+                            </button>
+                            <button type="button" class="mood-btn-dash" data-mood="2">
+                                <span class="text-2xl">😟</span>
+                            </button>
+                            <button type="button" class="mood-btn-dash selected" data-mood="3">
+                                <span class="text-2xl">😐</span>
+                            </button>
+                            <button type="button" class="mood-btn-dash" data-mood="4">
+                                <span class="text-2xl">🙂</span>
+                            </button>
+                            <button type="button" class="mood-btn-dash" data-mood="5">
+                                <span class="text-2xl">😊</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Notes -->
+                    <div class="mb-4">
+                        <input type="text" id="quick-mood-notes" placeholder="Quick note (optional)" class="form-input w-full py-2 px-3 text-sm">
+                    </div>
+                    
+                    <!-- Save Button -->
+                    <button id="save-mood-btn" class="btn-primary w-full py-2 text-sm">Save Mood</button>
+                    
+                    <!-- Mood Stats -->
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <div class="grid grid-cols-2 gap-3 text-center">
+                            <div>
+                                <div class="text-lg font-bold text-blue-400" id="dash-total-entries">0</div>
+                                <div class="text-xs text-gray-400">Total</div>
+                            </div>
+                            <div>
+                                <div class="text-lg font-bold text-green-400" id="dash-avg-mood">0</div>
+                                <div class="text-xs text-gray-400">Average</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feedback -->
+                    <div id="dash-mood-feedback" class="text-center text-sm mt-2"></div>
+                </div>
+
+                <!-- Mood Chart Card -->
+                <div class="glass-card p-6">
+                    <h2 class="text-xl font-bold text-white mb-4">📈 Your Mood Chart</h2>
+                    
+                    <!-- Simple Visual Chart -->
+                    <div id="simple-mood-chart" class="mb-4">
+                        <div class="text-center text-gray-400 py-8">
+                            Save some moods to see your chart!
+                        </div>
+                    </div>
+                    
+                    <!-- Mood Recommendations -->
+                    <div id="mood-recommendations" class="mt-4 p-3 bg-black bg-opacity-20 rounded-lg border border-white/10">
+                        <h3 class="text-sm font-semibold text-blue-300 mb-2">💡 Recommendations</h3>
+                        <div id="recommendation-text" class="text-sm text-gray-300">
+                            Track your mood to get personalized recommendations!
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3 text-center">
+                        <button id="view-more-moods" class="text-blue-400 hover:text-blue-300 text-sm">View All Moods →</button>
+                    </div>
+                </div>
+
                 <!-- Video Feed -->
                 <div class="glass-card p-6 text-center">
                     <h2 class="text-xl font-bold text-white mb-4">Your Reflection</h2>

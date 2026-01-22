@@ -1,49 +1,386 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Video Chat - AI Mental Health Therapist</title>
-    <link rel="stylesheet" href="styles.css"> 
+    <title>Video Consultation - AURA</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .payment-method-btn {
+            transition: all 0.3s ease;
+        }
+        .payment-method-btn.active {
+            background-color: rgba(59, 130, 246, 0.3);
+            border-color: #3b82f6;
+            color: #60a5fa;
+        }
+        .payment-method-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
 </head>
-<body class="video-chat-body">
+<body>
 
-    <div id="auth-check" class="auth-check-container">
-        <p>Loading video chat...</p>
+    <!-- Animated Background -->
+    <div class="orb-container">
+        <div class="orb"></div>
+        <div class="orb"></div>
     </div>
 
-    <div id="video-chat-ui" class="video-chat-ui-container">
-        <header class="header video-chat-header">
-            <h1>Live Consultation with AI Doctor</h1>
-            <a href="dashboard.html" class="btn-danger">End Call</a>
-        </header>
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                </div>
+                <div class="hidden md:block">
+                    <div id="nav-links" class="ml-10 flex items-baseline space-x-4">
+                        <!-- Links injected by app.js -->
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="menu-btn" type="button" class="bg-gray-800 bg-opacity-50 inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden"></div>
+    </nav>
 
-        <main class="video-chat-main">
-            <div class="ai-video-container">
+    <!-- Main Content -->
+    <main class="pt-24 pb-10 px-4 md:px-6">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- Doctor Booking Section -->
+            <div id="booking-section" class="glass-card p-8 mb-8">
+                <h1 class="text-3xl font-extrabold text-white text-center mb-6">🩺 Book Video Consultation</h1>
                 
-                <video class="ai-video" src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-human-head-with-a-surrounding-vortex-41945-large.mp4" autoplay loop muted playsinline></video>
+                <!-- Important Notice -->
+                <div class="bg-yellow-500 bg-opacity-20 border border-yellow-400 rounded-lg p-4 mb-6">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-yellow-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-yellow-300 font-semibold">Important Notice</h3>
+                            <p class="text-yellow-200 text-sm mt-1">
+                                This is a demo system with AI-simulated doctors. For real therapy sessions, please consult licensed therapists. 
+                                We were not able to integrate real therapists due to licensing and permission requirements.
+                            </p>
+                        </div>
+                    </div>
+                </div>
 
-                <div id="user-video-container" class="user-video-container">
-                    <video id="user-video" autoplay playsinline muted></video>
-                    <div id="emotion-display" class="emotion-display">Emotion: Connecting...</div>
+                <!-- Available Doctors -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="doctor-card bg-black bg-opacity-20 rounded-xl p-6 border border-white/10 cursor-pointer hover:border-blue-400 transition-all" data-doctor="dr-smith">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl">👨‍⚕️</div>
+                            <h3 class="text-white font-bold text-lg">Dr. Smith</h3>
+                            <p class="text-gray-300 text-sm">Mental Health Specialist</p>
+                            <p class="text-blue-400 text-sm mt-2">Anxiety & Depression</p>
+                            <p class="text-green-400 text-sm font-semibold mt-2">$80/session</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-green-500 bg-opacity-20 text-green-400 px-2 py-1 rounded text-xs">Available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card bg-black bg-opacity-20 rounded-xl p-6 border border-white/10 cursor-pointer hover:border-blue-400 transition-all" data-doctor="dr-johnson">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl">👩‍⚕️</div>
+                            <h3 class="text-white font-bold text-lg">Dr. Johnson</h3>
+                            <p class="text-gray-300 text-sm">Licensed Counselor</p>
+                            <p class="text-blue-400 text-sm mt-2">Stress Management</p>
+                            <p class="text-green-400 text-sm font-semibold mt-2">$75/session</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-green-500 bg-opacity-20 text-green-400 px-2 py-1 rounded text-xs">Available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card bg-black bg-opacity-20 rounded-xl p-6 border border-white/10 cursor-pointer hover:border-blue-400 transition-all" data-doctor="dr-williams">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-green-500 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl">👨‍⚕️</div>
+                            <h3 class="text-white font-bold text-lg">Dr. Williams</h3>
+                            <p class="text-gray-300 text-sm">Psychiatrist</p>
+                            <p class="text-blue-400 text-sm mt-2">Mood Disorders</p>
+                            <p class="text-green-400 text-sm font-semibold mt-2">$90/session</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-yellow-500 bg-opacity-20 text-yellow-400 px-2 py-1 rounded text-xs">Busy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card bg-black bg-opacity-20 rounded-xl p-6 border border-white/10 cursor-pointer hover:border-blue-400 transition-all" data-doctor="dr-brown">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl">👩‍⚕️</div>
+                            <h3 class="text-white font-bold text-lg">Dr. Brown</h3>
+                            <p class="text-gray-300 text-sm">Trauma Specialist</p>
+                            <p class="text-blue-400 text-sm mt-2">PTSD & Trauma Therapy</p>
+                            <p class="text-green-400 text-sm font-semibold mt-2">$85/session</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-green-500 bg-opacity-20 text-green-400 px-2 py-1 rounded text-xs">Available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card bg-black bg-opacity-20 rounded-xl p-6 border border-white/10 cursor-pointer hover:border-blue-400 transition-all" data-doctor="dr-davis">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-indigo-500 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl">👨‍⚕️</div>
+                            <h3 class="text-white font-bold text-lg">Dr. Davis</h3>
+                            <p class="text-gray-300 text-sm">Relationship Counselor</p>
+                            <p class="text-blue-400 text-sm mt-2">Couples & Family Therapy</p>
+                            <p class="text-green-400 text-sm font-semibold mt-2">$70/session</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-green-500 bg-opacity-20 text-green-400 px-2 py-1 rounded text-xs">Available</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="doctor-card bg-black bg-opacity-20 rounded-xl p-6 border border-white/10 cursor-pointer hover:border-blue-400 transition-all" data-doctor="dr-wilson">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-red-500 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl">👩‍⚕️</div>
+                            <h3 class="text-white font-bold text-lg">Dr. Wilson</h3>
+                            <p class="text-gray-300 text-sm">Addiction Specialist</p>
+                            <p class="text-blue-400 text-sm mt-2">Substance Abuse Recovery</p>
+                            <p class="text-green-400 text-sm font-semibold mt-2">$95/session</p>
+                            <div class="mt-3">
+                                <span class="inline-block bg-green-500 bg-opacity-20 text-green-400 px-2 py-1 rounded text-xs">Available</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time Slots -->
+                <div id="time-slots" class="hidden">
+                    <h3 class="text-xl font-bold text-white mb-4">Available Time Slots</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                        <button class="time-slot bg-white bg-opacity-10 hover:bg-blue-500 hover:bg-opacity-30 text-white py-2 px-4 rounded-lg transition-all" data-time="09:00">9:00 AM</button>
+                        <button class="time-slot bg-white bg-opacity-10 hover:bg-blue-500 hover:bg-opacity-30 text-white py-2 px-4 rounded-lg transition-all" data-time="10:00">10:00 AM</button>
+                        <button class="time-slot bg-white bg-opacity-10 hover:bg-blue-500 hover:bg-opacity-30 text-white py-2 px-4 rounded-lg transition-all" data-time="11:00">11:00 AM</button>
+                        <button class="time-slot bg-white bg-opacity-10 hover:bg-blue-500 hover:bg-opacity-30 text-white py-2 px-4 rounded-lg transition-all" data-time="14:00">2:00 PM</button>
+                        <button class="time-slot bg-white bg-opacity-10 hover:bg-blue-500 hover:bg-opacity-30 text-white py-2 px-4 rounded-lg transition-all" data-time="15:00">3:00 PM</button>
+                        <button class="time-slot bg-white bg-opacity-10 hover:bg-blue-500 hover:bg-opacity-30 text-white py-2 px-4 rounded-lg transition-all" data-time="16:00">4:00 PM</button>
+                        <button class="time-slot bg-white bg-opacity-10 hover:bg-blue-500 hover:bg-opacity-30 text-white py-2 px-4 rounded-lg transition-all" data-time="17:00">5:00 PM</button>
+                        <button class="time-slot bg-white bg-opacity-10 hover:bg-blue-500 hover:bg-opacity-30 text-white py-2 px-4 rounded-lg transition-all" data-time="18:00">6:00 PM</button>
+                    </div>
+                </div>
+
+                <!-- Payment Section -->
+                <div id="payment-section" class="hidden">
+                    <h3 class="text-xl font-bold text-white mb-4">💳 Payment Information</h3>
+                    <div class="bg-black bg-opacity-20 rounded-xl p-6 border border-white/10 mb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Session Summary -->
+                            <div>
+                                <h4 class="text-white font-semibold mb-3">Session Summary</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-300">Doctor:</span>
+                                        <span class="text-white" id="payment-doctor">Dr. Smith</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-300">Time:</span>
+                                        <span class="text-white" id="payment-time">9:00 AM</span>
+                                    </div>
+                                    <div class="flex justify-between">
+                                        <span class="text-gray-300">Duration:</span>
+                                        <span class="text-white">50 minutes</span>
+                                    </div>
+                                    <div class="flex justify-between border-t border-white/10 pt-2 mt-2">
+                                        <span class="text-gray-300 font-semibold">Total:</span>
+                                        <span class="text-green-400 font-bold text-lg" id="payment-amount">$80</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Form -->
+                            <div>
+                                <h4 class="text-white font-semibold mb-3">Payment Method</h4>
+                                
+                                <!-- Payment Method Selection -->
+                                <div class="mb-4">
+                                    <div class="flex space-x-3">
+                                        <button type="button" id="card-payment-btn" class="payment-method-btn active flex-1 py-2 px-4 rounded-lg border border-white/20 text-white text-sm transition-all">
+                                            💳 Card Payment
+                                        </button>
+                                        <button type="button" id="esewa-payment-btn" class="payment-method-btn flex-1 py-2 px-4 rounded-lg border border-white/20 text-white text-sm transition-all">
+                                            📱 eSewa
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Card Payment Form -->
+                                <div id="card-payment-form" class="space-y-4">
+                                    <div>
+                                        <label class="block text-gray-300 text-sm mb-1">Card Number</label>
+                                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" class="form-input w-full py-2 px-3" maxlength="19">
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="block text-gray-300 text-sm mb-1">Expiry</label>
+                                            <input type="text" id="card-expiry" placeholder="MM/YY" class="form-input w-full py-2 px-3" maxlength="5">
+                                        </div>
+                                        <div>
+                                            <label class="block text-gray-300 text-sm mb-1">CVV</label>
+                                            <input type="text" id="card-cvv" placeholder="123" class="form-input w-full py-2 px-3" maxlength="3">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-300 text-sm mb-1">Cardholder Name</label>
+                                        <input type="text" id="card-name" placeholder="John Doe" class="form-input w-full py-2 px-3">
+                                    </div>
+                                </div>
+
+                                <!-- eSewa Payment Form -->
+                                <div id="esewa-payment-form" class="space-y-4 hidden">
+                                    <div class="text-center py-6">
+                                        <div class="w-24 h-24 bg-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                            <span class="text-white text-2xl font-bold">eSewa</span>
+                                        </div>
+                                        <h5 class="text-white font-semibold mb-2">Pay with eSewa</h5>
+                                        <p class="text-gray-300 text-sm mb-4">You will be redirected to eSewa to complete your payment</p>
+                                        
+                                        <div class="bg-black bg-opacity-20 rounded-lg p-4 mb-4">
+                                            <div class="text-left space-y-2 text-sm">
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-300">eSewa ID:</span>
+                                                    <span class="text-white">9800000001</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-300">Merchant:</span>
+                                                    <span class="text-white">AURA Mental Health</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-300">Service:</span>
+                                                    <span class="text-white">Video Consultation</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-xs text-gray-400">
+                                            <p>✓ Secure payment through eSewa</p>
+                                            <p>✓ Instant payment confirmation</p>
+                                            <p>✓ No additional charges</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Methods -->
+                        <div class="mt-6 pt-4 border-t border-white/10">
+                            <p class="text-gray-300 text-sm mb-3">We accept:</p>
+                            <div class="flex flex-wrap gap-3">
+                                <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">💳 Visa</div>
+                                <div class="bg-red-600 text-white px-3 py-1 rounded text-sm">💳 Mastercard</div>
+                                <div class="bg-green-600 text-white px-3 py-1 rounded text-sm font-bold">📱 eSewa</div>
+                                <div class="bg-blue-500 text-white px-3 py-1 rounded text-sm">💳 PayPal</div>
+                                <div class="bg-purple-600 text-white px-3 py-1 rounded text-sm">💳 Stripe</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button id="process-payment" class="btn-primary py-3 px-8 text-lg">
+                            🔒 Process Payment & Start Session
+                        </button>
+                        <p class="text-gray-400 text-xs mt-2">Your payment information is secure and encrypted</p>
+                    </div>
+                </div>
+
+                <div id="booking-info" class="text-center text-gray-400">
+                    Select a doctor to see available time slots
                 </div>
             </div>
 
-            <div class="chat-sidebar">
-                <h2>Live Chat</h2>
-                <div id="chat-window" class="chat-window">
-                    <div class="chat-message-ai">Welcome! I am here to listen and support you.</div>
-                </div>
-                <div id="typing-indicator-container"></div>
-                <div class="chat-input-area">
-                    <input type="text" id="chat-input" class="chat-input" placeholder="Type your message...">
-                    <button id="send-button" class="btn-primary">Send</button>
+            <!-- Video Chat Section (Hidden initially) -->
+            <div id="video-chat-section" class="hidden">
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h2 class="text-2xl font-bold text-white">Video Consultation</h2>
+                            <div class="flex items-center space-x-4 mt-2">
+                                <div class="text-green-400 text-sm">
+                                    🟢 Session Active
+                                </div>
+                                <div class="text-blue-400 text-sm">
+                                    ⏱️ Time: <span id="session-timer">50:00</span>
+                                </div>
+                                <div class="text-yellow-400 text-sm">
+                                    💰 Paid: <span id="session-cost">$80</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="end-call" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg">End Call</button>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <!-- Video Area -->
+                        <div class="lg:col-span-2">
+                            <div class="relative bg-black rounded-lg overflow-hidden" style="height: 400px;">
+                                <!-- Doctor Video -->
+                                <div class="w-full h-full bg-gradient-to-br from-blue-900 to-purple-900 flex items-center justify-center">
+                                    <div class="text-center">
+                                        <div id="doctor-avatar" class="w-32 h-32 bg-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center text-6xl">👨‍⚕️</div>
+                                        <h3 id="doctor-name" class="text-white text-xl font-bold">Dr. Smith</h3>
+                                        <p class="text-gray-300">AI Therapist</p>
+                                        <div class="mt-4">
+                                            <span class="inline-block bg-green-500 bg-opacity-20 text-green-400 px-3 py-1 rounded-full text-sm">
+                                                🟢 Connected
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- User Video (Small overlay) -->
+                                <div class="absolute bottom-4 right-4 w-32 h-24 bg-gray-800 rounded-lg border-2 border-white overflow-hidden">
+                                    <video id="user-video" class="w-full h-full object-cover" autoplay muted playsinline></video>
+                                    <div class="absolute inset-0 flex items-center justify-center text-white text-xs bg-black bg-opacity-50">
+                                        You
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Controls -->
+                            <div class="flex justify-center space-x-4 mt-4">
+                                <button id="toggle-video" class="bg-gray-600 hover:bg-gray-700 text-white p-3 rounded-full">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                </button>
+                                <button id="toggle-audio" class="bg-gray-600 hover:bg-gray-700 text-white p-3 rounded-full">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Chat Sidebar -->
+                        <div class="bg-black bg-opacity-20 rounded-lg p-4">
+                            <h3 class="text-white font-bold mb-4">Live Chat</h3>
+                            <div id="chat-messages" class="h-64 overflow-y-auto mb-4 space-y-3">
+                                <div class="chat-message-ai">
+                                    <p class="text-sm">Hello! I'm here to listen and support you. How are you feeling today?</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <input type="text" id="chat-input" placeholder="Type your message..." class="form-input flex-1 py-2 px-3 text-sm">
+                                <button id="send-message" class="btn-primary py-2 px-4 text-sm">Send</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 
+    <script src="app.js"></script>
     <script src="video-chat.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@ AURA is a web-based AI-powered application designed to provide mental health sup
 
 ---
 
-## 🚀 Quick Setup & Installation
+## Quick Setup & Installation
 
 ### Prerequisites
 - Python 3.8+
@@ -79,23 +79,23 @@ pandas
 
 ## 🎯 Features
 
--   **🤖 AI Therapist Chat**: ML-powered chatbot with **92.5% accuracy** in intent recognition
--   **📊 Sentiment Analysis**: Real-time analysis of chat messages to detect user sentiment
--   **😊 Emotion Detection**: Live facial emotion recognition using computer vision
--   **📈 Mood Tracker**: Tool for logging and monitoring daily mood patterns
--   **🧠 Emotional Intelligence Score**: Calculated score based on chat interactions
--   **🎯 Goal Setting**: Feature to help users set and track wellness goals
--   **🎮 Relaxation & Gaming Zone**: Collection of therapeutic games and exercises
--   **💬 Video Chat**: AI Doctor consultation with real-time emotion detection
--   **🔐 Secure Authentication**: User sign-up and sign-in system
--   **👨‍💼 Admin Panel**: Dashboard for application management
--   **📱 Responsive Design**: Works on desktop, tablet, and mobile devices
+-   ** AI Therapist Chat**: ML-powered chatbot with **92.5% accuracy** in intent recognition
+-   ** Sentiment Analysis**: Real-time analysis of chat messages to detect user sentiment
+-   ** Emotion Detection**: Live facial emotion recognition using computer vision
+-   ** Mood Tracker**: Tool for logging and monitoring daily mood patterns
+-   ** Emotional Intelligence Score**: Calculated score based on chat interactions
+-   **Goal Setting**: Feature to help users set and track wellness goals
+-   ** Relaxation & Gaming Zone**: Collection of therapeutic games and exercises
+-   ** Video Chat**: AI Doctor consultation with real-time emotion detection
+-   ** Secure Authentication**: User sign-up and sign-in system
+-   ** Admin Panel**: Dashboard for application management
+-   ** Responsive Design**: Works on desktop, tablet, and mobile devices
 
-## 🧠 Machine Learning Architecture
+##  Machine Learning Architecture
 
-### Intent Classification Model ✅ **92.5% Accuracy Achieved!**
+### Intent Classification Model  **92.5% Accuracy Achieved!**
 - **Algorithm**: Multinomial Naive Bayes with TF-IDF
-- **Accuracy**: **92.5%** (Target: 90%+) 🎯
+- **Accuracy**: **92.5%** (Target: 90%+) 
 - **Precision**: 0.91
 - **Recall**: 0.90  
 - **F1-Score**: 0.90
@@ -111,10 +111,10 @@ pandas
 - **High-Quality Responses**: Contextually appropriate therapeutic responses
 
 ### Training & Analysis
-- **📊 Jupyter Notebook**: Complete ML analysis in `AURA_ML_Model_Training.ipynb`
-- **🔄 Cross-Validation**: 5-fold validation for robust performance
-- **📈 Performance Visualization**: Comprehensive charts and metrics
-- **🧪 Testing Suite**: Extensive conversation testing scenarios
+- ** Jupyter Notebook**: Complete ML analysis in `AURA_ML_Model_Training.ipynb`
+- ** Cross-Validation**: 5-fold validation for robust performance
+- ** Performance Visualization**: Comprehensive charts and metrics
+- ** Testing Suite**: Extensive conversation testing scenarios
 
 ## 🔧 Core Technologies
 

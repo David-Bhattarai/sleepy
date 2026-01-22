@@ -1,7 +1,7 @@
-🚀 AURA ML Mental Health Chatbot - Complete Setup & Run Guide
+AURA ML Mental Health Chatbot - Complete Setup & Run Guide
 ================================================================
 
-📋 PROJECT OVERVIEW:
+ PROJECT OVERVIEW:
 - Mental health chatbot with 80%+ ML accuracy
 - Flask backend with realistic ML model
 - HTML/CSS/JS frontend
@@ -9,14 +9,14 @@
 - Emotion detection via DeepFace
 - Sentiment analysis with VADER
 
-🎯 ML MODEL PERFORMANCE:
+ ML MODEL PERFORMANCE:
 - Test Accuracy: 82.3%
 - Practical Accuracy: 90.0%
 - Training Samples: 786 (with augmentation)
 - Intent Categories: 59
 - Model Type: Naive Bayes with TF-IDF
 
-📁 PROJECT STRUCTURE:
+ PROJECT STRUCTURE:
 sleepy/
 ├── client/           # Frontend files (HTML/CSS/JS)
 ├── server/           # Backend Flask application
