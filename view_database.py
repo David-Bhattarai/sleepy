@@ -10,7 +10,7 @@ from datetime import datetime
 
 def view_database():
     """View all database data in formatted way"""
-    print("🔍 AURA Database Viewer")
+    print(" AURA Database Viewer")
     print("=" * 50)
     
     # Change to server directory
@@ -18,7 +18,7 @@ def view_database():
     db_file = os.path.join(server_dir, 'database.db')
     
     if not os.path.exists(db_file):
-        print("❌ Database file not found!")
+        print(" Database file not found!")
         return
     
     with sqlite3.connect(db_file) as conn:

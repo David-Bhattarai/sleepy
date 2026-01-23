@@ -10,7 +10,7 @@ import os
 
 def test_50mb_dataset():
     """Test the 50MB dataset"""
-    print("🧪 Testing 50MB Dataset Integration")
+    print(" Testing 50MB Dataset Integration")
     print("=" * 50)
     
     # Check if 50MB dataset exists

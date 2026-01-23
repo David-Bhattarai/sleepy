@@ -28,6 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardCvv = document.getElementById('card-cvv');
     const cardName = document.getElementById('card-name');
     
+    // Video chat elements
+    const doctorAvatar = document.getElementById('doctor-avatar');
+    const doctorName = document.getElementById('doctor-name');
+    const sessionTimer = document.getElementById('session-timer');
+    const sessionCost = document.getElementById('session-cost');
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendMessageBtn = document.getElementById('send-message');
+    const userVideo = document.getElementById('user-video');
+    const toggleVideoBtn = document.getElementById('toggle-video');
+    const toggleAudioBtn = document.getElementById('toggle-audio');
+    
     // State variables
     let selectedDoctor = null;
     let selectedTime = null;
@@ -174,6 +186,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+        
+        // Set up quick response buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('quick-response')) {
+                const message = e.target.dataset.message;
+                if (message && selectedDoctor) {
+                    // Add user message
+                    addChatMessage('user', message);
+                    
+                    // Show typing indicator and send to Gemini AI
+                    addTypingIndicator();
+                    sendToGeminiAI(message);
+                }
+            }
+        });
         
         // Set up video controls
         if (toggleVideoBtn) {
@@ -445,8 +472,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Start session timer
             startSessionTimer();
             
-            // Add doctor's greeting message
-            addChatMessage('ai', doctor.greeting);
+            // Add doctor's greeting message using Gemini AI
+            const doctor = doctors[selectedDoctor];
+            addTypingIndicator();
+            
+            // Send greeting through Gemini AI for more personalized welcome
+            setTimeout(() => {
+                sendToGeminiAI(`Hello, I'm starting my session with ${doctor.name}. Please introduce yourself and let me know how you can help me today.`);
+            }, 1000);
             
             console.log(`Started consultation with ${doctor.name} at ${selectedTime}`);
             
@@ -563,26 +596,135 @@ document.addEventListener('DOMContentLoaded', () => {
         addChatMessage('user', message);
         chatInput.value = '';
         
-        // Simulate doctor response
-        setTimeout(() => {
-            const doctor = doctors[selectedDoctor];
-            const responses = doctor.responses;
-            const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-            addChatMessage('ai', randomResponse);
-        }, 1000 + Math.random() * 2000); // Random delay 1-3 seconds
+        // Show typing indicator
+        addTypingIndicator();
+        
+        // Send to Gemini AI endpoint
+        sendToGeminiAI(message);
     }
     
-    function addChatMessage(sender, message) {
+    async function sendToGeminiAI(message) {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('No authentication token found');
+                removeTypingIndicator();
+                addChatMessage('ai', 'Authentication error. Please sign in again.');
+                return;
+            }
+            
+            const doctor = doctors[selectedDoctor];
+            const doctorContext = {
+                name: doctor.name,
+                specialty: doctor.specialty,
+                avatar: doctor.avatar
+            };
+            
+            const response = await fetch('/api/video_chat/gemini', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                    message: message,
+                    doctor_context: doctorContext
+                })
+            });
+            
+            const data = await response.json();
+            
+            // Remove typing indicator
+            removeTypingIndicator();
+            
+            if (data.success) {
+                // Add AI response with method indicator
+                const methodIndicator = data.method === 'gemini_ai' ? 'Powered by Gemini AI' : 
+                                      data.method === 'enhanced_fallback' ? 'Enhanced AI Response' : 
+                                      'AI Response';
+                
+                addChatMessage('ai', data.response, methodIndicator);
+                
+                // Log successful interaction
+                console.log(`✅ Video chat response via ${data.method}:`, data.response.substring(0, 50) + '...');
+                
+            } else {
+                // Fallback response
+                addChatMessage('ai', data.response || 'I apologize, but I\'m having trouble responding right now. Please try again.', 'Fallback Response');
+                console.error('Gemini AI error:', data.error);
+            }
+            
+        } catch (error) {
+            console.error('Error sending message to Gemini AI:', error);
+            removeTypingIndicator();
+            
+            // Ultimate fallback
+            const doctor = doctors[selectedDoctor];
+            const fallbackResponses = doctor.responses;
+            const randomResponse = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+            addChatMessage('ai', randomResponse, 'Offline Response');
+        }
+    }
+    
+    function addTypingIndicator() {
+        if (!chatMessages) return;
+        
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'chat-message-ai typing-indicator';
+        typingDiv.id = 'typing-indicator';
+        
+        typingDiv.innerHTML = `
+            <div class="flex items-start space-x-2">
+                <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs">🤖</div>
+                <div class="bg-blue-600 bg-opacity-30 rounded-lg p-2 max-w-xs">
+                    <div class="flex space-x-1">
+                        <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce"></div>
+                        <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                        <div class="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                    </div>
+                    <span class="text-xs text-gray-400 mt-1 block">AI is thinking...</span>
+                </div>
+            </div>
+        `;
+        
+        chatMessages.appendChild(typingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    function removeTypingIndicator() {
+        const typingIndicator = document.getElementById('typing-indicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+    
+    function addChatMessage(sender, message, methodIndicator = null) {
         if (!chatMessages) return;
         
         const messageDiv = document.createElement('div');
         messageDiv.className = `chat-message-${sender}`;
         
-        const messageContent = document.createElement('p');
-        messageContent.className = 'text-sm';
-        messageContent.textContent = message;
+        if (sender === 'user') {
+            messageDiv.innerHTML = `
+                <div class="flex items-start space-x-2 justify-end">
+                    <div class="bg-gray-700 bg-opacity-50 rounded-lg p-2 max-w-xs">
+                        <p class="text-white text-sm">${message}</p>
+                    </div>
+                    <div class="w-6 h-6 bg-gray-600 rounded-full flex items-center justify-center text-xs">👤</div>
+                </div>
+            `;
+        } else {
+            messageDiv.innerHTML = `
+                <div class="flex items-start space-x-2">
+                    <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs">🤖</div>
+                    <div class="bg-blue-600 bg-opacity-30 rounded-lg p-2 max-w-xs">
+                        <p class="text-white text-sm">${message}</p>
+                        ${methodIndicator ? `<span class="text-xs text-gray-400 mt-1 block">${methodIndicator}</span>` : ''}
+                    </div>
+                </div>
+            `;
+        }
         
-        messageDiv.appendChild(messageContent);
         chatMessages.appendChild(messageDiv);
         
         // Scroll to bottom

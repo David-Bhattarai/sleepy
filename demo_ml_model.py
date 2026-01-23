@@ -125,7 +125,7 @@ def main():
             print(f" AURA: {result['response']}")
             
         except KeyboardInterrupt:
-            print("\n\n AURA: Goodbye! Take care! 👋")
+            print("\n\n AURA: Goodbye! Take care! ")
             break
         except Exception as e:
             print(f" Error: {e}")

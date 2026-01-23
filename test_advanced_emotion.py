@@ -37,16 +37,16 @@ def test_advanced_emotion_detection():
         detector = get_emotion_detector()
         
         if detector.model is not None:
-            print("✅ ML model loaded successfully")
+            print(" ML model loaded successfully")
         else:
-            print("❌ ML model failed to load")
+            print(" ML model failed to load")
         
         if detector.face_cascade is not None:
-            print("✅ Face detection initialized successfully")
+            print(" Face detection initialized successfully")
         else:
-            print("⚠️  Face detection using fallback method")
+            print(" Face detection using fallback method")
         
-        print(f"✅ Supported emotions: {len(detector.emotions)} emotions")
+        print(f" Supported emotions: {len(detector.emotions)} emotions")
         print(f"   Emotions: {', '.join(detector.emotions)}")
         
         # Test with synthetic image
@@ -54,13 +54,13 @@ def test_advanced_emotion_detection():
         test_image = create_test_image()
         
         if test_image:
-            print("✅ Test image created successfully")
+            print(" Test image created successfully")
             
             # Test emotion detection
             result = detector.detect_emotion_from_image(test_image)
             
             if result['success']:
-                print("✅ Emotion detection successful")
+                print("Emotion detection successful")
                 print(f"   Dominant emotion: {result['dominant_emotion']}")
                 print(f"   Confidence: {result['confidence']:.1f}%")
                 print(f"   Face detected: {result.get('face_detected', False)}")
@@ -70,12 +70,12 @@ def test_advanced_emotion_detection():
                 for emotion, score in result['emotions'].items():
                     print(f"     {emotion}: {score:.1f}%")
             else:
-                print(f"❌ Emotion detection failed: {result.get('error', 'Unknown error')}")
+                print(f" Emotion detection failed: {result.get('error', 'Unknown error')}")
         else:
-            print("❌ Failed to create test image")
+            print(" Failed to create test image")
         
         # Test recommendation engine
-        print("\n🔄 Testing Recommendation Engine...")
+        print("\n Testing Recommendation Engine...")
         rec_engine = get_recommendation_engine()
         
         test_emotions = ['happy', 'sad', 'angry', 'neutral']
@@ -94,14 +94,14 @@ def test_advanced_emotion_detection():
         test_user_id = "test_user_analytics"
         user_analytics = analytics.get_user_analytics(test_user_id)
         
-        print("✅ Analytics generated successfully")
+        print(" Analytics generated successfully")
         print(f"   Dominant emotion: {user_analytics['dominant_emotion']}")
         print(f"   Stability score: {user_analytics['stability_score']}")
         print(f"   Total sessions: {user_analytics['total_sessions']}")
         print(f"   Sessions this week: {user_analytics['sessions_this_week']}")
         
         # Test database integration
-        print("\n🔄 Testing Database Integration...")
+        print("\n Testing Database Integration...")
         try:
             from db_helper import create_face_emotion_record, get_face_emotion_history
             
@@ -113,19 +113,19 @@ def test_advanced_emotion_detection():
             )
             
             if emotion_id:
-                print("✅ Emotion record saved to database")
+                print(" Emotion record saved to database")
                 
                 # Retrieve emotion history
                 history = get_face_emotion_history(test_user_id, 5)
-                print(f"✅ Retrieved {len(history)} emotion records from database")
+                print(f" Retrieved {len(history)} emotion records from database")
             else:
-                print("❌ Failed to save emotion record to database")
+                print(" Failed to save emotion record to database")
                 
         except Exception as e:
-            print(f"❌ Database integration test failed: {e}")
+            print(f" Database integration test failed: {e}")
         
         # Performance test
-        print("\n🔄 Testing Performance...")
+        print("\n Testing Performance...")
         start_time = time.time()
         
         for i in range(3):
@@ -135,29 +135,29 @@ def test_advanced_emotion_detection():
         end_time = time.time()
         avg_time = (end_time - start_time) / 3
         
-        print(f"✅ Average detection time: {avg_time:.2f} seconds")
+        print(f" Average detection time: {avg_time:.2f} seconds")
         
         if avg_time < 5.0:
-            print("✅ Performance: Excellent (< 5s)")
+            print(" Performance: Excellent (< 5s)")
         elif avg_time < 10.0:
-            print("⚠️  Performance: Good (< 10s)")
+            print("  Performance: Good (< 10s)")
         else:
             print("❌ Performance: Needs improvement (> 10s)")
         
-        print("\n🎉 Advanced Emotion Detection System Test Complete!")
-        print("\n📊 Test Summary:")
-        print("✅ ML Model: Working")
-        print("✅ Face Detection: Working")
-        print("✅ Emotion Recognition: Working")
-        print("✅ Recommendation Engine: Working")
-        print("✅ Analytics Engine: Working")
-        print("✅ Database Integration: Working")
-        print(f"✅ Performance: {avg_time:.2f}s average")
+        print("\n Advanced Emotion Detection System Test Complete!")
+        print("\n Test Summary:")
+        print("ML Model: Working")
+        print(" Face Detection: Working")
+        print(" Emotion Recognition: Working")
+        print(" Recommendation Engine: Working")
+        print(" Analytics Engine: Working")
+        print(" Database Integration: Working")
+        print(f" Performance: {avg_time:.2f}s average")
         
         return True
         
     except Exception as e:
-        print(f"❌ Test failed with error: {e}")
+        print(f" Test failed with error: {e}")
         import traceback
         traceback.print_exc()
         return False

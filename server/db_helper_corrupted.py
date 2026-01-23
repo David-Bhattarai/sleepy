@@ -288,7 +288,7 @@ def init_all_tables():
         ''')
         
         conn.commit()
-        print("✅ All database tables initialized successfully")
+        print(" All database tables initialized successfully")
 
 # ==================== USER FUNCTIONS ====================
                 amount REAL NOT NULL,
@@ -440,7 +440,7 @@ def init_default_doctors():
                     'qualification': 'MD, Addiction Medicine',
                     'experience_years': 16,
                     'price_per_session': 95.0,
-                    'avatar_emoji': '👩‍⚕️',
+                    'avatar_emoji': '',
                     'bio': 'Expert in substance abuse treatment and addiction recovery programs.'
                 }
             ]

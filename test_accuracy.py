@@ -27,7 +27,7 @@ def load_and_test_intents():
         data = json.load(f)
     
     intents = data['intents']
-    print(f"📊 Loaded {len(intents)} intents")
+    print(f" Loaded {len(intents)} intents")
     
     # Prepare data
     patterns = []
@@ -40,23 +40,23 @@ def load_and_test_intents():
                 patterns.append(preprocess_text(pattern))
                 tags.append(tag)
     
-    print(f"📈 Total patterns: {len(patterns)}")
-    print(f"📈 Unique intents: {len(set(tags))}")
+    print(f" Total patterns: {len(patterns)}")
+    print(f" Unique intents: {len(set(tags))}")
     
     # Check class distribution
     class_counts = Counter(tags)
-    print(f"\n📊 Class distribution:")
+    print(f"\n Class distribution:")
     print(f"  Classes with 1 sample: {sum(1 for count in class_counts.values() if count == 1)}")
     print(f"  Classes with 2+ samples: {sum(1 for count in class_counts.values() if count >= 2)}")
     print(f"  Average samples per class: {np.mean(list(class_counts.values())):.1f}")
     
     # Show some examples
-    print(f"\n🔍 Sample patterns:")
+    print(f"\n Sample patterns:")
     for i in range(min(5, len(patterns))):
         print(f"  '{patterns[i]}' -> {tags[i]}")
     
     if len(patterns) < 10:
-        print("❌ Dataset too small for meaningful ML training")
+        print(" Dataset too small for meaningful ML training")
         return
     
     # Create model
@@ -86,13 +86,13 @@ def load_and_test_intents():
         y_pred = model.predict(X_test)
         accuracy = accuracy_score(y_test, y_pred)
         
-        print(f"\n🎯 Train-Test Split Results:")
+        print(f"\n Train-Test Split Results:")
         print(f"  Training samples: {len(X_train)}")
         print(f"  Testing samples: {len(X_test)}")
         print(f"  Test Accuracy: {accuracy:.3f} ({accuracy*100:.1f}%)")
         
     else:
-        print(f"\n⚠️ Dataset too small for train-test split")
+        print(f"\n Dataset too small for train-test split")
         print(f"   Using full dataset training...")
         
         model.fit(X, y)
@@ -105,12 +105,12 @@ def load_and_test_intents():
     if len(set(y)) >= 3 and len(patterns) >= 15:
         try:
             cv_scores = cross_val_score(model, X, y, cv=min(3, len(patterns)//5), scoring='accuracy')
-            print(f"\n📈 Cross-Validation Results:")
+            print(f"\n Cross-Validation Results:")
             print(f"  CV Scores: {[f'{score:.3f}' for score in cv_scores]}")
             print(f"  Mean CV Accuracy: {cv_scores.mean():.3f} ± {cv_scores.std():.3f}")
             print(f"  CV Accuracy: {cv_scores.mean()*100:.1f}% ± {cv_scores.std()*100:.1f}%")
         except Exception as e:
-            print(f"  ❌ Cross-validation failed: {e}")
+            print(f"   Cross-validation failed: {e}")
     
     # Test with sample inputs
     print(f"\n🧪 Testing with sample inputs:")
@@ -135,26 +135,26 @@ def load_and_test_intents():
     return accuracy if 'accuracy' in locals() else 0.0
 
 if __name__ == "__main__":
-    print("🤖 AURA Intents.json Dataset Accuracy Test")
+    print(" AURA Intents.json Dataset Accuracy Test")
     print("=" * 50)
     
     try:
         final_accuracy = load_and_test_intents()
         
         print(f"\n" + "=" * 50)
-        print(f"🏆 FINAL RESULTS:")
+        print(f" FINAL RESULTS:")
         if final_accuracy >= 0.90:
-            print(f"✅ Accuracy: {final_accuracy*100:.1f}% - EXCELLENT!")
+            print(f" Accuracy: {final_accuracy*100:.1f}% - EXCELLENT!")
         elif final_accuracy >= 0.80:
-            print(f"✅ Accuracy: {final_accuracy*100:.1f}% - GOOD!")
+            print(f" Accuracy: {final_accuracy*100:.1f}% - GOOD!")
         elif final_accuracy >= 0.70:
-            print(f"⚠️ Accuracy: {final_accuracy*100:.1f}% - ACCEPTABLE")
+            print(f" Accuracy: {final_accuracy*100:.1f}% - ACCEPTABLE")
         else:
-            print(f"❌ Accuracy: {final_accuracy*100:.1f}% - NEEDS IMPROVEMENT")
+            print(f" Accuracy: {final_accuracy*100:.1f}% - NEEDS IMPROVEMENT")
         
         print("=" * 50)
         
     except Exception as e:
-        print(f"❌ Error: {e}")
+        print(f" Error: {e}")
         import traceback
         traceback.print_exc()

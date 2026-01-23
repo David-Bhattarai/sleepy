@@ -1,0 +1,21 @@
+{
+  "model_name": "FER2013 Enhanced Emotion Detector",
+  "model_file": "fer2013_emotion_model.h5",
+  "emotions": [
+    "angry",
+    "disgust",
+    "fear",
+    "happy",
+    "neutral",
+    "sad",
+    "surprise"
+  ],
+  "input_size": [
+    48,
+    48,
+    1
+  ],
+  "accuracy": 98.57,
+  "dataset": "FER2013-Enhanced",
+  "updated": "2026-01-23T21:33:29.380571"
+}

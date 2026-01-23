@@ -18,6 +18,28 @@
         .payment-method-btn:hover {
             background-color: rgba(255, 255, 255, 0.1);
         }
+        
+        /* Typing indicator animation */
+        .typing-indicator .animate-bounce {
+            animation: bounce 1.4s infinite;
+        }
+        
+        .typing-indicator .animate-bounce:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator .animate-bounce:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes bounce {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -361,17 +383,49 @@
                             </div>
                         </div>
 
-                        <!-- Chat Sidebar -->
+                        <!-- Chat with Doctor Sidebar -->
                         <div class="bg-black bg-opacity-20 rounded-lg p-4">
-                            <h3 class="text-white font-bold mb-4">Live Chat</h3>
-                            <div id="chat-messages" class="h-64 overflow-y-auto mb-4 space-y-3">
-                                <div class="chat-message-ai">
-                                    <p class="text-sm">Hello! I'm here to listen and support you. How are you feeling today?</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-white font-bold">💬 Chat with Doctor</h3>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                    <span class="text-green-400 text-xs">AI Powered</span>
                                 </div>
                             </div>
-                            <div class="flex space-x-2">
-                                <input type="text" id="chat-input" placeholder="Type your message..." class="form-input flex-1 py-2 px-3 text-sm">
-                                <button id="send-message" class="btn-primary py-2 px-4 text-sm">Send</button>
+                            
+                            <div id="chat-messages" class="h-64 overflow-y-auto mb-4 space-y-3 bg-gray-900 bg-opacity-50 rounded-lg p-3">
+                                <div class="chat-message-ai">
+                                    <div class="flex items-start space-x-2">
+                                        <div class="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs">🤖</div>
+                                        <div class="bg-blue-600 bg-opacity-30 rounded-lg p-2 max-w-xs">
+                                            <p class="text-white text-sm">Hello! I'm your AI therapy assistant powered by advanced AI technology. I'm here to listen and provide support during your video consultation. How are you feeling today?</p>
+                                            <span class="text-xs text-gray-400 mt-1 block">Powered by Gemini AI</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="space-y-2">
+                                <div class="flex space-x-2">
+                                    <input type="text" id="chat-input" placeholder="Share your thoughts..." class="form-input flex-1 py-2 px-3 text-sm bg-gray-800 border-gray-600 text-white placeholder-gray-400">
+                                    <button id="send-message" class="btn-primary py-2 px-4 text-sm bg-blue-600 hover:bg-blue-700">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                
+                                <!-- Quick Response Buttons -->
+                                <div class="flex flex-wrap gap-1">
+                                    <button class="quick-response bg-gray-700 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded" data-message="I'm feeling anxious">😰 Anxious</button>
+                                    <button class="quick-response bg-gray-700 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded" data-message="I'm feeling sad">😢 Sad</button>
+                                    <button class="quick-response bg-gray-700 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded" data-message="I need help">🆘 Need Help</button>
+                                    <button class="quick-response bg-gray-700 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded" data-message="Tell me more">💭 Tell More</button>
+                                </div>
+                                
+                                <div class="text-xs text-gray-400 text-center">
+                                    🔒 Your conversation is private and secure
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -29,14 +29,14 @@ def test_database_integration():
             create_face_emotion_record, get_face_emotion_history, save_ei_scores, get_ei_history,
             get_platform_analytics
         )
-        print("✅ Database helper imported successfully")
+        print("Database helper imported successfully")
         
         # Test database initialization
         initialize_database()
-        print("✅ Database initialized successfully")
+        print(" Database initialized successfully")
         
         # Test user functions
-        print("\n🔄 Testing user functions...")
+        print("\n Testing user functions...")
         test_user_id = f"test_user_db_{int(time.time())}"  # Unique ID with timestamp
         user_created = create_user(
             user_id=test_user_id,
@@ -176,11 +176,11 @@ def test_database_integration():
         print(f"   Revenue: ${analytics['revenue']['total']} {analytics['revenue']['currency']}")
         print(f"   Mood entries: {analytics['mood_tracking']['total_entries']}")
         
-        print("\n🎉 Comprehensive Database Integration Test Complete!")
+        print("\n Comprehensive Database Integration Test Complete!")
         return True
         
     except Exception as e:
-        print(f"❌ Test failed with error: {e}")
+        print(f" Test failed with error: {e}")
         import traceback
         traceback.print_exc()
         return False

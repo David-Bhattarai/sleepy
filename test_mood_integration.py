@@ -10,7 +10,7 @@ import json
 
 def test_mood_intelligence():
     """Test mood intelligence system functionality"""
-    print("🧪 Testing Mood Intelligence System Integration...")
+    print(" Testing Mood Intelligence System Integration...")
     
     # Change to server directory and add to path
     original_dir = os.getcwd()
@@ -23,12 +23,12 @@ def test_mood_intelligence():
         # Test mood intelligence import
         import mood_intelligence
         mood_intel = mood_intelligence.get_mood_intelligence()
-        print("✅ Mood intelligence system loaded successfully")
+        print(" Mood intelligence system loaded successfully")
         
         # Test database initialization
-        print(f"📊 Database path: {mood_intel.db_path}")
-        print(f"📊 Mood categories: {len(mood_intel.mood_categories)}")
-        print(f"📊 Mood patterns: {len(mood_intel.mood_patterns)}")
+        print(f" Database path: {mood_intel.db_path}")
+        print(f" Mood categories: {len(mood_intel.mood_categories)}")
+        print(f" Mood patterns: {len(mood_intel.mood_patterns)}")
         
         # Test mood logging functionality
         test_user_id = "test_user_123"
@@ -46,7 +46,7 @@ def test_mood_intelligence():
         result = mood_intel.log_advanced_mood(test_user_id, test_mood_data)
         
         if result['success']:
-            print("✅ Mood logging successful!")
+            print(" Mood logging successful!")
             print(f"   Entry ID: {result['entry_id']}")
             print(f"   Mood Category: {result['mood_category']['label']} {result['mood_category']['emoji']}")
             
@@ -57,31 +57,31 @@ def test_mood_intelligence():
             print(f"   Recommendations: {len(insights['recommendations'])}")
             
         else:
-            print(f"❌ Mood logging failed: {result.get('error', 'Unknown error')}")
+            print(f" Mood logging failed: {result.get('error', 'Unknown error')}")
             return False
         
         # Test analytics generation
-        print("\n🔄 Testing analytics generation...")
+        print("\n Testing analytics generation...")
         analytics = mood_intel.get_comprehensive_analytics(test_user_id, days=30)
         
         if 'error' not in analytics:
-            print("✅ Analytics generation successful!")
+            print(" Analytics generation successful!")
             if 'summary' in analytics:
                 summary = analytics['summary']
                 print(f"   Total entries: {summary['total_entries']}")
                 print(f"   Average mood: {summary['average_mood']}")
                 print(f"   Mood trend: {summary['mood_trend']}")
         else:
-            print(f"❌ Analytics generation failed: {analytics.get('error', 'Unknown error')}")
+            print(f" Analytics generation failed: {analytics.get('error', 'Unknown error')}")
         
         # Test ML model integration
-        print("\n🔄 Testing ML model integration...")
+        print("\n Testing ML model integration...")
         try:
             import ml_model_realistic
             ml_model = ml_model_realistic.get_realistic_ml_model()
             
             if ml_model and hasattr(ml_model, 'model') and ml_model.model:
-                print("✅ ML model loaded and trained successfully")
+                print("ML model loaded and trained successfully")
                 
                 # Test ML response generation
                 test_message = "I'm feeling anxious about work today"
@@ -91,16 +91,16 @@ def test_mood_intelligence():
                 print(f"   Confidence: {confidence:.3f}")
                 print(f"   Predicted tag: {tag}")
             else:
-                print("⚠️  ML model not properly trained")
+                print("  ML model not properly trained")
                 
         except Exception as e:
-            print(f"❌ ML model test failed: {e}")
+            print(f" ML model test failed: {e}")
         
-        print("\n🎉 Mood Intelligence System Integration Test Complete!")
+        print("\n Mood Intelligence System Integration Test Complete!")
         return True
         
     except Exception as e:
-        print(f"❌ Test failed with error: {e}")
+        print(f" Test failed with error: {e}")
         import traceback
         traceback.print_exc()
         return False

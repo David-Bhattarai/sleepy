@@ -172,7 +172,7 @@ class FER2013ModelTrainer:
         print(" Evaluating on test set...")
         test_loss, test_accuracy = self.model.evaluate(X_test, y_test, verbose=0)
         
-        print(f"\n🎯 Training Results:")
+        print(f"\n Training Results:")
         print(f"   Test Accuracy: {test_accuracy:.4f} ({test_accuracy*100:.2f}%)")
         print(f"   Test Loss: {test_loss:.4f}")
         
