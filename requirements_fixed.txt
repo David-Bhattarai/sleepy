@@ -1,0 +1,39 @@
+# AURA Mental Health AI System - Compatible Dependencies
+
+# Core Web Framework
+flask==3.0.0
+flask-cors==4.0.0
+flask-bcrypt==1.0.1
+
+# AI and Machine Learning (Compatible Versions)
+tensorflow==2.20.0
+keras==3.13.1
+tf-keras==2.15.0
+google-generativeai==0.8.5
+
+# Image Processing
+pillow==10.1.0
+opencv-python==4.8.1.78
+
+# Data Processing
+numpy==1.24.3
+pandas==2.1.4
+
+# Emotion Detection (Compatible Versions)
+deepface==0.0.79
+
+# Text Processing and Sentiment Analysis
+vadersentiment==3.3.2
+
+# HTTP Requests
+requests==2.31.0
+
+# Environment Management
+python-dotenv==1.0.0
+
+# Additional ML Libraries
+scikit-learn==1.3.2
+matplotlib==3.8.2
+
+# Security
+cryptography==41.0.8
