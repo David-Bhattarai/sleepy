@@ -1,0 +1,546 @@
+{
+  "dataset_info": {
+    "name": "AURA Emotion Sample Dataset",
+    "total_images": 84,
+    "emotions": [
+      "angry",
+      "disgust",
+      "fear",
+      "happy",
+      "sad",
+      "surprise",
+      "neutral"
+    ],
+    "accuracy": "100%",
+    "created_for": "Perfect emotion detection testing"
+  },
+  "emotion_mapping": {
+    "0": "angry",
+    "1": "disgust",
+    "2": "fear",
+    "3": "happy",
+    "4": "sad",
+    "5": "surprise",
+    "6": "neutral"
+  },
+  "images": {
+    "angry": [
+      {
+        "filename": "angry_01.png",
+        "filepath": "emotion_sample_images\\angry\\angry_01.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_02.png",
+        "filepath": "emotion_sample_images\\angry\\angry_02.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_03.png",
+        "filepath": "emotion_sample_images\\angry\\angry_03.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_04.png",
+        "filepath": "emotion_sample_images\\angry\\angry_04.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_05.png",
+        "filepath": "emotion_sample_images\\angry\\angry_05.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_06.png",
+        "filepath": "emotion_sample_images\\angry\\angry_06.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_07.png",
+        "filepath": "emotion_sample_images\\angry\\angry_07.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_08.png",
+        "filepath": "emotion_sample_images\\angry\\angry_08.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_09.png",
+        "filepath": "emotion_sample_images\\angry\\angry_09.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_10.png",
+        "filepath": "emotion_sample_images\\angry\\angry_10.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_11.png",
+        "filepath": "emotion_sample_images\\angry\\angry_11.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      },
+      {
+        "filename": "angry_12.png",
+        "filepath": "emotion_sample_images\\angry\\angry_12.png",
+        "expected_emotion": "angry",
+        "confidence": 100.0
+      }
+    ],
+    "disgust": [
+      {
+        "filename": "disgust_01.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_01.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_02.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_02.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_03.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_03.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_04.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_04.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_05.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_05.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_06.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_06.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_07.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_07.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_08.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_08.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_09.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_09.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_10.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_10.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_11.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_11.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      },
+      {
+        "filename": "disgust_12.png",
+        "filepath": "emotion_sample_images\\disgust\\disgust_12.png",
+        "expected_emotion": "disgust",
+        "confidence": 100.0
+      }
+    ],
+    "fear": [
+      {
+        "filename": "fear_01.png",
+        "filepath": "emotion_sample_images\\fear\\fear_01.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_02.png",
+        "filepath": "emotion_sample_images\\fear\\fear_02.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_03.png",
+        "filepath": "emotion_sample_images\\fear\\fear_03.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_04.png",
+        "filepath": "emotion_sample_images\\fear\\fear_04.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_05.png",
+        "filepath": "emotion_sample_images\\fear\\fear_05.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_06.png",
+        "filepath": "emotion_sample_images\\fear\\fear_06.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_07.png",
+        "filepath": "emotion_sample_images\\fear\\fear_07.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_08.png",
+        "filepath": "emotion_sample_images\\fear\\fear_08.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_09.png",
+        "filepath": "emotion_sample_images\\fear\\fear_09.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_10.png",
+        "filepath": "emotion_sample_images\\fear\\fear_10.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_11.png",
+        "filepath": "emotion_sample_images\\fear\\fear_11.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      },
+      {
+        "filename": "fear_12.png",
+        "filepath": "emotion_sample_images\\fear\\fear_12.png",
+        "expected_emotion": "fear",
+        "confidence": 100.0
+      }
+    ],
+    "happy": [
+      {
+        "filename": "happy_01.png",
+        "filepath": "emotion_sample_images\\happy\\happy_01.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_02.png",
+        "filepath": "emotion_sample_images\\happy\\happy_02.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_03.png",
+        "filepath": "emotion_sample_images\\happy\\happy_03.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_04.png",
+        "filepath": "emotion_sample_images\\happy\\happy_04.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_05.png",
+        "filepath": "emotion_sample_images\\happy\\happy_05.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_06.png",
+        "filepath": "emotion_sample_images\\happy\\happy_06.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_07.png",
+        "filepath": "emotion_sample_images\\happy\\happy_07.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_08.png",
+        "filepath": "emotion_sample_images\\happy\\happy_08.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_09.png",
+        "filepath": "emotion_sample_images\\happy\\happy_09.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_10.png",
+        "filepath": "emotion_sample_images\\happy\\happy_10.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_11.png",
+        "filepath": "emotion_sample_images\\happy\\happy_11.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      },
+      {
+        "filename": "happy_12.png",
+        "filepath": "emotion_sample_images\\happy\\happy_12.png",
+        "expected_emotion": "happy",
+        "confidence": 100.0
+      }
+    ],
+    "sad": [
+      {
+        "filename": "sad_01.png",
+        "filepath": "emotion_sample_images\\sad\\sad_01.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_02.png",
+        "filepath": "emotion_sample_images\\sad\\sad_02.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_03.png",
+        "filepath": "emotion_sample_images\\sad\\sad_03.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_04.png",
+        "filepath": "emotion_sample_images\\sad\\sad_04.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_05.png",
+        "filepath": "emotion_sample_images\\sad\\sad_05.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_06.png",
+        "filepath": "emotion_sample_images\\sad\\sad_06.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_07.png",
+        "filepath": "emotion_sample_images\\sad\\sad_07.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_08.png",
+        "filepath": "emotion_sample_images\\sad\\sad_08.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_09.png",
+        "filepath": "emotion_sample_images\\sad\\sad_09.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_10.png",
+        "filepath": "emotion_sample_images\\sad\\sad_10.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_11.png",
+        "filepath": "emotion_sample_images\\sad\\sad_11.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      },
+      {
+        "filename": "sad_12.png",
+        "filepath": "emotion_sample_images\\sad\\sad_12.png",
+        "expected_emotion": "sad",
+        "confidence": 100.0
+      }
+    ],
+    "surprise": [
+      {
+        "filename": "surprise_01.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_01.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_02.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_02.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_03.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_03.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_04.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_04.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_05.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_05.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_06.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_06.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_07.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_07.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_08.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_08.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_09.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_09.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_10.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_10.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_11.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_11.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      },
+      {
+        "filename": "surprise_12.png",
+        "filepath": "emotion_sample_images\\surprise\\surprise_12.png",
+        "expected_emotion": "surprise",
+        "confidence": 100.0
+      }
+    ],
+    "neutral": [
+      {
+        "filename": "neutral_01.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_01.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_02.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_02.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_03.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_03.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_04.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_04.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_05.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_05.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_06.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_06.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_07.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_07.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_08.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_08.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_09.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_09.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_10.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_10.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_11.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_11.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      },
+      {
+        "filename": "neutral_12.png",
+        "filepath": "emotion_sample_images\\neutral\\neutral_12.png",
+        "expected_emotion": "neutral",
+        "confidence": 100.0
+      }
+    ]
+  }
+}

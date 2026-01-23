@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel Access Test - Admin</title>
+</head>
+<body>
+    <h1>Admin Panel Access Test - Admin</h1>
+    <p>Testing admin panel access with Admin credentials</p>
+    
+    <script>
+        // Simulate localStorage data
+        localStorage.setItem('token', 'e2bc22b8-c6c2-424d-82b7-987c453963a4');
+        localStorage.setItem('isAdmin', '1');
+        localStorage.setItem('userName', 'Admin User');
+        
+        console.log('LocalStorage set:');
+        console.log('- token:', localStorage.getItem('token'));
+        console.log('- isAdmin:', localStorage.getItem('isAdmin'));
+        console.log('- userName:', localStorage.getItem('userName'));
+        
+        // Test admin panel access
+        setTimeout(() => {
+            window.location.href = '/admin.html';
+        }, 2000);
+    </script>
+    
+    <p>Redirecting to admin panel in 2 seconds...</p>
+    <p>If you see "Admin access required" error, the fix didn't work.</p>
+    <p>If admin panel loads, the fix is successful!</p>
+</body>
+</html>

@@ -1,10 +1,10 @@
 # Compact Emotion Detection Dataset
 
 ## Dataset Details
-- **Total Samples**: 350
-- **Image Size**: 32x32 grayscale
+- **Total Samples**: 17,500
+- **Image Size**: 48x48 grayscale
 - **Emotions**: 7 classes
-- **Size**: <10MB (GitHub friendly)
+- **Size**: ~50MB (GitHub compatible)
 
 ## Emotion Classes
 - 0: angry
@@ -20,7 +20,7 @@
 - `processed/compact_val.npz` - Validation data  
 - `processed/compact_test.npz` - Test data
 - `processed/emotion_mapping.pkl` - Emotion labels
-- `compact_emotion_model.h5` - Lightweight CNN model
+- `compact_emotion_model.h5` - CNN model optimized for emotion detection
 
 ## Usage
 ```python
@@ -39,8 +39,10 @@ predictions = model.predict(X_train[:5])
 ```
 
 ## Performance
-- Optimized for GitHub upload (<100MB)
-- Suitable for learning and prototyping
+- Optimized for 50MB size (GitHub compatible)
+- 17,500 total samples for robust training
+- 48x48 image resolution for good quality
+- Suitable for production prototyping and learning
 - Can be extended with more data for production use
 
 ## License

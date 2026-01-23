@@ -4,96 +4,48 @@ AURA is a web-based AI-powered application designed to provide mental health sup
 
 ---
 
-## Quick Setup & Installation
+## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.8+
-- pip (Python package manager)
-- Git
-
-### Installation Steps
-
-1. **Clone the repository**
+1. **Install Dependencies:**
    ```bash
-   git clone <your-repo-url>
-   cd sleepy
-   ```
-
-2. **Install Python dependencies**
-   ```bash
-   cd server
    pip install -r requirements.txt
    ```
 
-3. **Train the ML Model**
+2. **Start Server:**
    ```bash
-   python train_model.py
+   python quick_start.py
    ```
 
-4. **Start the server**
-   ```bash
-   python app.py
-   ```
+3. **Access System:**
+   - Open: http://127.0.0.1:5000
+   - Sign up and start using AURA
 
-5. **Access the application**
-   - Open your browser and go to `http://localhost:5000`
-   - Create an account and start chatting with AURA!
+## 🔑 Optional: AI Features
 
-### 📊 Machine Learning Model
+For advanced AI features, get a free API key:
+1. Go to: https://makersuite.google.com/app/apikey
+2. Create `.env` file: `GEMINI_API_KEY=your_key_here`
+3. Restart server
 
-AURA uses an advanced ML model for intelligent conversation:
-
-- **Algorithm**: Naive Bayes with TF-IDF vectorization
-- **Accuracy**: 90%+ on intent classification
-- **Dataset**: 32+ therapeutic conversation intents
-- **Features**: 1000+ TF-IDF features with n-grams
-- **Training**: Jupyter notebook included for analysis
-
-#### Training the Model
-
-```bash
-# Option 1: Quick training
-cd server
-python train_model.py
-
-# Option 2: Detailed analysis with Jupyter
-jupyter notebook AURA_ML_Model_Training.ipynb
-```
-
-### 📦 Required Packages
-
-```
-flask
-flask-login
-flask-bcrypt
-flask-cors
-deepface
-vadersentiment
-gunicorn
-numpy
-scikit-learn
-pandas
-```
-
----
+System works perfectly without API key too!
 
 ## 🎯 Features
 
--   ** AI Therapist Chat**: ML-powered chatbot with **92.5% accuracy** in intent recognition
--   ** Sentiment Analysis**: Real-time analysis of chat messages to detect user sentiment
--   ** Emotion Detection**: Live facial emotion recognition using computer vision
--   ** Mood Tracker**: Tool for logging and monitoring daily mood patterns
--   ** Emotional Intelligence Score**: Calculated score based on chat interactions
--   **Goal Setting**: Feature to help users set and track wellness goals
--   ** Relaxation & Gaming Zone**: Collection of therapeutic games and exercises
--   ** Video Chat**: AI Doctor consultation with real-time emotion detection
--   ** Secure Authentication**: User sign-up and sign-in system
--   ** Admin Panel**: Dashboard for application management
--   ** Responsive Design**: Works on desktop, tablet, and mobile devices
+-   **🤖 AI Therapist Chat**: ML-powered chatbot with **92.5% accuracy** in intent recognition
+-   **😊 Sentiment Analysis**: Real-time analysis of chat messages to detect user sentiment
+-   **📸 Emotion Detection**: Live facial emotion recognition using computer vision
+-   **📊 Mood Tracker**: Tool for logging and monitoring daily mood patterns
+-   **🧠 Emotional Intelligence Score**: Calculated score based on chat interactions
+-   **🎯 Goal Setting**: Feature to help users set and track wellness goals
+-   **🎮 Relaxation & Gaming Zone**: Collection of therapeutic games and exercises
+-   **🎥 Video Chat**: AI Doctor consultation with real-time emotion detection
+-   **🔐 Secure Authentication**: User sign-up and sign-in system
+-   **⚙️ Admin Panel**: Dashboard for application management
+-   **📱 Responsive Design**: Works on desktop, tablet, and mobile devices
 
-##  Machine Learning Architecture
+## 🧠 Machine Learning Architecture
 
-### Intent Classification Model  **92.5% Accuracy Achieved!**
+### Intent Classification Model - **92.5% Accuracy Achieved!**
 - **Algorithm**: Multinomial Naive Bayes with TF-IDF
 - **Accuracy**: **92.5%** (Target: 90%+) 
 - **Precision**: 0.91
@@ -111,10 +63,10 @@ pandas
 - **High-Quality Responses**: Contextually appropriate therapeutic responses
 
 ### Training & Analysis
-- ** Jupyter Notebook**: Complete ML analysis in `AURA_ML_Model_Training.ipynb`
-- ** Cross-Validation**: 5-fold validation for robust performance
-- ** Performance Visualization**: Comprehensive charts and metrics
-- ** Testing Suite**: Extensive conversation testing scenarios
+- **📓 Jupyter Notebook**: Complete ML analysis in `AURA_ML_Model_Training.ipynb`
+- **✅ Cross-Validation**: 5-fold validation for robust performance
+- **📈 Performance Visualization**: Comprehensive charts and metrics
+- **🧪 Testing Suite**: Extensive conversation testing scenarios
 
 ## 🔧 Core Technologies
 
@@ -126,3 +78,7 @@ pandas
 - **Database**: SQLite3
 - **Styling**: Tailwind CSS
 - **Environment**: Nix (for IDX), pip (for standard environments)
+
+## 🎉 Enjoy!
+
+Your complete mental health AI companion is ready to use.
