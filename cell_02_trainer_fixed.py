@@ -28,14 +28,14 @@ class FER2013EmotionTrainer:
         self.model = None
         self.history = None
         
-        print(f"✅ FER2013 Trainer initialized")
-        print(f"📊 Emotions: {self.emotions}")
-        print(f"📊 Classes: {self.num_classes}")
-        print(f"📊 Image size: {self.img_size}x{self.img_size}")
+        print(f" FER2013 Trainer initialized")
+        print(f" Emotions: {self.emotions}")
+        print(f" Classes: {self.num_classes}")
+        print(f" Image size: {self.img_size}x{self.img_size}")
     
     def load_fer2013_data(self):
         """Load FER-2013 enhanced dataset with error handling"""
-        print("📊 Loading FER-2013 Enhanced Dataset...")
+        print(" Loading FER-2013 Enhanced Dataset...")
         
         dataset_paths = [
             'emotion_datasets/fer2013/fer2013_enhanced.csv',
@@ -55,7 +55,7 @@ class FER2013EmotionTrainer:
                     continue
         
         if df is None:
-            print("❌ Real dataset not found. Creating sample data...")
+            print(" Real dataset not found. Creating sample data...")
             df = self.create_sample_data()
         
         # Validate dataset
@@ -63,7 +63,7 @@ class FER2013EmotionTrainer:
         if not all(col in df.columns for col in required_columns):
             raise ValueError(f"Dataset must contain columns: {required_columns}")
         
-        print("\n📈 Dataset Statistics:")
+        print("\n Dataset Statistics:")
         print(df['emotion'].value_counts())
         
         return df
