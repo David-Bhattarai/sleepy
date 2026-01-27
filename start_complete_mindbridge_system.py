@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MindBridge - NCIT Final Year Project Platform - Complete System Startup
+MindBridge Mental Health Platform - Complete System Startup
 Admin Panel with Database Data + FER2013 Enhanced Emotion Detection
 """
 
@@ -10,9 +10,9 @@ import subprocess
 import time
 
 def start_mindbridge_system():
-    """Start the complete MindBridge - NCIT Final Year Project system"""
+    """Start the complete MindBridge system"""
     
-    print("🚀 Starting MindBridge - NCIT Final Year Project Platform...")
+    print("🚀 Starting MindBridge Mental Health Platform...")
     print("📊 Admin Panel: Full database management with CRUD operations")
     print("🎯 Emotion Detection: FER2013 Enhanced Dataset integration")
     
@@ -22,21 +22,21 @@ def start_mindbridge_system():
         return
     
     print("\n🔧 System Components:")
-    print("✅ Admin Panel: http://localhost:5000/admin.html")
-    print("✅ Dashboard: http://localhost:5000/dashboard.html") 
-    print("✅ Emotion Detection: http://localhost:5000/emotion-detection.html")
-    print("✅ Video Chat: http://localhost:5000/video-chat.html")
+    print(" Admin Panel: http://localhost:5000/admin.html")
+    print(" Dashboard: http://localhost:5000/dashboard.html") 
+    print("Emotion Detection: http://localhost:5000/emotion-detection.html")
+    print(" Video Chat: http://localhost:5000/video-chat.html")
     
-    print("\n📊 Database Tables Available:")
-    print("- 👥 Users (with sample data)")
-    print("- 👨‍⚕️ Doctors (6 AI doctors)")
-    print("- 📅 Appointments (with sample data)")
-    print("- 💬 Chat History (with sample conversations)")
-    print("- 😊 Mood Entries (with sample moods)")
-    print("- 💳 Payments (with sample transactions)")
-    print("- 😐 Emotion Detection (with sample results)")
+    print("\n Database Tables Available:")
+    print("-  Users (with sample data)")
+    print("-  Doctors (6 AI doctors)")
+    print("-  Appointments (with sample data)")
+    print("-  Chat History (with sample conversations)")
+    print("-  Mood Entries (with sample moods)")
+    print("-  Payments (with sample transactions)")
+    print("- \ Emotion Detection (with sample results)")
     
-    print("\n🎯 FER2013 Enhanced Features:")
+    print("\n FER2013 Enhanced Features:")
     print("- 7 Emotions: angry, disgust, fear, happy, sad, surprise, neutral")
     print("- 3,501 training samples from FER2013 enhanced dataset")
     print("- High accuracy emotion recognition")
