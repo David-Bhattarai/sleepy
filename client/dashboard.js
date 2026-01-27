@@ -1,3 +1,7 @@
+
+
+
+
 document.addEventListener('DOMContentLoaded', async () => {
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
