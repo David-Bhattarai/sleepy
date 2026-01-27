@@ -328,7 +328,7 @@ class EmotionDatasetManager:
 
 def create_real_emotion_dataset():
     """Create a realistic emotion dataset for training"""
-    print("🎯 Creating Real Emotion Dataset for AURA...")
+    print("🎯 Creating Real Emotion Dataset for MindBridge - NCIT Final Year Project...")
     
     manager = EmotionDatasetManager()
     

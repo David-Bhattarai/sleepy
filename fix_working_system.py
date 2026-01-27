@@ -55,8 +55,8 @@ def test_chatbot_model_loading():
     print("\n🤖 Testing Chatbot Model Loading...")
     
     model_paths = [
-        "sleepy/server/aura_model_80percent.pkl",
-        "sleepy/server/aura_model.pkl"
+        "sleepy/server/mindbridge_model_80percent.pkl",
+        "sleepy/server/mindbridge_model.pkl"
     ]
     
     working_model = None

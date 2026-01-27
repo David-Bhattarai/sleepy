@@ -151,8 +151,8 @@ def check_trained_models():
     
     # Check chatbot models
     chatbot_models = [
-        "sleepy/server/aura_model_80percent.pkl",
-        "sleepy/server/aura_model.pkl"
+        "sleepy/server/mindbridge_model_80percent.pkl",
+        "sleepy/server/mindbridge_model.pkl"
     ]
     
     for model_path in chatbot_models:
@@ -224,7 +224,7 @@ def check_dataset_details():
 
 def main():
     """Main function"""
-    print("📋 DATASET ANALYSIS FOR AURA ML MODELS")
+    print("📋 DATASET ANALYSIS FOR MindBridge - NCIT Final Year Project ML MODELS")
     print("=" * 60)
     
     # Check emotion datasets

@@ -441,8 +441,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 psc: 0,
                 txAmt: doctor.price,
                 tAmt: doctor.price,
-                pid: `AURA-${Date.now()}`, // Unique product ID
-                scd: 'AURA001', // Service charge (dummy)
+                pid: `MindBridge-${Date.now()}`, // Unique product ID
+                scd: 'MindBridge001', // Service charge (dummy)
                 su: window.location.origin + '/video-chat.html?payment=success',
                 fu: window.location.origin + '/video-chat.html?payment=failed'
             };

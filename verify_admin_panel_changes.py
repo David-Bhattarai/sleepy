@@ -28,7 +28,7 @@ def check_file_changes():
             print("   ✅ Access logging updated")
             changes_verified.append("admin.js logging")
             
-        if 'Database Dashboard - AURA' in content:
+        if 'Database Dashboard - MindBridge - NCIT Final Year Project NCIT Final Year Project - NCIT Final Year Project NCIT Final Year Project' in content:
             print("   ✅ Page title updated")
             changes_verified.append("admin.js title")
             

@@ -655,7 +655,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                 <div>
                     <span class="text-gray-400">Provider:</span>
-                    <div class="text-white font-medium">${modelInfo.provider || 'AURA AI'}</div>
+                    <div class="text-white font-medium">${modelInfo.provider || 'MindBridge - NCIT Final Year Project'}</div>
                 </div>
                 <div>
                     <span class="text-gray-400">Model:</span>

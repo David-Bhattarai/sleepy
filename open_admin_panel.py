@@ -49,7 +49,7 @@ def show_admin_credentials():
     """Show admin login credentials"""
     print("\n🔐 ADMIN LOGIN CREDENTIALS:")
     print("=" * 40)
-    print("Email:    admin@aura.com")
+    print("Email:    admin@mindbridge.com")
     print("Password: admin123")
     print("URL:      http://localhost:5000/admin.html")
     print("=" * 40)
@@ -71,7 +71,7 @@ def show_admin_features():
 
 def main():
     """Main function"""
-    print("🛠️ AURA ADMIN PANEL ACCESS GUIDE")
+    print("🛠️ MindBridge - NCIT Final Year Project ADMIN PANEL ACCESS GUIDE")
     print("=" * 50)
     
     # Show credentials

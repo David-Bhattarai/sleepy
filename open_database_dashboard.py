@@ -22,7 +22,7 @@ def check_server_running():
 
 def start_server():
     """Start the Flask server"""
-    print("🚀 Starting AURA server...")
+    print("🚀 Starting MindBridge - NCIT Final Year Project server...")
     
     # Find the server file
     server_paths = [
@@ -67,7 +67,7 @@ def start_server():
 
 def main():
     """Main function"""
-    print("📊 AURA DATABASE DASHBOARD")
+    print("📊 MindBridge - NCIT Final Year Project DATABASE DASHBOARD")
     print("=" * 40)
     print("🔓 ALL authenticated users can view ALL database records")
     print("📋 View 292+ records across 7 database tables")
@@ -98,7 +98,7 @@ def main():
     
     print("\n📝 USAGE INSTRUCTIONS:")
     print("1. 🔐 Login with any user account:")
-    print("   - Admin: admin@aura.com / admin123")
+    print("   - Admin: admin@mindbridge.com / admin123")
     print("   - Regular: regular@test.com / testpass123")
     print("   - Any other registered user")
     print("\n2. 📊 View Database Tables:")

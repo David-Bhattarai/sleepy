@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Comprehensive ML Model Setup for Aura Dashboard
+Comprehensive ML Model Setup for MindBridge - NCIT Final Year Project | Dashboard
 This script ensures the ML model is properly trained on ALL intents.json data
 and integrated with the dashboard chatbot.
 """
@@ -11,11 +11,11 @@ sys.path.append('server')
 
 def setup_comprehensive_ml_model():
     """Setup and train comprehensive ML model"""
-    print("🚀 COMPREHENSIVE ML MODEL SETUP FOR AURA DASHBOARD")
+    print("🚀 COMPREHENSIVE ML MODEL SETUP FOR MindBridge - NCIT Final Year Project DASHBOARD")
     print("=" * 60)
     
     try:
-        from ml_model_realistic import AuraMLModelRealistic, force_retrain_model
+        from ml_model_realistic import MindBridgeMLModelRealistic, force_retrain_model
         
         print("📋 Step 1: Checking intents.json data...")
         
@@ -58,7 +58,7 @@ def setup_comprehensive_ml_model():
         print("🧪 Step 3: Testing comprehensive model...")
         
         # Test the model
-        model = AuraMLModelRealistic()
+        model = MindBridgeMLModelRealistic()
         if not model.load_comprehensive_model():
             print(" Failed to load trained model!")
             return False
@@ -163,7 +163,7 @@ def setup_comprehensive_ml_model():
         
         print("\n SETUP COMPLETE!")
         print(" Comprehensive ML model trained on ALL intents.json data")
-        print(" Model integrated with Aura dashboard chatbot")
+        print(" Model integrated with MindBridge - NCIT Final Year Project dashboard chatbot")
         print(" Ready for production use!")
         
         return True

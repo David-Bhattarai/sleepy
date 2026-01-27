@@ -28,7 +28,7 @@ def start_complete_admin_panel():
     print("🔍 Checking if server is already running...")
     
     # Start the server
-    print("🖥️ Starting AURA server...")
+    print("🖥️ Starting MindBridge - NCIT Final Year Project server...")
     
     try:
         # Start server in background

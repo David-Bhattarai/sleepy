@@ -216,7 +216,7 @@ def create_emotion_mapping_file(base_dir, all_images):
     
     mapping = {
         'dataset_info': {
-            'name': 'AURA Emotion Sample Dataset',
+            'name': 'MindBridge - NCIT Final Year Project Emotion Sample Dataset',
             'total_images': len(all_images),
             'emotions': ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral'],
             'accuracy': '100%',
@@ -340,7 +340,7 @@ class PerfectEmotionDetector:
                     'confidence': 100.0,
                     'emotions': emotions,
                     'model_info': {
-                        'dataset': 'AURA Sample Dataset',
+                        'dataset': 'MindBridge - NCIT Final Year Project Sample Dataset',
                         'accuracy': 100.0,
                         'total_emotions': 7,
                         'sample_image': True,

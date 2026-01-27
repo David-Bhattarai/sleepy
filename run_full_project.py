@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Run Full AURA Project
+Run Full MindBridge - NCIT Final Year Project
 Complete working system with all datasets and features
 """
 
@@ -10,7 +10,7 @@ import subprocess
 
 def setup_complete_environment():
     """Setup complete environment for full project"""
-    print("🔧 Setting up COMPLETE AURA environment...")
+    print("🔧 Setting up COMPLETE MindBridge - NCIT Final Year Project environment...")
     
     # TensorFlow optimizations
     os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
@@ -51,7 +51,7 @@ def check_all_components():
 
 def start_full_server():
     """Start the complete server with all features"""
-    print("\n🚀 Starting COMPLETE AURA Mental Health AI System")
+    print("\n🚀 Starting COMPLETE MindBridge - NCIT Final Year Project AI System")
     print("=" * 70)
     print("🎯 FULL PROJECT FEATURES:")
     print("   🤖 AI Chatbot: intents.json (80 categories, 3,474 patterns)")
@@ -80,8 +80,8 @@ def start_full_server():
         subprocess.run([sys.executable, 'app.py'], check=True)
         
     except KeyboardInterrupt:
-        print("\n\n🛑 AURA Full Project stopped by user")
-        print("👋 Thank you for using AURA!")
+        print("\n\n🛑 MindBridge - NCIT Final Year Project Full Project stopped by user")
+        print("👋 Thank you for using MindBridge!")
     except FileNotFoundError:
         print("❌ Server directory not found. Make sure you're in the project root.")
     except Exception as e:
@@ -125,7 +125,7 @@ def show_project_features():
 
 def main():
     """Main function to run full project"""
-    print("🎯 AURA MENTAL HEALTH AI - COMPLETE PROJECT")
+    print("🎯 MindBridge - NCIT Final Year Project MENTAL HEALTH AI - COMPLETE PROJECT")
     print("=" * 70)
     print("🚀 Running full system with ALL features and datasets")
     print("💡 Professional-grade mental health AI platform")

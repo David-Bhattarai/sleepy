@@ -3,18 +3,18 @@ import os
 sys.path.append('server')
 
 try:
-    from ml_model_realistic import AuraMLModelRealistic
+    from ml_model_realistic import MindBridgeMLModelRealistic
     
     print("=== RETRAINING ENHANCED ML MODEL FOR MAXIMUM ACCURACY ===")
     
     # Remove old model file to force retraining
-    model_path = 'server/aura_model_80percent.pkl'
+    model_path = 'server/mindbridge_model_80percent.pkl'
     if os.path.exists(model_path):
         os.remove(model_path)
         print(f"Removed old model: {model_path}")
     
     # Create new enhanced model
-    model = AuraMLModelRealistic()
+    model = MindBridgeMLModelRealistic()
     
     print("Starting enhanced training on intents.json...")
     success = model.train_model()
@@ -25,7 +25,7 @@ try:
         print(" Enhanced data augmentation applied")
         print(" Improved TF-IDF with 4-grams")
         print(" Lower confidence threshold for better coverage")
-        print(" Model integrated with dashboard Aura chatbot")
+        print(" Model integrated with dashboard MindBridge - NCIT Final Year Project chatbot")
         
         # Quick test
         print("\n=== QUICK TEST ===")

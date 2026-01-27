@@ -1,4 +1,4 @@
-# AURA Mental Health AI System - Compatible Dependencies
+# MindBridge - NCIT Final Year Project AI System - Compatible Dependencies
 
 # Core Web Framework
 flask==3.0.0

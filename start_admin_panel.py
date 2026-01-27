@@ -20,7 +20,7 @@ def check_server_running():
 
 def start_server():
     """Start the Flask server"""
-    print("🚀 Starting AURA server...")
+    print("🚀 Starting MindBridge - NCIT Final Year Project server...")
     
     # Change to server directory
     server_dir = "sleepy/server"
@@ -60,13 +60,13 @@ def open_admin_panel():
     
     print("\n🔑 ADMIN LOGIN CREDENTIALS:")
     print("=" * 30)
-    print("Email:    admin@aura.co")
+    print("Email:    admin@mindbridge.co")
     print("Password: admin123")
     print("=" * 30)
 
 def main():
     """Main function"""
-    print("🛠️ AURA ADMIN PANEL STARTER")
+    print("🛠️ MindBridge - NCIT Final Year Project ADMIN PANEL STARTER")
     print("=" * 40)
     
     # Check if server is already running
