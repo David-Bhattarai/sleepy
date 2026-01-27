@@ -132,8 +132,8 @@ class ProductionChatbot:
         """Load trained intent classification model if available"""
         model_paths = [
             'intent_classification_model.pkl',
-            'aura_model_80percent.pkl',
-            '../aura_model_80percent.pkl'
+            'mindbridge_model_80percent.pkl',
+            '../mindbridge_model_80percent.pkl'
         ]
         
         for model_path in model_paths:

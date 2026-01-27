@@ -317,7 +317,7 @@ def get_model_stats():
                 'accuracy': '82.3% (Test) / 90% (Practical)',
                 'confidence_threshold': 0.25,
                 'training_samples': '786 (with augmentation)',
-                'model_file': 'aura_model_80percent.pkl'
+                'model_file': 'mindbridge_model_80percent.pkl'
             })
         else:
             return jsonify({
@@ -540,7 +540,7 @@ def gemini_emotion_detection():
             'source': source,
             'user_name': user['name'],
             'model_info': {
-                'provider': 'AURA Intelligent Fallback',
+                'provider': 'MINDBRIDGE Intelligent Fallback',
                 'model': 'Context-Aware Analysis',
                 'accuracy': 'Estimated',
                 'dataset': 'Contextual Analysis'
