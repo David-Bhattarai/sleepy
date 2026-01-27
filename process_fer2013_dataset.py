@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FER-2013 Dataset Processor for AURA Emotion Detection
+FER-2013 Dataset Processor for MindBridge - NCIT Final Year Project Emotion Detection
 Processes downloaded FER-2013 dataset for training
 """
 
@@ -14,7 +14,7 @@ import json
 
 def process_fer2013_dataset():
     """Process FER-2013 dataset from organized folder structure"""
-    print(" Processing FER-2013 Dataset for AURA...")
+    print(" Processing FER-2013 Dataset for MindBridge - NCIT Final Year Project...")
     
     # Dataset paths
     fer_dir = "emotion_datasets/fer2013_real"
@@ -73,7 +73,7 @@ def process_fer2013_dataset():
         'emotion_counts': emotion_counts,
         'image_size': '48x48',
         'format': 'grayscale',
-        'processed_by': 'AURA Emotion Detection System',
+        'processed_by': 'MindBridge - NCIT Final Year Project Emotion Detection System',
         'dataset_structure': 'organized_folders'
     }
     
@@ -240,7 +240,7 @@ def verify_dataset():
 
 def main():
     """Main processing function"""
-    print(" FER-2013 Dataset Processor for AURA")
+    print(" FER-2013 Dataset Processor for MindBridge")
     print("=" * 50)
     
     try:

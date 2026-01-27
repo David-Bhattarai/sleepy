@@ -80,7 +80,7 @@ class PerfectEmotionDetector:
                     'confidence': 100.0,
                     'emotions': emotions,
                     'model_info': {
-                        'dataset': 'AURA Sample Dataset',
+                        'dataset': 'MindBridge - NCIT Final Year Project Sample Dataset',
                         'accuracy': 100.0,
                         'total_emotions': 7,
                         'sample_image': True,

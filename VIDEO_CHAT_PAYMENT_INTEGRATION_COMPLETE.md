@@ -63,7 +63,7 @@ SELECT * FROM doctors;
 
 -- Add new doctor
 INSERT INTO doctors (id, name, email, specialty, price_per_session, is_available) 
-VALUES ('dr-new-007', 'Dr. New', 'new@aura.com', 'New Specialty', 100.0, 1);
+VALUES ('dr-new-007', 'Dr. New', 'new@mindbridge.com', 'New Specialty', 100.0, 1);
 
 -- Update doctor availability
 UPDATE doctors SET is_available = 0 WHERE id = 'dr-smith-001';

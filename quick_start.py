@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AURA Mental Health AI - Quick Start Script
+MindBridge - NCIT Final Year Project AI - Quick Start Script
 Easy one-click startup for the complete system
 """
 
@@ -12,7 +12,7 @@ import time
 def print_banner():
     """Print welcome banner"""
     print("=" * 70)
-    print("🚀 AURA MENTAL HEALTH AI SYSTEM")
+    print("🚀 MindBridge - NCIT Final Year Project MENTAL HEALTH AI SYSTEM")
     print("=" * 70)
     print("🤖 Intelligent Chatbot with Google Gemini AI")
     print("😊 Real Face Emotion Detection (98% accuracy)")
@@ -103,8 +103,8 @@ def check_api_key():
     return False
 
 def start_system():
-    """Start the AURA system"""
-    print("\n🚀 Starting AURA System...")
+    """Start the MindBridge - NCIT Final Year Project system"""
+    print("\n🚀 Starting MindBridge - NCIT Final Year Project...")
     
     try:
         # Check if we have API key for full features
@@ -148,7 +148,7 @@ def get_api_key_from_env():
 def show_system_info():
     """Show system information and access URLs"""
     print("\n" + "=" * 70)
-    print("🎉 AURA SYSTEM INFORMATION")
+    print("🎉 MindBridge - NCIT Final Year Project SYSTEM INFORMATION")
     print("=" * 70)
     print("📱 Web Interface:")
     print("   - Local: http://127.0.0.1:5000")
@@ -186,7 +186,7 @@ def main():
     show_system_info()
     
     # Ask user if they want to start
-    print("\n🚀 Ready to start AURA Mental Health AI System!")
+    print("\n🚀 Ready to start MindBridge - NCIT Final Year Project AI System!")
     choice = input("Start now? (y/n): ").lower().strip()
     
     if choice in ['y', 'yes', '']:

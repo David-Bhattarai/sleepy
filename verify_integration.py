@@ -120,7 +120,7 @@ def show_quick_start():
     print("   🏷️ Intent tags shown with AI responses")
     print("   ⚡ Real-time pattern matching")
     
-    print("\n✨ ENJOY YOUR COMPLETE AURA SYSTEM! ✨")
+    print("\n✨ ENJOY YOUR COMPLETE MindBridge - NCIT Final Year Project SYSTEM! ✨")
 
 if __name__ == "__main__":
     success = verify_integration()

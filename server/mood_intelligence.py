@@ -1,5 +1,5 @@
 """
-Advanced Mood Intelligence System for AURA Platform
+Advanced Mood Intelligence System for MindBridge - NCIT Final Year Project
 This module provides comprehensive mood tracking, analysis, and AI-powered insights
 for mental health monitoring and personalized recommendations.
 """

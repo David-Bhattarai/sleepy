@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-FER2013 Emotion Detector for AURA
+FER2013 Emotion Detector for MindBridge
 Exact emotion detection based on FER2013-enhanced dataset
 """
 

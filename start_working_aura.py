@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Start Working AURA System
+Start Working MindBridge - NCIT Final Year Project
 Uses the actually working trained models and intents
 """
 
@@ -10,7 +10,7 @@ import subprocess
 
 def setup_environment():
     """Setup environment for working system"""
-    print("Setting up environment for WORKING AURA system...")
+    print("Setting up environment for WORKING MindBridge - NCIT Final Year Project system...")
     
     # Set TensorFlow optimizations
     os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
@@ -21,7 +21,7 @@ def setup_environment():
 
 def start_server():
     """Start the working server"""
-    print("\nStarting WORKING AURA Mental Health AI System")
+    print("\nStarting WORKING MindBridge - NCIT Final Year Project AI System")
     print("=" * 60)
     print("FEATURES WORKING:")
     print("   Chatbot: intents.json with 80 categories")
@@ -46,8 +46,8 @@ def start_server():
         subprocess.run([sys.executable, 'app.py'], check=True)
         
     except KeyboardInterrupt:
-        print("\n\nAURA Server stopped by user")
-        print("Thank you for using AURA!")
+        print("\n\nMindBridge - NCIT Final Year Project Server stopped by user")
+        print("Thank you for using MindBridge!")
     except FileNotFoundError:
         print("Server directory not found. Make sure you're in the project root.")
     except Exception as e:
@@ -55,7 +55,7 @@ def start_server():
 
 def main():
     """Main function"""
-    print("AURA MENTAL HEALTH AI - WORKING SYSTEM")
+    print("MindBridge - NCIT Final Year Project MENTAL HEALTH AI - WORKING SYSTEM")
     print("=" * 60)
     print("Using ACTUALLY WORKING trained models and intents")
     print("No API dependency - works offline!")

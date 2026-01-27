@@ -1,6 +1,6 @@
 /**
  * Admin Dashboard JavaScript
- * Complete database management for AURA Mental Health Platform
+ * Complete database management for MindBridge - NCIT Final Year Project Platform
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -126,7 +126,7 @@ function checkAdminAuth() {
     // Update page title - ALL users can access database view
     const pageTitle = document.querySelector('title');
     if (pageTitle) {
-        pageTitle.textContent = 'Database Dashboard - AURA';
+        pageTitle.textContent = 'Database Dashboard - MindBridge - NCIT Final Year Project NCIT Final Year Project';
     }
     
     // Update header text - ALL users can view database
@@ -138,7 +138,7 @@ function checkAdminAuth() {
     // Update description - ALL users can view database records
     const headerDesc = document.querySelector('main p');
     if (headerDesc) {
-        headerDesc.textContent = 'View all database records and system information for AURA Mental Health Platform';
+        headerDesc.textContent = 'View all database records and system information for MindBridge - NCIT Final Year Project Platform';
     }
     
     console.log(`✅ Database access granted for user: ${userName} (Admin: ${isAdmin})`);

@@ -226,7 +226,7 @@ def improve_dataset_accuracy():
     return max(final_accuracy, practical_accuracy)
 
 if __name__ == "__main__":
-    print(" AURA Dataset Accuracy Improvement")
+    print(" MindBridge - NCIT Final Year Project Dataset Accuracy Improvement")
     print("=" * 50)
     
     try:

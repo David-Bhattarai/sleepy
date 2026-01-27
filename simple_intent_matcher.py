@@ -229,7 +229,7 @@ def test_simple_matcher():
     for message in test_messages:
         response = matcher.match_intent(message)
         print(f"User: '{message}'")
-        print(f"AURA: '{response}'")
+        print(f"MindBridge: '{response}'")
         print("-" * 30)
 
 if __name__ == "__main__":

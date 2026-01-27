@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Complete AURA System Test
+Complete MindBridge - NCIT Final Year Project Test
 Tests all components: FER2013 emotion detection, video chat, payment integration, and doctor management
 """
 
@@ -235,7 +235,7 @@ def test_system_pages():
         ('/dashboard.html', 'Dashboard'),
         ('/emotion-detection.html', 'FER2013 Emotion Detection'),
         ('/video-chat.html', 'Video Chat with Payment'),
-        ('/aura-chatbot.html', 'AURA Chatbot'),
+        ('/mindbridge-chatbot.html', 'MindBridge - NCIT Final Year Project'),
         ('/simple-mood-tracker.html', 'Mood Tracker'),
         ('/admin.html', 'Admin Panel')
     ]
@@ -285,7 +285,7 @@ def generate_system_report():
             'main_dashboard': 'http://localhost:5000/',
             'emotion_detection': 'http://localhost:5000/emotion-detection.html',
             'video_chat': 'http://localhost:5000/video-chat.html',
-            'chatbot': 'http://localhost:5000/aura-chatbot.html',
+            'chatbot': 'http://localhost:5000/mindbridge-chatbot.html',
             'mood_tracker': 'http://localhost:5000/simple-mood-tracker.html',
             'admin_panel': 'http://localhost:5000/admin.html'
         }
@@ -307,7 +307,7 @@ def generate_system_report():
 
 def main():
     """Main test function"""
-    print("🚀 COMPLETE AURA SYSTEM TEST")
+    print("🚀 COMPLETE MindBridge - NCIT Final Year Project SYSTEM TEST")
     print("🎯 Testing all components: FER2013, Video Chat, Payment, Doctors")
     print("=" * 70)
     
@@ -346,7 +346,7 @@ def main():
         print("\n🚀 READY FOR USE:")
         print("   1. FER2013 Emotion Detection: http://localhost:5000/emotion-detection.html")
         print("   2. Video Chat with Payment: http://localhost:5000/video-chat.html")
-        print("   3. AURA Dashboard: http://localhost:5000/dashboard.html")
+        print("   3. MindBridge - NCIT Final Year Project | Dashboard: http://localhost:5000/dashboard.html")
         print("   4. Admin Panel: http://localhost:5000/admin.html")
         
         print("\n💡 QUICK START:")

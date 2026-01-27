@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AURA ML Model Demo Script
+MindBridge - NCIT Final Year Project ML Model Demo Script
 Demonstrates the 92.5% accuracy machine learning model for therapeutic conversations
 """
 
@@ -9,7 +9,7 @@ import random
 from collections import Counter
 
 # Simulate the trained ML model results
-class AuraMLModelDemo:
+class MindBridgeMLModelDemo:
     def __init__(self):
         self.load_intents()
         self.accuracy = 0.925  # 9
@@ -90,10 +90,10 @@ class AuraMLModelDemo:
         }
 
 def main():
-    print("AURA ML Model Demo - 92.5% Accuracy Achievement!")
+    print("MindBridge - NCIT Final Year Project ML Model Demo - 92.5% Accuracy Achievement!")
     print("=" * 60)
     
-    model = AuraMLModelDemo()
+    model = MindBridgeMLModelDemo()
     
     print(f" Model Performance:")
     print(f"   Accuracy: {model.accuracy*100:.1f}%")
@@ -103,7 +103,7 @@ def main():
     print(f"   Status: PRODUCTION READY")
     
     print(f"\n Interactive Demo:")
-    print("Type messages to see AURA's intelligent responses!")
+    print("Type messages to see MindBridge's intelligent responses!")
     print("(Type 'quit' to exit)")
     print("-" * 0)
     
@@ -112,7 +112,7 @@ def main():
             user_input = input("\ You: ").strip()
             
             if user_input.lower() in ['quit', 'exit', 'bye']:
-                print(" AURA: Thank you for trying the demo! Take care! 👋")
+                print(" MindBridge: Thank you for trying the demo! Take care! 👋")
                 break
             
             if not user_input:
@@ -122,10 +122,10 @@ def main():
             
             print(f" Intent: {result['intent']}")
             print(f" Confidence: {result['confidence']:.3f} ({result['confidence']*100:.1f}%)")
-            print(f" AURA: {result['response']}")
+            print(f" MindBridge: {result['response']}")
             
         except KeyboardInterrupt:
-            print("\n\n AURA: Goodbye! Take care! ")
+            print("\n\n MindBridge: Goodbye! Take care! ")
             break
         except Exception as e:
             print(f" Error: {e}")

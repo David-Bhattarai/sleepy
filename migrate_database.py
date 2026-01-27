@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Database Migration Script for AURA Mental Health Platform
+Database Migration Script for MindBridge - NCIT Final Year Project Platform
 Fixes schema issues in existing database
 """
 

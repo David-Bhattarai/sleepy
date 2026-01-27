@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Start AURA Server Without Gemini AI
+Start MindBridge - NCIT Final Year Project Server Without Gemini AI
 Uses only trained models and fallback systems
 Perfect for when API quota is exceeded
 """
@@ -25,7 +25,7 @@ def setup_environment():
 
 def start_server():
     """Start the server"""
-    print("\n🚀 Starting AURA with Trained Models Only")
+    print("\n🚀 Starting MindBridge - NCIT Final Year Project with Trained Models Only")
     print("=" * 60)
     print("🎯 FEATURES AVAILABLE:")
     print("   🤖 Chatbot: Intent matching + Fallback responses")
@@ -50,8 +50,8 @@ def start_server():
         subprocess.run([sys.executable, 'app.py'], check=True)
         
     except KeyboardInterrupt:
-        print("\n\n🛑 AURA Server stopped by user")
-        print("👋 Thank you for using AURA!")
+        print("\n\n🛑 MindBridge - NCIT Final Year Project Server stopped by user")
+        print("👋 Thank you for using MindBridge!")
     except FileNotFoundError:
         print("❌ Server directory not found. Make sure you're in the project root.")
     except Exception as e:
@@ -59,7 +59,7 @@ def start_server():
 
 def main():
     """Main function"""
-    print("🎯 AURA MENTAL HEALTH AI - TRAINED MODELS MODE")
+    print("🎯 MindBridge - NCIT Final Year Project MENTAL HEALTH AI - TRAINED MODELS MODE")
     print("=" * 60)
     print("🚀 Using trained ML models and fallback systems")
     print("💡 No API dependency - works offline!")

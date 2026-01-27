@@ -18,7 +18,7 @@ def fix_emotion_detection_html():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Emotion Detection - AURA</title>
+    <title>Advanced Emotion Detection - MindBridge</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
@@ -80,7 +80,7 @@ def fix_emotion_detection_html():
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
-                    <a href="/" class="text-2xl font-extrabold text-white tracking-wider">AURA</a>
+                    <a href="/" class="text-2xl font-extrabold text-white tracking-wider">MindBridge - NCIT Final Year Project</a>
                 </div>
                 <div class="hidden md:block">
                     <div id="nav-links" class="ml-10 flex items-baseline space-x-4">
@@ -689,7 +689,7 @@ def fix_fer2013_emotion_detector():
     
     detector_content = '''#!/usr/bin/env python3
 """
-FER2013 Emotion Detector for AURA
+FER2013 Emotion Detector for MindBridge
 Exact emotion detection based on FER2013-enhanced dataset
 """
 

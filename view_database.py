@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Database Viewer Script for AURA Mental Health Platform
+Database Viewer Script for MindBridge - NCIT Final Year Project Platform
 View all data in a formatted way
 """
 
@@ -10,7 +10,7 @@ from datetime import datetime
 
 def view_database():
     """View all database data in formatted way"""
-    print(" AURA Database Viewer")
+    print(" MindBridge - NCIT Final Year Project Database Viewer")
     print("=" * 50)
     
     # Change to server directory

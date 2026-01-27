@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Complete Admin Panel Setup
-Completes the admin panel functionality for AURA Mental Health Platform
+Completes the admin panel functionality for MindBridge - NCIT Final Year Project Platform
 """
 
 import os
@@ -156,7 +156,7 @@ def create_admin_completion_summary():
 
 ## ADMIN LOGIN CREDENTIALS
 
-- **Email**: admin@aura.com
+- **Email**: admin@mindbridge.com
 - **Password**: admin123
 - **Access URL**: http://localhost:5000/admin.html
 
@@ -192,7 +192,7 @@ All admin panel functionality has been tested and verified:
 
 ## ADMIN PANEL IS COMPLETE AND READY FOR USE!
 
-The admin panel provides complete database management capabilities for the AURA Mental Health Platform with a modern, user-friendly interface.
+The admin panel provides complete database management capabilities for the MindBridge - NCIT Final Year Project Platform with a modern, user-friendly interface.
 """
     
     try:
@@ -206,7 +206,7 @@ The admin panel provides complete database management capabilities for the AURA 
 
 def main():
     """Main completion function"""
-    print("AURA ADMIN PANEL COMPLETION")
+    print("MindBridge - NCIT Final Year Project ADMIN PANEL COMPLETION")
     print("=" * 50)
     
     # Check if server is running
@@ -243,7 +243,7 @@ def main():
     if admin_setup and test_results:
         print("Admin panel is FULLY FUNCTIONAL!")
         print("\nAdmin Login:")
-        print("   - Email: admin@aura.com")
+        print("   - Email: admin@mindbridge.com")
         print("   - Password: admin123")
         print("\nAccess URL:")
         print("   - http://localhost:5000/admin.html")

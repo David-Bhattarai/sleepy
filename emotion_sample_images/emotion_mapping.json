@@ -1,6 +1,6 @@
 {
   "dataset_info": {
-    "name": "AURA Emotion Sample Dataset",
+    "name": "MindBridge - NCIT Final Year Project Emotion Sample Dataset",
     "total_images": 84,
     "emotions": [
       "angry",

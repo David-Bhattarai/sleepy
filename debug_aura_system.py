@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Debug AURA System
+Debug MindBridge - NCIT Final Year Project
 Check all components and identify issues
 """
 
@@ -128,7 +128,7 @@ def check_trained_models():
     model_paths = [
         'sleepy/server/compact_emotion_model_trained.h5',
         'compact_emotion_model_best.h5',
-        'sleepy/server/aura_model_80percent.pkl'
+        'sleepy/server/mindbridge_model_80percent.pkl'
     ]
     
     for path in model_paths:
@@ -139,7 +139,7 @@ def check_trained_models():
 
 def main():
     """Run all checks"""
-    print("🔍 AURA SYSTEM DIAGNOSTIC")
+    print("🔍 MindBridge - NCIT Final Year Project SYSTEM DIAGNOSTIC")
     print("=" * 50)
     
     # Set environment for testing

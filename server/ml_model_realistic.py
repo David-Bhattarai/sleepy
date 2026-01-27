@@ -11,12 +11,12 @@ from sklearn.metrics import accuracy_score, classification_report
 import numpy as np
 from collections import Counter
 
-class AuraMLModelRealistic:
+class MindBridgeMLModelRealistic:
     def __init__(self, intents_file='intents.json'):
         self.intents_file = intents_file
         self.model = None
         self.intents_data = []
-        self.model_path = 'aura_model_80percent.pkl'
+        self.model_path = 'mindbridge_model_80percent.pkl'
         self.trained = False
         
     def load_intents(self):
@@ -348,18 +348,18 @@ class AuraMLModelRealistic:
         return fallback_response, 0.0, "fallback"
 
 # Global model instance
-aura_comprehensive_model = None
+mindbridge_comprehensive_model = None
 
 def get_realistic_ml_model():
     """Get the comprehensive ML model instance"""
-    global aura_comprehensive_model
-    if aura_comprehensive_model is None:
-        aura_comprehensive_model = AuraMLModelRealistic()
+    global mindbridge_comprehensive_model
+    if mindbridge_comprehensive_model is None:
+        mindbridge_comprehensive_model = MindBridgeMLModelRealistic()
         
         # Try to load existing model
-        if not aura_comprehensive_model.load_comprehensive_model():
+        if not mindbridge_comprehensive_model.load_comprehensive_model():
             print("🔄 Training new comprehensive model on ALL intents.json data...")
-            success = aura_comprehensive_model.train_comprehensive_model()
+            success = mindbridge_comprehensive_model.train_comprehensive_model()
             if success:
                 print("🎉 Comprehensive ML model trained successfully!")
             else:
@@ -367,19 +367,19 @@ def get_realistic_ml_model():
         else:
             print("✅ Comprehensive ML model ready!")
     
-    return aura_comprehensive_model
+    return mindbridge_comprehensive_model
 
 # Force retrain function
 def force_retrain_model():
     """Force retrain the model"""
-    global aura_comprehensive_model
-    aura_comprehensive_model = AuraMLModelRealistic()
+    global mindbridge_comprehensive_model
+    mindbridge_comprehensive_model = MindBridgeMLModelRealistic()
     
     # Remove old model
-    if os.path.exists(aura_comprehensive_model.model_path):
-        os.remove(aura_comprehensive_model.model_path)
+    if os.path.exists(mindbridge_comprehensive_model.model_path):
+        os.remove(mindbridge_comprehensive_model.model_path)
         print("🗑️  Removed old model")
     
     # Train new model
-    success = aura_comprehensive_model.train_comprehensive_model()
+    success = mindbridge_comprehensive_model.train_comprehensive_model()
     return success

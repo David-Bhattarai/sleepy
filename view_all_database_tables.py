@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Complete Database Viewer - Show ALL tables and data
-View all database records for AURA Mental Health Platform
+View all database records for MindBridge - NCIT Final Year Project Platform
 """
 
 import sqlite3
@@ -10,7 +10,7 @@ from datetime import datetime
 
 def view_all_database_tables():
     """View all database tables and their data"""
-    print("🔍 AURA Complete Database Viewer")
+    print("🔍 MindBridge - NCIT Final Year Project Complete Database Viewer")
     print("=" * 60)
     
     # Database paths to check

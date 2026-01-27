@@ -230,7 +230,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-smith-001',
                         'name': 'Dr. Smith',
-                        'email': 'dr.smith@aura.com',
+                        'email': 'dr.smith@mindbridge.com',
                         'phone': '+1-555-0101',
                         'specialty': 'Mental Health Specialist',
                         'qualification': 'MD, Psychiatry',
@@ -243,7 +243,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-johnson-002',
                         'name': 'Dr. Johnson',
-                        'email': 'dr.johnson@aura.com',
+                        'email': 'dr.johnson@mindbridge.com',
                         'phone': '+1-555-0102',
                         'specialty': 'Licensed Counselor',
                         'qualification': 'PhD, Clinical Psychology',
@@ -256,7 +256,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-williams-003',
                         'name': 'Dr. Williams',
-                        'email': 'dr.williams@aura.com',
+                        'email': 'dr.williams@mindbridge.com',
                         'phone': '+1-555-0103',
                         'specialty': 'Psychiatrist',
                         'qualification': 'MD, Psychiatry, Board Certified',
@@ -269,7 +269,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-brown-004',
                         'name': 'Dr. Brown',
-                        'email': 'dr.brown@aura.com',
+                        'email': 'dr.brown@mindbridge.com',
                         'phone': '+1-555-0104',
                         'specialty': 'Trauma Specialist',
                         'qualification': 'PhD, Clinical Psychology, PTSD Certified',
@@ -282,7 +282,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-davis-005',
                         'name': 'Dr. Davis',
-                        'email': 'dr.davis@aura.com',
+                        'email': 'dr.davis@mindbridge.com',
                         'phone': '+1-555-0105',
                         'specialty': 'Relationship Counselor',
                         'qualification': 'MA, Marriage and Family Therapy',
@@ -295,7 +295,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-wilson-006',
                         'name': 'Dr. Wilson',
-                        'email': 'dr.wilson@aura.com',
+                        'email': 'dr.wilson@mindbridge.com',
                         'phone': '+1-555-0106',
                         'specialty': 'Addiction Specialist',
                         'qualification': 'MD, Addiction Medicine',
@@ -537,7 +537,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-smith-001',
                         'name': 'Dr. Smith',
-                        'email': 'dr.smith@aura.com',
+                        'email': 'dr.smith@mindbridge.com',
                         'phone': '+1-555-0101',
                         'specialty': 'Mental Health Specialist',
                         'qualification': 'MD, Psychiatry',
@@ -550,7 +550,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-johnson-002',
                         'name': 'Dr. Johnson',
-                        'email': 'dr.johnson@aura.com',
+                        'email': 'dr.johnson@mindbridge.com',
                         'phone': '+1-555-0102',
                         'specialty': 'Licensed Counselor',
                         'qualification': 'PhD, Clinical Psychology',
@@ -563,7 +563,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-williams-003',
                         'name': 'Dr. Williams',
-                        'email': 'dr.williams@aura.com',
+                        'email': 'dr.williams@mindbridge.com',
                         'phone': '+1-555-0103',
                         'specialty': 'Psychiatrist',
                         'qualification': 'MD, Psychiatry, Board Certified',
@@ -576,7 +576,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-brown-004',
                         'name': 'Dr. Brown',
-                        'email': 'dr.brown@aura.com',
+                        'email': 'dr.brown@mindbridge.com',
                         'phone': '+1-555-0104',
                         'specialty': 'Trauma Specialist',
                         'qualification': 'PhD, Clinical Psychology, PTSD Certified',
@@ -589,7 +589,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-davis-005',
                         'name': 'Dr. Davis',
-                        'email': 'dr.davis@aura.com',
+                        'email': 'dr.davis@mindbridge.com',
                         'phone': '+1-555-0105',
                         'specialty': 'Relationship Counselor',
                         'qualification': 'MA, Marriage and Family Therapy',
@@ -602,7 +602,7 @@ def init_dummy_doctors():
                     {
                         'id': 'dr-wilson-006',
                         'name': 'Dr. Wilson',
-                        'email': 'dr.wilson@aura.com',
+                        'email': 'dr.wilson@mindbridge.com',
                         'phone': '+1-555-0106',
                         'specialty': 'Addiction Specialist',
                         'qualification': 'MD, Addiction Medicine',

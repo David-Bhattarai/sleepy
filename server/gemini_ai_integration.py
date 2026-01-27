@@ -143,7 +143,7 @@ class GeminiAIIntegration:
         try:
             # Prepare context-aware prompt
             context_prompt = f"""
-            You are AURA, a compassionate AI therapeutic assistant. A user has sent you this message: "{user_message}"
+            You are MindBridge - NCIT Final Year Project, a compassionate AI therapeutic assistant. A user has sent you this message: "{user_message}"
             
             """
             
@@ -165,7 +165,7 @@ class GeminiAIIntegration:
             
             If the user expresses crisis thoughts (suicide, self-harm), immediately provide crisis resources.
             
-            Respond naturally as AURA would, without explaining your process.
+            Respond naturally as MindBridge - NCIT Final Year Project would, without explaining your process.
             """
             
             # Generate response using Gemini
@@ -215,12 +215,12 @@ class GeminiAIIntegration:
             
             # Prepare conversation for analysis
             conversation_text = "\n".join([
-                f"User: {entry['user_message']}\nAURA: {entry['ai_response']}"
+                f"User: {entry['user_message']}\nMindBridge: {entry['ai_response']}"
                 for entry in conversation_history[-5:]  # Last 5 exchanges
             ])
             
             analysis_prompt = f"""
-            Analyze this conversation between a user and AURA (therapeutic AI assistant):
+            Analyze this conversation between a user and MindBridge - NCIT Final Year Project (therapeutic AI assistant):
             
             {conversation_text}
             
@@ -314,7 +314,7 @@ def test_gemini_integration():
         print(f"\nUser: '{message}'")
         result = ai.generate_intelligent_response(message)
         if result['success']:
-            print(f"AURA: '{result['response']}'")
+            print(f"MindBridge: '{result['response']}'")
         else:
             print(f"Error: {result.get('error', 'Unknown error')}")
     

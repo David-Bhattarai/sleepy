@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AURA Mental Health Platform - Complete System Startup
+MindBridge - NCIT Final Year Project Platform - Complete System Startup
 Admin Panel with Database Data + FER2013 Enhanced Emotion Detection
 """
 
@@ -9,10 +9,10 @@ import sys
 import subprocess
 import time
 
-def start_aura_system():
-    """Start the complete AURA system"""
+def start_mindbridge_system():
+    """Start the complete MindBridge - NCIT Final Year Project system"""
     
-    print("🚀 Starting AURA Mental Health Platform...")
+    print("🚀 Starting MindBridge - NCIT Final Year Project Platform...")
     print("📊 Admin Panel: Full database management with CRUD operations")
     print("🎯 Emotion Detection: FER2013 Enhanced Dataset integration")
     
@@ -42,11 +42,11 @@ def start_aura_system():
     print("- High accuracy emotion recognition")
     print("- Real-time confidence scoring")
     
-    print("\n🛠️ Admin Panel CRUD Operations:")
-    print("- ✅ Create: Add new records to any table")
-    print("- ✅ Read: View all data with detailed information")
-    print("- ✅ Update: Edit existing records (partial)")
-    print("- ✅ Delete: Remove records with confirmation")
+    print("\n Admin Panel CRUD Operations:")
+    print("-  Create: Add new records to any table")
+    print("-  Read: View all data with detailed information")
+    print("- Update: Edit existing records (partial)")
+    print("- Delete: Remove records with confirmation")
     
     print("\n🔑 Login Information:")
     print("- Any registered user can access admin panel")
@@ -60,13 +60,13 @@ def start_aura_system():
         os.chdir('sleepy/server')
         subprocess.run([sys.executable, 'app.py'], check=True)
     except KeyboardInterrupt:
-        print("\n🛑 Server stopped by user")
+        print("\n Server stopped by user")
     except Exception as e:
-        print(f"❌ Error starting server: {e}")
+        print(f" Error starting server: {e}")
         print("\n🔧 Manual startup:")
         print("1. cd sleepy/server")
         print("2. python app.py")
         print("3. Open http://localhost:5000/admin.html")
 
 if __name__ == '__main__':
-    start_aura_system()
+    start_mindbridge_system()

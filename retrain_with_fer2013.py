@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Retrain AURA Emotion Detection Model with Real FER-2013 Dataset
+Retrain MindBridge - NCIT Final Year Project Emotion Detection Model with Real FER-2013 Dataset
 High accuracy training with real emotion data
 """
 
@@ -242,7 +242,7 @@ class FER2013ModelTrainer:
 
 def main():
     """Main training function"""
-    print("🎭 AURA Emotion Detection - FER-2013 Training")
+    print("🎭 MindBridge - NCIT Final Year Project Emotion Detection - FER-2013 Training")
     print("=" * 60)
     
     try:
