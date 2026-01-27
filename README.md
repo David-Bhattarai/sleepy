@@ -1,6 +1,6 @@
-# AURA - AI Mental Health Companion with Machine Learning
+# MINDBRIDGE - AI Mental Health Companion with Machine Learning
 
-AURA is a web-based AI-powered application designed to provide mental health support. It features an advanced machine learning model trained on therapeutic conversation patterns, achieving 90%+ accuracy in intent recognition. The app functions as an empathetic companion with intelligent conversation capabilities.
+MINDBRIDGE is a web-based AI-powered application designed to provide mental health support. It features an advanced machine learning model trained on therapeutic conversation patterns, achieving 90%+ accuracy in intent recognition. The app functions as an empathetic companion with intelligent conversation capabilities.
 
 ---
 
@@ -20,7 +20,7 @@ AURA is a web-based AI-powered application designed to provide mental health sup
 
 3. **Access System:**
    - Open: http://127.0.0.1:5000
-   - Sign up and start using AURA
+   - Sign up and start using MINDBRIDGE
 
 ## 🔑 Optional: AI Features
 
@@ -69,7 +69,7 @@ System works perfectly without API key too!
 
 ### Training & Analysis
 
-- **📓 Jupyter Notebook**: Complete ML analysis in `AURA_ML_Model_Training.ipynb`
+- **📓 Jupyter Notebook**: Complete ML analysis in `MINDBRIDGE_ML_Model_Training.ipynb`
 - **✅ Cross-Validation**: 5-fold validation for robust performance
 - **📈 Performance Visualization**: Comprehensive charts and metrics
 - **🧪 Testing Suite**: Extensive conversation testing scenarios
