@@ -9,27 +9,31 @@
 ## 🎯 WHAT WAS ACCOMPLISHED
 
 ### 1. ✅ Payment Integration in video-chat.html
+
 - **Card Payment**: Visa, Mastercard support with form validation
 - **eSewa Payment**: Nepal's popular payment gateway integration
 - **Payment Processing**: Complete payment flow with confirmation
 - **Payment Security**: Encrypted and secure payment handling
 
 ### 2. ✅ Dummy Doctors Setup
+
 - **6 AI Doctors** with different specialties:
   - **Dr. Smith** - Mental Health Specialist ($80/session)
-  - **Dr. Johnson** - Licensed Counselor ($75/session) 
+  - **Dr. Johnson** - Licensed Counselor ($75/session)
   - **Dr. Williams** - Psychiatrist ($90/session) - Currently Busy
   - **Dr. Brown** - Trauma Specialist ($85/session)
   - **Dr. Davis** - Relationship Counselor ($70/session)
   - **Dr. Wilson** - Addiction Specialist ($95/session)
 
 ### 3. ✅ Doctor Management System
+
 - **Database Storage**: All doctors stored in `sleepy/server/database.db`
 - **Doctor IDs**: Unique identifiers for each doctor
 - **Availability Status**: Can mark doctors as available/busy
 - **Complete Profiles**: Name, specialty, qualifications, bio, pricing
 
 ### 4. ✅ Complete Video Chat System
+
 - **Real-time Video**: WebRTC-based video calling
 - **AI Chat Responses**: Each doctor has unique personality and responses
 - **Session Management**: 50-minute sessions with timer
@@ -38,16 +42,18 @@
 ## 📊 DOCTOR IDs AND MANAGEMENT
 
 ### Doctor Database Location
+
 ```
 File: sleepy/server/database.db
 Table: doctors
 ```
 
 ### Doctor IDs (kaha bata manage garne)
+
 ```sql
 -- All doctors with their IDs
 dr-smith-001    - Dr. Smith (Mental Health Specialist)
-dr-johnson-002  - Dr. Johnson (Licensed Counselor)  
+dr-johnson-002  - Dr. Johnson (Licensed Counselor)
 dr-williams-003 - Dr. Williams (Psychiatrist)
 dr-brown-004    - Dr. Brown (Trauma Specialist)
 dr-davis-005    - Dr. Davis (Relationship Counselor)
@@ -57,13 +63,14 @@ dr-wilson-006   - Dr. Wilson (Addiction Specialist)
 ### How to Manage Doctors (kasle rakna milcha)
 
 #### 1. **Database Direct Access**
+
 ```sql
 -- View all doctors
 SELECT * FROM doctors;
 
 -- Add new doctor
-INSERT INTO doctors (id, name, email, specialty, price_per_session, is_available) 
-VALUES ('dr-new-007', 'Dr. New', 'new@aura.com', 'New Specialty', 100.0, 1);
+INSERT INTO doctors (id, name, email, specialty, price_per_session, is_available)
+VALUES ('dr-new-007', 'Dr. New', 'new@mindbridge.com', 'New Specialty', 100.0, 1);
 
 -- Update doctor availability
 UPDATE doctors SET is_available = 0 WHERE id = 'dr-smith-001';
@@ -73,6 +80,7 @@ UPDATE doctors SET price_per_session = 85.0 WHERE id = 'dr-smith-001';
 ```
 
 #### 2. **Code-based Management**
+
 ```python
 # File: sleepy/server/db_helper.py
 # Functions available:
@@ -82,6 +90,7 @@ UPDATE doctors SET price_per_session = 85.0 WHERE id = 'dr-smith-001';
 ```
 
 #### 3. **API Endpoints**
+
 ```javascript
 // Get all doctors
 GET /api/doctors
@@ -90,7 +99,7 @@ GET /api/doctors
 POST /api/appointments
 {
   "doctor_id": "dr-smith-001",
-  "appointment_date": "2026-01-24", 
+  "appointment_date": "2026-01-24",
   "appointment_time": "10:00"
 }
 ```
@@ -98,16 +107,19 @@ POST /api/appointments
 ## 🚀 HOW TO USE THE SYSTEM
 
 ### 1. Start the Server
+
 ```bash
 python sleepy/server/app.py
 ```
 
 ### 2. Open Video Chat
+
 ```
 http://localhost:5000/video-chat.html
 ```
 
 ### 3. Book Consultation
+
 1. **Select Doctor**: Choose from 6 available AI doctors
 2. **Pick Time Slot**: Select available time (9 AM - 6 PM)
 3. **Choose Payment**: Card payment or eSewa
@@ -115,6 +127,7 @@ http://localhost:5000/video-chat.html
 5. **Start Video Chat**: Automatic redirect to video consultation
 
 ### 4. Video Consultation Features
+
 - **Live Video**: Real-time video calling
 - **AI Doctor Chat**: Intelligent responses based on doctor specialty
 - **Session Timer**: 50-minute sessions with countdown
@@ -123,12 +136,14 @@ http://localhost:5000/video-chat.html
 ## 💳 PAYMENT METHODS SUPPORTED
 
 ### Card Payments
+
 - **Visa** ✅
-- **Mastercard** ✅ 
+- **Mastercard** ✅
 - **PayPal** ✅
 - **Stripe** ✅
 
 ### Mobile Payments
+
 - **eSewa** ✅ (Nepal's #1 payment gateway)
 - **Khalti** (Can be added)
 - **IME Pay** (Can be added)
@@ -136,6 +151,7 @@ http://localhost:5000/video-chat.html
 ## 🔧 TECHNICAL IMPLEMENTATION
 
 ### Files Modified/Created
+
 ```
 sleepy/client/video-chat.html     - Payment UI integration
 sleepy/client/video-chat.js       - Payment processing logic
@@ -146,6 +162,7 @@ setup_video_chat_system.py       - System setup script
 ```
 
 ### Database Schema
+
 ```sql
 -- Doctors table
 CREATE TABLE doctors (
@@ -162,7 +179,7 @@ CREATE TABLE doctors (
     is_available INTEGER DEFAULT 1
 );
 
--- Appointments table  
+-- Appointments table
 CREATE TABLE appointments (
     id TEXT PRIMARY KEY,
     user_id TEXT NOT NULL,
@@ -191,6 +208,7 @@ CREATE TABLE payments (
 ## 🎯 SYSTEM STATUS
 
 ### ✅ WORKING FEATURES
+
 - Payment integration (Card + eSewa)
 - 6 dummy doctors with unique personalities
 - Video chat with real-time communication
@@ -201,6 +219,7 @@ CREATE TABLE payments (
 - AI chatbot responses per doctor specialty
 
 ### 🔄 READY FOR PRODUCTION
+
 - All payment methods tested
 - Database properly structured
 - Error handling implemented
@@ -211,12 +230,14 @@ CREATE TABLE payments (
 ## 📞 SUPPORT
 
 ### Doctor Management Questions
+
 - **Where are doctors stored?** → `sleepy/server/database.db` (doctors table)
 - **How to add new doctor?** → Use SQL INSERT or modify `init_dummy_doctors()` function
 - **How to change pricing?** → Update `price_per_session` in doctors table
 - **How to make doctor unavailable?** → Set `is_available = 0` in doctors table
 
-### Payment Integration Questions  
+### Payment Integration Questions
+
 - **Supported methods?** → Card (Visa/Mastercard) and eSewa
 - **How to add new payment method?** → Modify payment forms in `video-chat.html` and `video-chat.js`
 - **Payment security?** → All payments encrypted and validated
@@ -229,8 +250,9 @@ CREATE TABLE payments (
 **✅ TASK COMPLETED SUCCESSFULLY!**
 
 The video chat system now has:
+
 - Complete payment integration with multiple methods
-- 6 dummy AI doctors with unique specialties and personalities  
+- 6 dummy AI doctors with unique specialties and personalities
 - Full appointment booking and management system
 - Real-time video consultation with AI responses
 - Secure payment processing and tracking
