@@ -1,0 +1,33 @@
+================================================================================
+🚀 QUICK START - See the Confirm Password Changes NOW
+================================================================================
+
+STEP 1: Start the Server
+-------------------------
+cd sleepy\server
+venv\Scripts\activate.bat
+python app.py
+
+STEP 2: Open Your Browser
+--------------------------
+Go to: http://127.0.0.1:5000/clear-cache-signup.html
+
+(This will clear cache and redirect to signup page)
+
+STEP 3: Test It
+---------------
+Try signing up with mismatched passwords - you'll see the error!
+
+================================================================================
+WHAT YOU'LL SEE:
+================================================================================
+
+✓ Password field with hint: "Minimum 8 characters"
+✓ Confirm Password field with red asterisk (*)
+✓ Hint text: "Must match the password above"
+✓ Error if passwords don't match
+✓ Error if password is too short
+
+================================================================================
+THAT'S IT! The feature is ready to use.
+================================================================================
