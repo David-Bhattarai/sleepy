@@ -33,11 +33,12 @@ except Exception as e:
 
 
 
-# Enhanced Emotion Detection (No API required)
+# Enhanced Emotion Detection (DISABLED - TensorFlow issue)
 try:
-    from enhanced_emotion_detector import get_enhanced_emotion_detector
-    ENHANCED_DETECTION_AVAILABLE = True
-    print("✅ Enhanced emotion detection loaded")
+    # Temporarily disabled due to TensorFlow compatibility issues
+    # from enhanced_emotion_detector import get_enhanced_emotion_detector
+    ENHANCED_DETECTION_AVAILABLE = False
+    print("⚠️ Enhanced detection temporarily disabled (TensorFlow compatibility)")
 except ImportError as e:
     print(f"⚠️ Enhanced detection not available: {e}")
     ENHANCED_DETECTION_AVAILABLE = False
@@ -63,31 +64,34 @@ except ImportError as e:
     HYBRID_SYSTEMS_AVAILABLE = False
 
 
-# PRODUCTION ML SYSTEM - Real-world ready components
+# PRODUCTION ML SYSTEM - Real-world ready components (DISABLED - TensorFlow issue)
 try:
-    from production_emotion_detector import get_production_emotion_detector
-    from production_chatbot import get_production_chatbot
-    PRODUCTION_ML_AVAILABLE = True
-    print("🚀 PRODUCTION ML SYSTEM: Real-world ready components loaded")
+    # Temporarily disabled due to TensorFlow compatibility issues
+    # from production_emotion_detector import get_production_emotion_detector
+    # from production_chatbot import get_production_chatbot
+    PRODUCTION_ML_AVAILABLE = False
+    print("⚠️ Production ML system temporarily disabled (TensorFlow compatibility)")
 except ImportError as e:
     print(f"⚠️ Production ML system not available: {e}")
     PRODUCTION_ML_AVAILABLE = False
 
-# ADVANCED MODE - 100% Accuracy Components
+# ADVANCED MODE - 100% Accuracy Components (DISABLED - TensorFlow issue)
 try:
-    from advanced_emotion_detector import get_advanced_emotion_detector
-    from advanced_chatbot import get_advanced_chatbot
-    ADVANCED_MODE_AVAILABLE = True
-    print("🚀 ADVANCED MODE: 100% Accuracy components loaded")
+    # Temporarily disabled due to TensorFlow compatibility issues
+    # from advanced_emotion_detector import get_advanced_emotion_detector
+    # from advanced_chatbot import get_advanced_chatbot
+    ADVANCED_MODE_AVAILABLE = False
+    print("⚠️ Advanced mode temporarily disabled (TensorFlow compatibility)")
 except ImportError as e:
     print(f"⚠️ Advanced mode not available: {e}")
     ADVANCED_MODE_AVAILABLE = False
 
-# FER2013 EMOTION DETECTION - Exact emotion detection based on FER2013-enhanced dataset
+# FER2013 EMOTION DETECTION - Exact emotion detection (DISABLED - TensorFlow issue)
 try:
-    from fer2013_emotion_detector import get_fer2013_emotion_detector
-    FER2013_AVAILABLE = True
-    print("🎯 FER2013 EMOTION DETECTION: Exact emotion detection based on FER2013-enhanced dataset loaded")
+    # Temporarily disabled due to TensorFlow compatibility issues
+    # from fer2013_emotion_detector import get_fer2013_emotion_detector
+    FER2013_AVAILABLE = False
+    print("⚠️ FER2013 emotion detection temporarily disabled (TensorFlow compatibility)")
 except ImportError as e:
     print(f"⚠️ FER2013 emotion detection not available: {e}")
     FER2013_AVAILABLE = False
@@ -97,7 +101,28 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 # from ml_model_realistic import get_realistic_ml_model  # REMOVED - Using simple matching
-from advanced_emotion_detection import get_emotion_detector, get_recommendation_engine, get_analytics_engine
+# Advanced emotion detection import (DISABLED - TensorFlow issue)
+try:
+    # Temporarily disabled due to TensorFlow compatibility issues
+    # from advanced_emotion_detection import get_emotion_detector, get_recommendation_engine, get_analytics_engine
+    print("⚠️ Advanced emotion detection temporarily disabled (TensorFlow compatibility)")
+    
+    # Simple fallback functions
+    def get_emotion_detector():
+        return None
+    def get_recommendation_engine():
+        return None
+    def get_analytics_engine():
+        return None
+        
+except ImportError as e:
+    print(f"⚠️ Advanced emotion detection not available: {e}")
+    def get_emotion_detector():
+        return None
+    def get_recommendation_engine():
+        return None
+    def get_analytics_engine():
+        return None
 from db_helper_simple import *
 
 # Initialize database on startup

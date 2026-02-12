@@ -1,0 +1,10 @@
+{
+  "dataset_check": false,
+  "model_check": true,
+  "integration_check": true,
+  "issues": [
+    "Dataset read error: Unknown format code 's' for object of type 'int'",
+    "Detector initialization error: Traceback (most recent call last):\n  File \"C:\\Users\\DELL\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\tensorflow\\python\\pywrap_tensorflow.py\", line 73, in <module>\n    from tensorflow.python._pywrap_tensorflow_internal import *\nImportError: DLL load failed while importing _pywrap_tensorflow_internal: A dynamic link library (DLL) initialization routine failed.\n\n\nFailed to load the native TensorFlow runtime.\nSee https://www.tensorflow.org/install/errors for some common causes and solutions.\nIf you need help, create an issue at https://github.com/tensorflow/tensorflow/issues and include the entire stack trace above this error message."
+  ],
+  "recommendations": []
+}
