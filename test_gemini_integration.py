@@ -202,7 +202,7 @@ def create_env_file():
 
 def main():
     """Main function"""
-    print("🎯 GEMINI AI INTEGRATION TESTER")
+    print("🎯\ GEMINI AI INTEGRATION TESTER")
     print("=" * 60)
     print()
     
