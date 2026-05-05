@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium - MINDBRIDGE</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen">
+    <div class="orb-container"><div class="orb"></div><div class="orb"></div></div>
+    <nav class="glass-nav fixed top-0 left-0 right-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <a href="/" class="text-2xl font-extrabold text-white tracking-wider">MINDBRIDGE</a>
+                <a href="/dashboard.html" class="text-gray-300 hover:text-white">Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-24 pb-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-white mb-4">Upgrade to Premium</h1>
+                <p class="text-gray-300 text-lg">Unlock the full power of AI mental health support</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="glass-card p-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">Free</h2>
+                    <div class="text-4xl font-bold text-gray-300 mb-6">$0<span class="text-lg text-gray-400">/month</span></div>
+                    <ul class="space-y-3 mb-8 text-gray-300">
+                        <li>✅ 20 AI chat messages/day</li>
+                        <li>✅ 10 emotion detections/day</li>
+                        <li>✅ Basic mood tracking</li>
+                        <li class="text-gray-500">❌ Video consultations</li>
+                        <li class="text-gray-500">❌ Ad-free experience</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-lg border border-gray-500 text-gray-400">Current Plan</button>
+                </div>
+                <div class="glass-card p-8" style="border-color:rgba(168,85,247,0.5);background:linear-gradient(135deg,rgba(99,102,241,0.15),rgba(168,85,247,0.15));">
+                    <h2 class="text-2xl font-bold text-white mb-2">Premium ⭐</h2>
+                    <div class="text-4xl font-bold text-purple-300 mb-6">$4.99<span class="text-lg text-gray-400">/month</span></div>
+                    <ul class="space-y-3 mb-8 text-gray-300">
+                        <li>✅ Unlimited AI chat messages</li>
+                        <li>✅ Unlimited emotion detection</li>
+                        <li>✅ Video doctor consultations</li>
+                        <li>✅ No advertisements</li>
+                        <li>✅ Advanced analytics</li>
+                        <li>✅ Priority support</li>
+                    </ul>
+                    <button id="upgrade-btn" class="w-full py-3 rounded-lg text-white font-bold" style="background:linear-gradient(to right,#7c3aed,#4f46e5);">
+                        Upgrade Now - $4.99/month
+                    </button>
+                </div>
+            </div>
+            <div class="glass-card p-6 text-center">
+                <p class="text-gray-400 text-sm mb-2">Secure payment. Cancel anytime.</p>
+                <div id="payment-message" class="text-yellow-400 text-sm">Payment setup in progress. Email admin@mindbridge.app to upgrade.</div>
+            </div>
+        </div>
+    </main>
+    <script src="app.js?v=2.0"></script>
+    <script>
+        document.getElementById('upgrade-btn').addEventListener('click', function() {
+            document.getElementById('payment-message').innerHTML = '<div style="background:rgba(88,28,135,0.3);border-radius:8px;padding:16px;margin-top:8px;"><p style="color:#c084fc;font-weight:bold;">To upgrade:</p><p style="color:white;margin-top:8px;">Email: admin@mindbridge.app</p><p style="color:#9ca3af;font-size:12px;margin-top:8px;">Premium activated within 24 hours.</p></div>';
+        });
+    </script>
+</body>
+</html>
